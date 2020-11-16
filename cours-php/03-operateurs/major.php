@@ -27,15 +27,15 @@ if ($age >= 18) {
 
     echo '<br />--------------------------------<br/>';
 
-    if ($age >= 16 && $age < 18) {
+    if ($age >= 16) {
         echo "Vous êtes presque majeur";
     }
 
-    if ($age >= 14 && $age < 16) {
+    else if ($age >= 14) {
         echo "Vous êtes jeune";
     }
 
-    if ($age < 14) {
+    else {
         echo "Vous êtes trop jeune";
     }
     
