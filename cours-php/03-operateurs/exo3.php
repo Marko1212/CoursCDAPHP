@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table de multiplication en PHP</title>
     <style>
+        table, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
         tr:nth-child(even) td:nth-child(even),
         tr:nth-child(odd) td:nth-child(odd) {
             background: lightgrey;
@@ -22,7 +26,7 @@
 
     <?php
 
-    echo "<table border =\"1\" style='border-collapse: collapse'>";
+    echo "<table>";
 
 
 
