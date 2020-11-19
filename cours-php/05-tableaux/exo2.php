@@ -137,9 +137,9 @@ foreach ($eleves as $key => $elevenotes) {
     }
 }
 if  ($compteurDeVingts === 0) {
-    echo "Personne n'a eu vingt.<br>";
+    echo "Personne n'a eu 20.<br>";
 } else {
-    echo "Quelqu'un a eu vingt.<br>";
+    echo "Quelqu'un a eu 20.<br>";
 }
 
 ?>
