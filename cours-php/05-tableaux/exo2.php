@@ -67,8 +67,8 @@ foreach ($eleves as $key => $elevenotes) {
                 $string .=' et '. $elevenotes['notes'][$i];
             }
             }
-            // A VOIR A QUOI SERT LE ++!!!
-            echo $elevenotes['nom']++. " a eu " .$string. ".<br>";
+            
+            echo $elevenotes['nom']. " a eu " .$string. ".<br>";
         }
 
     echo "La moyenne de Jean est : <br>";
