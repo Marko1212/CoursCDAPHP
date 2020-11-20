@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculatrice en PHP</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -31,29 +33,38 @@
 
     ?>
 
-
-
     <form>
-        <input type="number" name="nombre1" placeholder="Nombre 1" value="<?php echo $nombre1; ?>">
-        <input type="number" name="nombre2" placeholder="Nombre 2" value="<?php echo $nombre2; ?>">
-        <select name="operation">
-            <option <?php if ($operation === null) {
-                        echo 'selected';
-                    } ?>>Choisir une opération</option>
-            <option <?php if ($operation === 'Ajouter') {
-                        echo 'selected';
-                    } ?>>Ajouter</option>
-            <option <?php if ($operation === 'Soustraire') {
-                        echo 'selected';
-                    } ?>>Soustraire</option>
-            <option <?php if ($operation === 'Multiplier') {
-                        echo 'selected';
-                    } ?>>Multiplier</option>
-            <option <?php if ($operation === 'Diviser') {
-                        echo 'selected';
-                    } ?>>Diviser</option>
-        </select>
-        <button>Calculer</button>
+        <div class="container mt-3">
+            <p class="lead font-weight-bold">Calculatrice de base</p>
+            <div class="form-group">
+                <input class="form-control w-25" type="number" name="nombre1" placeholder="Nombre 1" value="<?php echo $nombre1; ?>">
+            </div>
+            <div class="form-group">
+                <input class="form-control w-25" type="number" name="nombre2" placeholder="Nombre 2" value="<?php echo $nombre2; ?>">
+            </div>
+            <div class="form-group">
+                <select class="form-control w-25" name="operation">
+                    <option <?php if ($operation === null) {
+                                echo 'selected';
+                            } ?>>Choisir une opération</option>
+                    <option <?php if ($operation === 'Ajouter') {
+                                echo 'selected';
+                            } ?>>Ajouter</option>
+                    <option <?php if ($operation === 'Soustraire') {
+                                echo 'selected';
+                            } ?>>Soustraire</option>
+                    <option <?php if ($operation === 'Multiplier') {
+                                echo 'selected';
+                            } ?>>Multiplier</option>
+                    <option <?php if ($operation === 'Diviser') {
+                                echo 'selected';
+                            } ?>>Diviser</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">Calculer</button>
+            </div>
+        
     </form>
     <p>Le résultat est :</p>
 
@@ -81,7 +92,7 @@
                 echo $nombre1 - $nombre2;
                 break;
             } else {
-                echo "Vous devez saisir deux valeurs numériques!";
+                echo "<p>Vous devez saisir deux valeurs numériques!</p>";
                 break;
             }
         case "Multiplier":
@@ -93,21 +104,20 @@
                 break;
             }
         case "Diviser":
-        
+
             if ($numeric) {
-                if ($nombre2!=0) {
-                echo $nombre1 / $nombre2;
-                break;
+                if ($nombre2 != 0) {
+                    echo $nombre1 / $nombre2;
+                    break;
+                } else {
+                    echo "La division par 0 est impossible! Veuillez saisir une valeur non nulle!";
+                    break;
+                }
             } else {
-                echo "La division par 0 est impossible! Veuillez saisir une valeur non nulle!";
-                break;
-            }
-        } else {
 
                 echo "Vous devez saisir deux valeurs numériques!";
                 break;
-
-        }
+            }
 
         default:
             echo "Vous devez choisir une operation!";
@@ -116,7 +126,7 @@
 
     ?>
 
-
+</div>
 
 </body>
 
