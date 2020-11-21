@@ -63,7 +63,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">Calculer</button>
+                <button class="btn btn-primary form-control w-25">Calculer</button>
             </div>
         
     </form>
