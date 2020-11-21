@@ -31,16 +31,17 @@
     }
 
 
+
     ?>
 
     <form>
         <div class="container mt-3">
             <p class="lead font-weight-bold">Calculatrice de base</p>
             <div class="form-group">
-                <input class="form-control w-25" type="number" name="nombre1" placeholder="Nombre 1" value="<?php echo $nombre1; ?>">
+                <input class="form-control w-25" type="number" step = "any" name="nombre1" placeholder="Nombre 1" value="<?php echo $nombre1; ?>">
             </div>
             <div class="form-group">
-                <input class="form-control w-25" type="number" name="nombre2" placeholder="Nombre 2" value="<?php echo $nombre2; ?>">
+                <input class="form-control w-25" type="number" step = "any" name="nombre2" placeholder="Nombre 2" value="<?php echo $nombre2; ?>">
             </div>
             <div class="form-group">
                 <select class="form-control w-25" name="operation">
@@ -75,6 +76,7 @@
     if (!is_numeric($nombre1) || !is_numeric($nombre2)) {
         $numeric = False;
     }
+
 
     switch ($operation) {
         case null:
