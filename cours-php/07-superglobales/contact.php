@@ -10,68 +10,65 @@
 </head>
 
 <body>
-<?php
+    <?php
 
-$email = null;
-$sujet = null;
-$message = null;
+    $email = null;
+    $sujet = null;
+    $message = null;
 
-if (isset($_GET['email'])) {
-    $email = $_GET['email'];
-}
+    if (isset($_GET['email'])) {
+        $email = $_GET['email'];
+    }
 
-if (isset($_GET['sujet'])) {
-    $sujet = $_GET['sujet'];
-}
+    if (isset($_GET['sujet'])) {
+        $sujet = $_GET['sujet'];
+    }
 
-if (isset($_GET['message'])) {
-    $message = $_GET['message'];
-}
+    if (isset($_GET['message'])) {
+        $message = $_GET['message'];
+    }
 
-?>
+    ?>
 
 
 
-    <div class="container">
+    <div class="container mt-3">
+        <p class="lead font-weight-bold">Contact</p>
         <form action="">
             <!-- Le name du input est très important -->
             <div class="form-group">
-            <input type="text" class="form-control w-25" name="email" value="<?php echo $email; ?>">
+                <input type="text" class="form-control w-25" placeholder="email" name="email" value="<?php echo $email; ?>">
             </div>
             <div class="form-group">
-            <input type="text" class="form-control w-25" name="sujet" value="<?php echo $sujet; ?>">
+                <input type="text" class="form-control w-25" placeholder="sujet" name="sujet" value="<?php echo $sujet; ?>">
             </div>
             <div class="form-group">
-            <input type="text" class="form-control w-25" name="message" value="<?php echo $message; ?>">
+                <input type="text" class="form-control w-25" placeholder="message" name="message" value="<?php echo $message; ?>">
             </div>
             <div class="form-group">
-            <button class="btn btn-primary form-control w-25">Chercher</button>
+                <button class="btn btn-primary form-control w-25">Chercher</button>
             </div>
         </form>
 
-<?php
+        <?php
 
-        /* var_dump($_GET); */
 
+
+        if (!is_null($email) && empty(trim($email))) {
+            exit('Vous devez saisir un email!');
+        } else
        
+        if (!is_null($email) && filter_var(trim($email), FILTER_VALIDATE_EMAIL) === false) {
+            exit('Cet email n\'est pas valide');
+        } else if (strlen(trim($sujet)) == 0 && !is_null($sujet)) {
+            exit('Votre nom ne doit pas être vide');
+        } else if (mb_strlen(trim($message), 'UTF-8') < 15 && !is_null($message)) {
+            exit("Votre message doit faire au moins 15 caractères");
+        } else if (!is_null($email) || !is_null($sujet) || !is_null($message)) {
+            exit("Les données sont valides!");
+        }
 
-    if (strlen(trim($sujet)) == 0 && !is_null($sujet)) {
-        exit('Votre nom ne doit pas être vide');
-    }
-
- if (!is_null($email) && empty(trim($email))) {
-     exit('Vous devez saisir un email!');
- }
-
- if (!is_null($email) && filter_var(trim($email), FILTER_VALIDATE_EMAIL)===false) {
-    exit("Cet email n\'est pas valide");
-}
-
-if (mb_strlen(trim($message), 'UTF-8') <15 && !is_null($message)) {
-    exit("Votre message doit faire au moins 15 caractères");
-}
-
-    ?>
+        ?>
 
     </div>
 

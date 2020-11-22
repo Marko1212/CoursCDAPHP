@@ -33,15 +33,15 @@
 
 
     ?>
+    <div class="container mt-3">
+        <form>
 
-    <form>
-        <div class="container mt-3">
             <p class="lead font-weight-bold">Calculatrice de base</p>
             <div class="form-group">
-                <input class="form-control w-25" type="number" step = "any" name="nombre1" placeholder="Nombre 1" value="<?php echo $nombre1; ?>">
+                <input class="form-control w-25" type="number" step="any" name="nombre1" placeholder="Nombre 1" value="<?php echo $nombre1; ?>">
             </div>
             <div class="form-group">
-                <input class="form-control w-25" type="number" step = "any" name="nombre2" placeholder="Nombre 2" value="<?php echo $nombre2; ?>">
+                <input class="form-control w-25" type="number" step="any" name="nombre2" placeholder="Nombre 2" value="<?php echo $nombre2; ?>">
             </div>
             <div class="form-group">
                 <select class="form-control w-25" name="operation">
@@ -65,11 +65,11 @@
             <div class="form-group">
                 <button class="btn btn-primary form-control w-25">Calculer</button>
             </div>
-        
-    </form>
-    <p>Le résultat est :</p>
 
-    <?php
+        </form>
+        <p>Le résultat est :</p>
+
+        <?php
 
     $numeric = True;
 
@@ -77,6 +77,9 @@
         $numeric = False;
     }
 
+    if (!is_null($nombre1) && empty(trim($nombre1)) || !is_null($nombre2) && empty(trim($nombre2))) {
+        exit('Vous devez saisir deux valeurs numériques!');
+    }
 
     switch ($operation) {
         case null:
@@ -128,7 +131,10 @@
 
     ?>
 
-</div>
+    </div>
+
+
+
 
 </body>
 
