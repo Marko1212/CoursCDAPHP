@@ -69,16 +69,18 @@
         </form>
         <p>Le résultat est :</p>
 
+       
+
         <?php
+
+    if (!is_null($nombre1) && empty(trim($nombre1)) && $nombre1 != 0 || !is_null($nombre2) && empty(trim($nombre2)) && $nombre2 != 0) {
+        exit('Vous devez saisir deux valeurs numériques!');
+    }
 
     $numeric = True;
 
     if (!is_numeric($nombre1) || !is_numeric($nombre2)) {
         $numeric = False;
-    }
-
-    if (!is_null($nombre1) && empty(trim($nombre1)) || !is_null($nombre2) && empty(trim($nombre2))) {
-        exit('Vous devez saisir deux valeurs numériques!');
     }
 
     switch ($operation) {
@@ -97,7 +99,7 @@
                 echo $nombre1 - $nombre2;
                 break;
             } else {
-                echo "<p>Vous devez saisir deux valeurs numériques!</p>";
+                echo "Vous devez saisir deux valeurs numériques!";
                 break;
             }
         case "Multiplier":
@@ -109,7 +111,6 @@
                 break;
             }
         case "Diviser":
-
             if ($numeric) {
                 if ($nombre2 != 0) {
                     echo $nombre1 / $nombre2;
@@ -119,7 +120,6 @@
                     break;
                 }
             } else {
-
                 echo "Vous devez saisir deux valeurs numériques!";
                 break;
             }

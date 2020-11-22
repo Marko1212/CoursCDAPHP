@@ -21,14 +21,14 @@ Créer et appeler une fonction convert
 
     <?php
 
-    function convert($amount, $taux = 15690, $sensConversion = "euroEnBitcoin")
+    function convert($montant, $taux = 15690, $sensConversion = "euroEnBitcoin")
     {
 
         if ($sensConversion === "bitcoinEnEuro") {
-            return $amount * $taux;
+            return $montant * $taux;
         }
 
-        return $amount / $taux;
+        return $montant / $taux;
     }
 
     $amount = null;
@@ -53,13 +53,13 @@ Créer et appeler une fonction convert
         <form>
             <p class="lead font-weight-bold">Conversion euros / bitcoins</p>
             <div class="form-group">
-                <input class="form-control w-25" type="number" step="any" name="montant" placeholder="Montant à convertir" value="<?php echo $amount; ?>">
+                <input class="form-control w-50" type="number" step="any" name="montant" placeholder="Montant à convertir" value="<?php echo $amount; ?>">
             </div>
             <div class="form-group">
-                <input class="form-control w-25" type="number" step="any" name="taux" placeholder="Taux du bitcoin en euros (15690)" value="<?php echo $rate; ?>">
+                <input class="form-control w-50" type="number" step="any" name="taux" placeholder="Saisir un taux du bitcoin en euros (sinon le taux par défaut sera appliqué)" value="<?php echo $rate; ?>">
             </div>
             <div class="form-group">
-                <select class="form-control w-25" name="operation">
+                <select class="form-control w-50" name="operation">
                     <option <?php if ($operation === null) {
                                 echo 'selected';
                             } ?>>Choisir un sens de conversion</option>
@@ -72,53 +72,57 @@ Créer et appeler une fonction convert
                 </select>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary form-control w-25">Convertir</button>
+                <button class="btn btn-primary form-control w-50">Convertir</button>
             </div>
 
         </form>
         <p>Le résultat est :</p>
 
-        
-    <?php
 
-$numeric = True;
-
-if (!is_numeric($amount) || !is_numeric($rate)) {
-    $numeric = False;
-}
+        <?php
 
 
-if (!is_null($amount) && empty(trim($amount))) {
-    exit('Vous devez saisir un montant à convertir!');
-} else if (!is_null($rate) && empty(trim($rate))) {
-    exit('Vous devez saisir un taux de conversion du bitcoin en euros!');
-} 
-
-switch ($operation) {
-    case null:
-        break;
-    case "Euros en bitcoins":
-        if ($numeric) {
-            echo convert($amount, $rate);
-            break;
-        } else {
-            echo "Vous devez saisir deux valeurs numériques!";
-            break;
+        if ($rate <= 0 && !is_null($rate)) {
+            exit('Vous devez saisir un taux strictement positif!');
         }
-    case "Bitcoins en euros":
-        if ($numeric) {
-            echo convert($amount, $rate, "bitcoinEnEuro");
-            break;
-        } else {
-            echo "<p>Vous devez saisir deux valeurs numériques!</p>";
-            break;
-        }
-    default:
-        echo "Vous devez choisir un sens de conversion!";
-        break;
-}
 
-?>
+        if (!is_null($amount) && empty(trim($amount)) && $amount != 0) {
+            exit('Vous devez saisir un montant à convertir!');
+        } else if (!is_null($rate) && empty(trim($rate))) {
+            $rate = 15690;
+        }
+
+        $numeric = True;
+
+        if (!is_numeric($amount) || !is_numeric($rate)) {
+            $numeric = False;
+        }
+
+        switch ($operation) {
+            case null:
+                break;
+            case "Euros en bitcoins":
+                if ($numeric) {
+                    echo convert($amount, $rate);
+                    break;
+                } else {
+                    echo "Vous devez saisir un montant à convertir!";
+                    break;
+                }
+            case "Bitcoins en euros":
+                if ($numeric) {
+                    echo convert($amount, $rate, "bitcoinEnEuro");
+                    break;
+                } else {
+                    echo "<p>Vous devez saisir un montant à convertir!</p>";
+                    break;
+                }
+            default:
+                echo "Vous devez choisir un sens de conversion!";
+                break;
+        }
+
+        ?>
 
     </div>
 
