@@ -63,25 +63,49 @@ $listeDesMails = ["jack@mailinator.com",
 "simon@gmail.com", "marc.antoine@outlook.fr", 
 "daniil.medvedev@gmail.com", "andjelija@orange.fr", 
 "olga@orange.com", "marko@mail.ru", 
-"veljko@outlook.com", "matthieu.mota@boxydev.com", "john.doe@google.com"];
+"veljko@outlook.com", "matthieu.mota@boxydev.com", "john.doe@gmail.com"];
 
 $listeDesDomaines = [];
 
-foreach ($listeDesMails as $email) {
+for ($i = 0; $i < count($listeDesMails); $i++) {
 
-    $domain = explode('@', $email);
+    $domain = explode('@', $listeDesMails[$i]);
     $domain[1] = substr($domain[1], 0, strpos($domain[1], '.'));
     $domain[1] = ucfirst($domain[1]);
+    echo $domain[1].'<br>';
 
-
-    $listeDesDomaines[] = $domain[1];
+    $listeDesDomaines[$i] = $domain[1];
  
     // output domain
-    echo $domain[1].'<br>';
+   // echo $domain[1].'<br>';
 }
 
 var_dump($listeDesDomaines);
 
+echo '<br>';
+
+$listeDomainesFrequences = [];
+
+for ($j= 0; $j < count($listeDesDomaines); $j++) {
+    $listeDomainesFrequences[$listeDesDomaines[$j]] = array_count_values($listeDesDomaines)[$listeDesDomaines[$j]];
+}
+
+echo '<br>';
+
+var_dump($listeDomainesFrequences);
+
+echo '<br>';
+
+$nombreAutres = count($listeDesMails);
+
+foreach($listeDomainesFrequences as $domaine => $frequence) {
+    if ($domaine === "Gmail" || $domaine === "Orange" || $domaine === "Outlook") {
+    echo $domaine.' : '.$frequence / count($listeDesMails) * 100 .'%<br>';
+    $nombreAutres -= $frequence;
+}
+}
+
+echo 'Autre : '. $nombreAutres / count($listeDesMails) *  100 .'%<br>';
 
 
 
