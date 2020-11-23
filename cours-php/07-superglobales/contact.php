@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les superglobales en PHP</title>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
 </head>
 
@@ -43,12 +42,14 @@
                 <input type="text" class="form-control w-25" placeholder="sujet" name="sujet" value="<?php echo $sujet; ?>">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control w-25" placeholder="message" name="message" value="<?php echo $message; ?>">
+                <textarea class="form-control w-25" rows="3" placeholder="message" name="message"><?php echo $message; ?></textarea>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary form-control w-25">Chercher</button>
             </div>
         </form>
+
+
 
         <?php
 

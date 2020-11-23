@@ -19,7 +19,10 @@
     
     echo acronyme("Je m'appelle Marko.").'<br>';
 
+    echo '<br>';
+
     //Conjuguer verbe au présent
+
 
     function conjuguer($verbe) {
 
@@ -54,6 +57,31 @@ Outlook: 20%
 Orange: 20%
 
 Autre: 20% */
+
+
+$listeDesMails = ["jack@mailinator.com", 
+"simon@gmail.com", "marc.antoine@outlook.fr", 
+"daniil.medvedev@gmail.com", "andjelija@orange.fr", 
+"olga@orange.com", "marko@mail.ru", 
+"veljko@outlook.com", "matthieu.mota@boxydev.com", "john.doe@google.com"];
+
+$listeDesDomaines = [];
+
+foreach ($listeDesMails as $email) {
+
+    $domain = explode('@', $email);
+    $domain[1] = substr($domain[1], 0, strpos($domain[1], '.'));
+    $domain[1] = ucfirst($domain[1]);
+
+
+    $listeDesDomaines[] = $domain[1];
+ 
+    // output domain
+    echo $domain[1].'<br>';
+}
+
+var_dump($listeDesDomaines);
+
 
 
 
