@@ -80,7 +80,7 @@ for ($i = 0; $i < count($listeDesMails); $i++) {
    // echo $domain[1].'<br>';
 }
 
-var_dump($listeDesDomaines);
+/* var_dump($listeDesDomaines); */
 
 echo '<br>';
 
@@ -91,8 +91,8 @@ for ($j= 0; $j < count($listeDesDomaines); $j++) {
 }
 
 echo '<br>';
-
-var_dump($listeDomainesFrequences);
+/* 
+var_dump($listeDomainesFrequences); */
 
 echo '<br>';
 
