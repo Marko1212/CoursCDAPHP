@@ -21,10 +21,10 @@ Créer et appeler une fonction convert
 
     <?php
 
-    function convert($montant, $taux = 15690, $sensConversion = "euroEnBitcoin")
+    function convert($montant, $taux = 15690, $sensConversion = "euroenbitcoin")
     {
 
-        if ($sensConversion === "bitcoinEnEuro") {
+        if ($sensConversion === "bitcoineneuro") {
             return $montant * $taux;
         }
 
@@ -60,13 +60,13 @@ Créer et appeler une fonction convert
             </div>
             <div class="form-group">
                 <select class="form-control w-50" name="operation">
-                    <option <?php if ($operation === null) {
+                    <option value = "choisir" <?php if ($operation === null) {
                                 echo 'selected';
                             } ?>>Choisir un sens de conversion</option>
-                    <option <?php if ($operation === 'Euros en bitcoins') {
+                    <option value="euroenbitcoin" <?php if ($operation === 'euroenbitcoin') {
                                 echo 'selected';
                             } ?>>Euros en bitcoins</option>
-                    <option <?php if ($operation === 'Bitcoins en euros') {
+                    <option value="bitcoineneuro" <?php if ($operation === 'bitcoineneuro') {
                                 echo 'selected';
                             } ?>>Bitcoins en euros</option>
                 </select>
@@ -81,16 +81,22 @@ Créer et appeler une fonction convert
 
         <?php
 
+        if (!is_null($amount) && empty(trim($amount)) && $amount != 0) {
+        exit('Vous devez saisir un montant à convertir!');
+        }
 
-        if ($rate <= 0 && !is_null($rate)) {
+        if ($amount < 0 && !is_null($amount)) {
+            exit('Vous devez saisir un montant positif ou nul!');
+        }
+        
+        if ($rate <= 0 && !is_null($rate) && strlen($rate) > 0) {
             exit('Vous devez saisir un taux strictement positif!');
         }
 
-        if (!is_null($amount) && empty(trim($amount)) && $amount != 0) {
-            exit('Vous devez saisir un montant à convertir!');
-        } else if (!is_null($rate) && empty(trim($rate))) {
+        if (!is_null($rate) && empty(trim($rate))) {
             $rate = 15690;
         }
+
 
         $numeric = True;
 
@@ -101,24 +107,24 @@ Créer et appeler une fonction convert
         switch ($operation) {
             case null:
                 break;
-            case "Euros en bitcoins":
+            case "euroenbitcoin":
                 if ($numeric) {
                     echo convert($amount, $rate);
                     break;
                 } else {
-                    echo "Vous devez saisir un montant à convertir!";
+                    echo "<p>Vous devez saisir un montant à convertir!</p>";
                     break;
                 }
-            case "Bitcoins en euros":
+            case "bitcoineneuro":
                 if ($numeric) {
-                    echo convert($amount, $rate, "bitcoinEnEuro");
+                    echo convert($amount, $rate, "bitcoineneuro");
                     break;
                 } else {
                     echo "<p>Vous devez saisir un montant à convertir!</p>";
                     break;
                 }
             default:
-                echo "Vous devez choisir un sens de conversion!";
+                echo "<p>Vous devez choisir un sens de conversion!</p>";
                 break;
         }
 
