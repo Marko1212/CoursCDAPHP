@@ -37,7 +37,7 @@
         <form action="">
             <!-- Le name du input est très important -->
             <div class="form-group">
-                <input type="text" class="form-control w-25" placeholder="email" name="email" value="<?php echo $email; ?>">
+                <input type="email" class="form-control w-25" placeholder="email" name="email" value="<?php echo $email; ?>">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control w-25" placeholder="sujet" name="sujet" value="<?php echo $sujet; ?>">
