@@ -76,7 +76,12 @@ Créer et appeler une fonction convert
             </div>
 
         </form>
-        <p>Le résultat est :</p>
+
+        <?php 
+        if (!empty($_GET)) {
+            echo '<p>Le résultat est :</p>';
+        }
+        ?>
 
 
         <?php

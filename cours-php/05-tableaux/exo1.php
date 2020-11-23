@@ -23,7 +23,8 @@ $population = [
 
 
 foreach ($population as $key => $value) {
-    echo "La capitale de " . $key++ ." est " . $value . ".<br>";
+    echo "La capitale de " . $key ." est " . $value . ".<br>";
+    //on peut mettre $key++ à la place de $key dans le echo
 }
 
 /* 1. Lister les pays ayant plus ou 20 millions d'habitants
@@ -44,7 +45,7 @@ echo "Les pays de 20 millions d'habitants ou plus sont : <br>";
 
 foreach ($populations as $key => $value) {
     if ($value >= 20000000) {
-    echo $key++. "<br>";
+    echo $key. "<br>";
     }
 }
 

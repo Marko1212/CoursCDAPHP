@@ -67,7 +67,14 @@
             </div>
 
         </form>
-        <p>Le résultat est :</p>
+        <?php 
+       /*  if (isset($_GET['operation']) && isset($_GET['nombre1']) && isset($_GET['nombre2'])) {
+            echo '<p>Le résultat est :</p>';
+        } */
+        if (!empty($_GET)) {
+            echo '<p>Le résultat est :</p>';
+        }
+        ?>
 
        
 
