@@ -15,6 +15,8 @@
     $sujet = null;
     $message = null;
 
+    $errors = [];
+
     if (isset($_GET['email'])) {
         $email = $_GET['email'];
     }
@@ -27,6 +29,19 @@
         $message = $_GET['message'];
     }
 
+    if (!is_null($email) && empty(trim($email))) {
+        $errors['email'] = 'Vous devez saisir un email!';
+
+    } else
+   
+    if (!is_null($email) && filter_var(trim($email), FILTER_VALIDATE_EMAIL) === false) {
+        $errors['email'] = 'Cet email n\'est pas valide';
+    } else if (strlen(trim($sujet)) == 0 && !is_null($sujet)) {
+        $errors['sujet'] = 'Votre sujet ne doit pas être vide';
+    } else if (mb_strlen(trim($message), 'UTF-8') < 15 && !is_null($message)) {
+        $errors['message'] = "Votre message doit faire au moins 15 caractères";
+    }
+
     ?>
 
 
@@ -37,12 +52,21 @@
             <!-- Le name du input est très important -->
             <div class="form-group">
                 <input type="email" class="form-control w-25" placeholder="email" name="email" value="<?php echo $email; ?>">
+                <?php if (isset($errors['email'])) {
+                echo '<span class="text-danger">'.$errors['email'].'</span>';
+            } ?>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control w-25" placeholder="sujet" name="sujet" value="<?php echo $sujet; ?>">
+                <?php if (isset($errors['sujet'])) {
+                echo '<span class="text-danger">'.$errors['sujet'].'</span>';
+            } ?>
             </div>
             <div class="form-group">
                 <textarea class="form-control w-25" rows="3" placeholder="message" name="message"><?php echo $message; ?></textarea>
+                <?php if (isset($errors['message'])) {
+                echo '<span class="text-danger">'.$errors['message'].'</span>';
+            } ?>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary form-control w-25">Chercher</button>
@@ -53,20 +77,8 @@
 
         <?php
 
-
-
-        if (!is_null($email) && empty(trim($email))) {
-            exit('Vous devez saisir un email!');
-        } else
-       
-        if (!is_null($email) && filter_var(trim($email), FILTER_VALIDATE_EMAIL) === false) {
-            exit('Cet email n\'est pas valide');
-        } else if (strlen(trim($sujet)) == 0 && !is_null($sujet)) {
-            exit('Votre nom ne doit pas être vide');
-        } else if (mb_strlen(trim($message), 'UTF-8') < 15 && !is_null($message)) {
-            exit("Votre message doit faire au moins 15 caractères");
-        } else if (!is_null($email) || !is_null($sujet) || !is_null($message)) {
-            exit("Les données sont valides!");
+        if (!empty($_GET) && empty($errors)) {
+                echo '<span class="text-success">Message envoyé</span>';
         }
 
         ?>
