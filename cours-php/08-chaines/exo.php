@@ -74,8 +74,8 @@ Autre: 20% */
 
 $listeDesMails = ["jack@mailinator.com", 
 "simon@gmail.com", "marc.antoine@outlook.fr", 
-"daniil.medvedev@gmail.com", "andjelija@orange.fr", 
-"olga@orange.com", "marko@mail.ru", 
+"daniil.medvedev@gmail.com", "andjelija@orange.fr", "neil@free.fr",
+"olga@orange.com", "marko@mail.ru", "pierrot@google.com", "radomir.askovic@sfr.fr",
 "veljko@outlook.com", "matthieu.mota@boxydev.com", "john.doe@gmail.com"];
 
 $listeDesDomaines = [];
@@ -109,12 +109,12 @@ $nombreAutres = count($listeDesMails);
 
 foreach($listeDomainesFrequences as $domaine => $frequence) {
     if ($domaine === "Gmail" || $domaine === "Orange" || $domaine === "Outlook") {
-    echo $domaine.' : '.$frequence / count($listeDesMails) * 100 .'%<br>';
+    echo $domaine.' : '. round($frequence / count($listeDesMails) * 100, 2) .'%<br>';
     $nombreAutres -= $frequence;
 }
 }
 
-echo 'Autre : '. $nombreAutres / count($listeDesMails) *  100 .'%<br>';
+echo 'Autre : '. round($nombreAutres / count($listeDesMails) *  100, 2) .'%<br>';
 
 
 
