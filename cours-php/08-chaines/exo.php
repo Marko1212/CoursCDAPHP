@@ -22,7 +22,7 @@
     echo '<br>';
 
     //Conjuguer verbe au présent
-    //cas particuliers : ajouter, manger
+    //cas particuliers : ajouter, manger, placer
 
     function conjuguer($verbe) {
 
@@ -46,6 +46,11 @@
             $radical .= "e";
             $conjugaisons .= 'Nous ' .$radical. 'ons' . '<br>';
             $radical = substr($radical, 0, -1);
+        } else if (substr($radical, -1) === "c") {
+            $radical = substr($radical, 0, -1) . 'ç';
+            $conjugaisons .= 'Nous ' .$radical. 'ons' . '<br>';
+            $radical = substr($radical, 0, -2). 'c';
+
         } else {
             $conjugaisons .= 'Nous ' .$radical. 'ons' . '<br>';
         }
@@ -59,6 +64,7 @@
     echo conjuguer("manger").'<br>';
     echo conjuguer("ajouter").'<br>';
     echo conjuguer("trouver").'<br>';
+    echo conjuguer("placer").'<br>';
     
 /* 
 Statistiques : On va créer un tableau avec des adresses e-mail. Le but est d'extraire le nom du serveur après le @. On calculera ensuite le pourcentage d'utilisation de chaque fournisseur. Par exemple :
