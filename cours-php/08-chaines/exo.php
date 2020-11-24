@@ -17,12 +17,12 @@
 	
     }
     
-    echo acronyme("Je m'appelle Marko.").'<br>';
+    echo acronyme("World of Warcraft.").'<br>';
 
     echo '<br>';
 
     //Conjuguer verbe au présent
-
+    //cas particuliers : ajouter, manger
 
     function conjuguer($verbe) {
 
@@ -30,13 +30,25 @@
 
         $verbe = strtolower($verbe);
 
+        $voyelles = ["a", "e", "i", "o", "u", "y", "ù", "é", "è", "ê", "â", "à", "î", "ô", "û"];
+
         $radical = substr($verbe, 0, strlen($verbe) - 2);
 
-
+        if (in_array($verbe[0], $voyelles)) {
+        $conjugaisons .= 'J\'' .$radical. 'e' . '<br>'; 
+        } else {
         $conjugaisons .= 'Je ' .$radical. 'e' . '<br>';
+        }
+
         $conjugaisons .= 'Tu ' .$radical. 'es' . '<br>';
         $conjugaisons .= 'Il/Elle ' .$radical. 'e' . '<br>';
-        $conjugaisons .= 'Nous ' .$radical. 'ons' . '<br>';
+        if (substr($radical, -1) === "g") {
+            $radical .= "e";
+            $conjugaisons .= 'Nous ' .$radical. 'ons' . '<br>';
+            $radical = substr($radical, 0, -1);
+        } else {
+            $conjugaisons .= 'Nous ' .$radical. 'ons' . '<br>';
+        }
         $conjugaisons .= 'Vous ' .$radical. 'ez' . '<br>';
         $conjugaisons .= 'Ils/Elles ' .$radical. 'ent' . '<br>';
 
@@ -44,8 +56,9 @@
 
     }
 
-
-    echo conjuguer("Trouver").'<br>';
+    echo conjuguer("manger").'<br>';
+    echo conjuguer("ajouter").'<br>';
+    echo conjuguer("trouver").'<br>';
     
 /* 
 Statistiques : On va créer un tableau avec des adresses e-mail. Le but est d'extraire le nom du serveur après le @. On calculera ensuite le pourcentage d'utilisation de chaque fournisseur. Par exemple :
@@ -89,12 +102,8 @@ $listeDomainesFrequences = [];
 for ($j= 0; $j < count($listeDesDomaines); $j++) {
     $listeDomainesFrequences[$listeDesDomaines[$j]] = array_count_values($listeDesDomaines)[$listeDesDomaines[$j]];
 }
-
-echo '<br>';
 /* 
 var_dump($listeDomainesFrequences); */
-
-echo '<br>';
 
 $nombreAutres = count($listeDesMails);
 
