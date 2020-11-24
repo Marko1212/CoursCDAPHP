@@ -7,14 +7,14 @@
 </head>
 <body>
 
-<div class="header">
+<div>
 <?php require(__DIR__.'/partials/header.php');?>
 </div>
 
 <h1>Welcome to my contact page!</h1>
 
 
-<div class="footer">
+<div>
 <?php require(__DIR__.'/partials/footer.php');?>
 </div>
     

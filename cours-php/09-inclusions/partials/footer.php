@@ -1,5 +1,7 @@
 <?php
-
-echo '<small>Place sticky footer content here.</small>';
-
+echo '<footer class="footer">
+<div class="container">
+  <span class="text-muted">Place sticky footer content here.</span>
+</div>
+</footer>';
 ?>
