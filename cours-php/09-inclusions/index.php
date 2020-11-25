@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-<?php include(__DIR__.'/partials/header.php');?>
+<?php require_once(__DIR__.'/partials/header.php');?>
 </header>
 
  <main role="main" class="container">
@@ -20,7 +20,7 @@
 </main>
 
 
-<?php include(__DIR__.'/partials/footer.php');?>
+<?php require_once(__DIR__.'/partials/footer.php');?>
 
     
 </body>
