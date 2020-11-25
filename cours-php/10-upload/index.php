@@ -2,7 +2,7 @@
 
 2. L'utilisateur pourra envoyer son CV en PDF. On devra vérifier le format et la taille (limité à 5mo).
 
-3. L'utilisateur pourra saisir son email, on renommera le CV avec son email et une chaine de caractères générée aléatoirement.
+3. L'utilisateur pourra saisir son prénom, on renommera le CV avec son prénom et une chaine de caractères générée aléatoirement.
 
 4. On ajoutera l'upload d'une image. Idéalement, on essaiera de redimensionner l'image en 300x300 dans un nouveau fichier. 
 Voir l'extension GD. -->
