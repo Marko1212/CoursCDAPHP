@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
     //in_array($fileActualExt, $formatsAutorises)
     if ($fileActualExt === "pdf") {
         if ($fileError === 0) {
-            if ($fileSize <= 5000000) {
+            if ($fileSize <= 5*1024*1024) {
                 $fileNameNew = $prenom.'-'.uniqid('', true).".".$fileActualExt;
                 $fileDestination = 'uploads/'.$fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
 
         if ($imageActualExt === "jpg" || $imageActualExt === "jpeg") {
             if ($imageError === 0) {
-                if ($imageSize <= 5000000) {
+                if ($imageSize <= 5*1024*1024) {
                     $imageNameNew = uniqid('', true).".".$imageActualExt;
                     $imageDestination = 'uploads/'.$imageNameNew;
                     move_uploaded_file($imageTmpName, $imageDestination);
