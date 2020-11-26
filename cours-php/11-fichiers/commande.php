@@ -1,10 +1,3 @@
-<!-- 1. Nous allons créer un formulaire de commande Click'N'Collect
-
-2. L'utilisateur pourra saisir son email et choisir parmi une liste de produits (Select, checkbox ou textarea)
-
-3. On stockera l'ensemble des demandes dans un fichier .txt que le client pourra retrouver
-
-4. Idéalement, on créera une page pour le client afin qu'il puisse retrouver l'ensemble des commandes (en lisant le contenu du fichier) -->
 
 <!DOCTYPE html>
 <html lang="fr">
