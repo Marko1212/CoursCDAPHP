@@ -84,22 +84,21 @@
 
         $fileHandler = fopen('mes-commandes.txt', 'a+');
 
+        $date = date('d/m/Y' .' à '. 'H:i:s', time());
 
         switch ($produit) {
             case null:
                 break;
             case "chemise":
-                fwrite($fileHandler, "Marko a commandé une chemise le 26/11/2020" . PHP_EOL);
+                fwrite($fileHandler, "$email a commandé une chemise le $date". PHP_EOL);
             break;
-
             case "pantalons":
-
-                fwrite($fileHandler, "Marko a commandé un pantalon le 26/11/2020" . PHP_EOL);
+                fwrite($fileHandler, "$email a commandé un pantalon le $date". PHP_EOL);
             break;
 
             case "chaussures":
 
-                fwrite($fileHandler, "Marko a commandé des chaussures le 26/11/2020" . PHP_EOL);
+                fwrite($fileHandler, "$email a commandé des chaussures le ". $date . PHP_EOL);
             break;
         }
 
