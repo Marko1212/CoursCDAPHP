@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login/Logout</title>
+  <title>Login/Logout/Cookie/Session</title>
   <style>
     table {
 
@@ -42,7 +43,7 @@
       </tr>
       <tr>
         <td>Username :</td>
-        <td><input type="text" name="uname" value="<?php echo $_COOKIE['remember_me']; ?>"></td>
+        <td><input type="text" name="uname" id="uname"></td>
       </tr>
       <tr>
         <td>Password :</td>
@@ -50,13 +51,12 @@
       </tr>
       <tr>
         <td>Remember me :</td>
-        <td><input type="checkbox" name="remember" <?php if (isset($_COOKIE['remember_me'])) {
-        echo 'checked="checked"';
-    }
-    else {
-    echo '';
-}
-?>></td>
+        <td><input type="checkbox" name="remember" <?php if (isset($_COOKIE['uname'])) {
+                                                      echo 'checked="checked"';
+                                                    } else {
+                                                      echo '';
+                                                    }
+                                                    ?>></td>
       </tr>
       <tr>
         <td colspan="2" style="text-align: right;">
@@ -66,6 +66,16 @@
     </table>
 
   </form>
+
+  <?php
+
+if (isset($_COOKIE['uname'])) {
+  $uname = $_COOKIE['uname'];
+  echo "<script>
+  document.getElementById('uname').value = '$uname';
+  </script>";
+}
+?>
 
 </body>
 
