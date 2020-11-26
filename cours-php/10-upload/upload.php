@@ -40,13 +40,13 @@ if (isset($_POST['submit'])) {
     //in_array($fileActualExt, $formatsAutorises)
     if ($fileActualExt === "pdf") {
         if ($fileError === 0) {
-            if ($fileSize <= 5*1024*1024) {
+            if ($fileSize <= 0.1*1024*1024) {
                 $fileNameNew = $prenom.'-'.uniqid('', true).".".$fileActualExt;
                 $fileDestination = 'uploads/'.$fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
                 header("Location:index.php?uploadsuccess");
             } else {
-                echo "Votre fichier est trop gros!";
+                echo "Votre fichier (CV) est trop gros!<br>";
             }
     } else {
              echo "Il y a eu une erreur avec l'upload de votre fichier!";
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
 
         if ($imageActualExt === "jpg" || $imageActualExt === "jpeg") {
             if ($imageError === 0) {
-                if ($imageSize <= 5*1024*1024) {
+                if ($imageSize <= 0.1*1024*1024) {
                     $imageNameNew = uniqid('', true).".".$imageActualExt;
                     $imageDestination = 'uploads/'.$imageNameNew;
                     move_uploaded_file($imageTmpName, $imageDestination);
@@ -95,7 +95,7 @@ if (isset($_POST['submit'])) {
                 }
                 
                 else {
-                    echo "Votre fichier est trop gros!";
+                    echo "Votre fichier (image) est trop gros!<br>";
                     }
           }  
           
