@@ -39,6 +39,7 @@ if (isset($_SESSION['uname'])) {
         $_SESSION['uname'] = $uname;
         if (isset($_POST['remember'])) {
         setcookie('uname', $_POST['uname'], time() + 60*60*7);
+        setcookie('pwd', $_POST['pwd'], time() + 60*60*7);
         }
         echo "<script>window.location='welcome.php'</script>";
     } else {

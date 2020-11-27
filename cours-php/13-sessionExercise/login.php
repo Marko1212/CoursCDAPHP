@@ -47,7 +47,7 @@
       </tr>
       <tr>
         <td>Password :</td>
-        <td><input type="password" name="pwd" id="pwd"></td>
+        <td><input type="password" name="pwd"></td>
       </tr>
       <tr>
         <td>Remember me :</td>
@@ -69,12 +69,10 @@
 
   <?php
 
-if (isset($_COOKIE['uname']) && isset($_COOKIE['pwd'])) {
+if (isset($_COOKIE['uname'])) {
   $uname = $_COOKIE['uname'];
-  $pwd = $_COOKIE['pwd'];
   echo "<script>
   document.getElementById('uname').value = '$uname';
-  document.getElementById('pwd').value = '$pwd';
   </script>";
 }
 ?>
