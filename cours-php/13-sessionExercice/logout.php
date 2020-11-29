@@ -1,9 +1,11 @@
+
 <?php
+
 session_start();
 
 if (isset($_SESSION['uname'])) {
-    //session_destroy();
     unset($_SESSION['uname']);
+    //session_destroy();
 
     if (isset($_COOKIE['uname'])){
         $uname = $_COOKIE['uname'];
@@ -11,17 +13,19 @@ if (isset($_SESSION['uname'])) {
     }
 
     echo "<script>window.location='login.php'</script>";
-} else if (isset($_SESSION['users'][$indexUser])) {
-    //session_destroy();
-    unset($_SESSION['users'][$indexUser]);
+} else if (isset($_SESSION['indexCurrentUser'])) {
+
+    unset($_SESSION['users'][(int)$_SESSION['indexCurrentUser']]);
+    unset($_SESSION['indexCurrentUser']);
 
     echo "<script>window.location='login.php'</script>";
 }
-
 else {
     echo "<script>window.location='login.php'</script>";
 }
 
 
 ?>
+
+
 
