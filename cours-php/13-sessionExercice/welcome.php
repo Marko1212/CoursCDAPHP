@@ -20,7 +20,7 @@ if (isset($_SESSION['uname'])) {
     echo "<h1>Welcome ". $_SESSION['users'][(int)$_SESSION['indexCurrentUser']][0]. "</h1>";
     echo "<a href='product.php'>Product</a><br>";
     echo "<br><a href='logout.php'><input type=button value=Logout name=logout></a>";
-} else {
+} else
 
    /*  
    $username = '';
@@ -44,9 +44,6 @@ if (isset($_SESSION['uname'])) {
 /*         } */
 /*  */
 
-if (empty($_POST)) {
-    echo 'post is empty!';
-}
     if($_POST['uname'] == "admin" && $_POST['pwd'] == "admin") {
 
         $_SESSION['uname'] = "admin";
@@ -74,7 +71,7 @@ if (empty($_POST)) {
         echo "<script>alert('Username and/or password incorrects!')</script>";
         echo "<script>window.location='login.php'</script>";
     }
-}
+
 
 }
 
