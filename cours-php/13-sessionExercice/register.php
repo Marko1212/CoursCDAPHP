@@ -79,6 +79,7 @@
 
   if (isset($_POST['uname']) && isset($_POST['pwd'])) {
 
+    //attention : empty('0') == True
     if (empty(trim($_POST['uname'])) || empty(trim($_POST['pwd']))) {
       echo "<p class='danger'>Vous devez saisir un username et/ou mot de passe non vides!</p>";
     }
