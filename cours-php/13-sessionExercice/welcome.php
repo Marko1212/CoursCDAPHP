@@ -17,10 +17,11 @@ if (isset($_SESSION['uname'])) {
     echo "<a href='product.php'>Product</a><br>";
     echo "<br><a href='logout.php'><input type=button value=Logout name=logout></a>";
 } else if (isset($_SESSION['indexCurrentUser'])) {
+
     echo "<h1>Welcome ". $_SESSION['users'][(int)$_SESSION['indexCurrentUser']][0]. "</h1>";
     echo "<a href='product.php'>Product</a><br>";
     echo "<br><a href='logout.php'><input type=button value=Logout name=logout></a>";
-} else
+} else {
 
    /*  
    $username = '';
@@ -46,34 +47,41 @@ if (isset($_SESSION['uname'])) {
 
     if($_POST['uname'] == "admin" && $_POST['pwd'] == "admin") {
 
-        $_SESSION['uname'] = "admin";
-        if (isset($_POST['remember'])) {
-        setcookie('uname', $_POST['uname'], time() + 60*60*7);
+            $_SESSION['uname'] = "admin";
+            if (isset($_POST['remember'])) {
+            setcookie('uname', $_POST['uname'], time() + 60*60*7);
         }
-        echo "<script>window.location='welcome.php'</script>";
+            echo "<script>window.location='welcome.php'</script>";
     } else {
 
-    $uname = $_POST['uname'];
-    $pwd = $_POST['pwd'];
+            $uname = $_POST['uname'];
+            $pwd = $_POST['pwd'];
+
+            if ($uname ==='' && $pwd ==='') {
+            echo "<script>alert('Username and/or password incorrects!')</script>";
+            echo "<script>window.location='login.php'</script>";
+            } else {
     
-    $indexUser = array_search($uname, array_column($_SESSION['users'], 0));
+            $indexUser = array_search($uname, array_column($_SESSION['users'], 0));
 
-    if ($_POST['uname'] == $_SESSION['users'][$indexUser][0] && $_POST['pwd'] == $_SESSION['users'][$indexUser][1]) {
+            //echo "<script>alert('$indexUser')</script>";
 
-        $_SESSION['indexCurrentUser'] = $indexUser;
+            if ($_POST['uname'] == $_SESSION['users'][$indexUser][0] && $_POST['pwd'] == $_SESSION['users'][$indexUser][1]) {
 
-    echo "<h1>Welcome ". $_SESSION['users'][$indexUser][0]. "</h1>";
-    echo "<a href='product.php'>Product</a><br>";
-    echo "<br><a href='logout.php'><input type=button value=Logout name=logout></a>";
-}   
-    else {
+            $_SESSION['indexCurrentUser'] = $indexUser;
 
-        echo "<script>alert('Username and/or password incorrects!')</script>";
-        echo "<script>window.location='login.php'</script>";
-    }
+            echo "<h1>Welcome ". $_SESSION['users'][$indexUser][0]. "</h1>";
+            echo "<a href='product.php'>Product</a><br>";
+            echo "<br><a href='logout.php'><input type=button value=Logout name=logout></a>";
+                }   
+         else {
 
+            echo "<script>alert('Username and/or password incorrects!')</script>";
+            echo "<script>window.location='login.php'</script>";
+            }
+
+        }
 
 }
 
-
-?>
+}

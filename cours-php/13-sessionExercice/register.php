@@ -83,7 +83,7 @@
       echo "<p class='danger'>Vous devez saisir un username et/ou mot de passe non vides!</p>";
     } 
     
-    else if (array_search($_POST['uname'], array_column($_SESSION['users'], 0)) || trim($_POST['uname'])=='admin') {
+    else if (array_search($_POST['uname'], array_column($_SESSION['users'], 0)) !== false || trim($_POST['uname'])=='admin') {
 
       echo "<p class='danger'>Le username que vous avez saisi est occupé, veuillez en choisir un autre!";
 
