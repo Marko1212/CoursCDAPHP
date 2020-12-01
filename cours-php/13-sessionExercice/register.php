@@ -74,7 +74,7 @@
 
   <?php
 
-  session_start();
+  (session_start();
   //var_dump($_SESSION);
 
   if (isset($_POST['uname']) && isset($_POST['pwd'])) {
