@@ -1,3 +1,8 @@
+<?php
+// on inclut ici tous les fichiers de configuration du site
+require '../config/database.php';
+require '../config/functions.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -7,10 +12,7 @@
     <title>Webflix</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css"
-</head>
-
-<body>
+    <link rel="stylesheet" href="assets/css/style.css" </head> <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Webflix</a>
@@ -26,15 +28,32 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Nos films</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                            Dropdown
+                    <?php
+                        $categories = getCategories();
+                    ?>
+                    <li class="nav-item dropdown pl-3">
+                        <a class="btn btn-outline-danger dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                            Nos catégories
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-menu">
+
+                            <?php
+                            // $query est un objet PDOStatement
+                            // $query = $db->query('SELECT * FROM category');
+
+                            // $result et $results sont des tableaux / objets
+                            // contenant les colonnes en clé et les données en valeur
+                            //$result = $query->fetch(); // Renvoie une seule ligne de résultat
+
+
+                            // $categories = $query->fetchAll(); // Renvoie toutes les lignes de résultat
+
+                            //On va parcourir toutes les catégories
+                            // RAPPEL : <?= équivaut à <?php echo
+                            foreach ($categories as $category) { ?>
+                                <a class="dropdown-item" href="#"><?= $category['name']; ?></a>
+                            <?php } // Fin du foreach
+                            ?>
                         </div>
                     </li>
                 </ul>
