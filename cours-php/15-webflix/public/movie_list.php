@@ -2,12 +2,13 @@
 
 // On va récupérer la liste des films 
 
-$filtre ='';
-
 if (isset($_GET['sort'])) {
-$filtre = $_GET['sort'];
+$sort = $_GET['sort'];
+} else {
+    $sort = 'id';
 }
-$movies = getMovies($filtre);
+
+$movies = getMovies($sort);
 
 ?>
 

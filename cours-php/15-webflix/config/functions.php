@@ -67,7 +67,11 @@ global $db;
 
 $triSelect = 'SELECT * FROM movie';
 
-if(isset($filtre) && (trim($filtre)!='')) {   
+// Pour éviter les injections SQL, on va vérifier le paramètre $filtre
+// Idéalement, on utilisera une requête préparée...
+
+
+if (in_array($filtre, ['id', 'title', 'duration', 'released_at'])) {   
    $triSelect .= " ORDER BY ".trim($filtre)."";
  }
 
