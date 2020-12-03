@@ -15,7 +15,7 @@ $movies = getMovies($filtre);
 
 <div class="container">
 
-<div class="dropdown mt-3 mb-3">
+<div class="dropdown my-4">
   <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
     Trier par
   </button>
