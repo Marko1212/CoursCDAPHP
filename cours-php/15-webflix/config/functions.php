@@ -43,6 +43,24 @@ function getRandomMovies() {
 
 }
 
+function getSliderMovies() { 
+
+    global $db;
+
+    $query = $db->query('SELECT * FROM movie WHERE cover IS NOT NULL order by released_at desc limit 9');
+
+    // $result et $results sont des tableaux / objets
+    // contenant les colonnes en clé et les données en valeur
+    //$result = $query->fetch(); // Renvoie une seule ligne de résultat
+
+
+    $movieSlider = $query->fetchAll(); // Renvoie toutes les lignes de résultat
+
+  
+    return $movieSlider;
+
+}
+
 
 
 ?>
