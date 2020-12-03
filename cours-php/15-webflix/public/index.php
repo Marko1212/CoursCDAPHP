@@ -50,9 +50,9 @@ while ($i < count(getSliderMovies()) && $i % 3 == 0) {
 <h1>Sélection de films aléatoires</h1>
     <div class='row'>
         <?php
-
+// si on ne met pas col-12 ci-dessous, Bootstrap le mettra automatiquement
         foreach (getRandomMovies() as $movie) { ?>
-            <div class="col-3">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="card shadow mb-4">
                     <img class='card-img-top' src="assets/uploads/<?=$movie['cover']; ?>" alt="<?=$movie['title']; ?>">
                     <div class="card-body">
