@@ -46,14 +46,14 @@ while ($i < count(getSliderMovies()) && $i % 3 == 0) {
   </a>
 </div>
 
-<div class='container'>
+<div class='container mt-4 mb-5'>
 <h1>Sélection de films aléatoires</h1>
     <div class='row'>
         <?php
 
         foreach (getRandomMovies() as $movie) { ?>
             <div class="col-3">
-                <div class="card mb-4">
+                <div class="card shadow mb-4">
                     <img class='card-img-top' src="assets/uploads/<?=$movie['cover']; ?>" alt="<?=$movie['title']; ?>">
                     <div class="card-body">
                         <p class="card-title"><?= $movie['title']; ?></p>
