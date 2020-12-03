@@ -61,6 +61,23 @@ function getSliderMovies() {
 
 }
 
+function getMovies($filtre) {
+
+global $db;
+
+$triSelect = 'SELECT * FROM movie';
+
+if(isset($filtre) && (trim($filtre)!='')) {   
+   $triSelect .= " ORDER BY ".trim($filtre)."";
+ }
+
+
+ $query = $db->query($triSelect);
+
+
+return $query->fetchAll();
+
+}
 
 
 ?>

@@ -1,5 +1,6 @@
 <?php
 // on inclut ici tous les fichiers de configuration du site
+require '../config/config.php';
 require '../config/database.php';
 require '../config/functions.php'; ?>
 
@@ -15,18 +16,17 @@ require '../config/functions.php'; ?>
     <link rel="stylesheet" href="assets/css/style.css" </head> <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Webflix</a>
+            <a class="navbar-brand" href="index.php">Webflix</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Accueil</a>
+                    <li class="nav-item <?php echo ('index.php' === $pageActive) ? 'active' : ''; ?>">
+                        <a class="nav-link" href="index.php">Accueil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Nos films</a>
+                    <li class="nav-item <?php echo ('movie_list.php' === $pageActive) ? 'active' : ''; ?>">
+                        <a class="nav-link" href="movie_list.php">Nos films</a>
                     </li>
                     <?php
                         $categories = getCategories();
