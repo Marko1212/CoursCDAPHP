@@ -51,7 +51,7 @@ require '../config/functions.php'; ?>
                             //On va parcourir toutes les catégories
                             // RAPPEL : <?= équivaut à <?php echo
                             foreach ($categories as $category) { ?>
-                                <a class="dropdown-item" href="#"><?= $category['name']; ?></a>
+                                <a class="dropdown-item" href="category_single.php?id=<?=$category['id']; ?>"><?= $category['name']; ?></a>
                             <?php } // Fin du foreach
                             ?>
                         </div>

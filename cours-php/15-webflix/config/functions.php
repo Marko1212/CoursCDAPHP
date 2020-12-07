@@ -112,6 +112,37 @@ return $query->fetchAll();
 
  }
 
+ function display404() {
+
+http_response_code(404); // on force le statut 404 sur la requête (important pour les API!)
+echo '<div class="container"><h1>404</h1> </div>';
+require '../partials/footer.php'; 
+exit();
+
+    }
 
 
-?>
+function getMoviesByCategory($id) {
+
+    global $db;
+
+    $query = $db -> prepare('SELECT * FROM `movie` WHERE category_id = :id');
+    $query -> bindValue(':id', $id, PDO::PARAM_INT);
+    $query -> execute();
+
+    return $query -> fetchAll(); 
+
+}
+
+function getCategory($id) {
+    global $db;
+
+    $query = $db->prepare('SELECT * FROM `category` WHERE id = :id');
+    $query -> bindValue(':id', $id, PDO::PARAM_INT);
+    $query -> execute();
+
+    return $query -> fetch(); // fetch renvoie une seule ligne
+}
+    
+    
+    ?>
