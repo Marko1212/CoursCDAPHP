@@ -25,8 +25,9 @@
  ?>
 
  <div class="container">
-
+ <h1 class="my-4 text-center"><?= $category['name']; ?></h1>
     <div class="row">
+    
     <?php foreach ($movies as $movie) {
         require '../partials/card-movie.php';
     } ?>
