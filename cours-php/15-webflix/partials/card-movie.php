@@ -5,7 +5,7 @@
             <h5 class="card-title"><?= $movie['title']; ?></h5>
             <p class="card-text">Sorti en <?= substr($movie['released_at'], 0, 4); ?></p>
             <p class="card-text"><?= $movie['description']; ?></p>
-            <a href="#" class="btn btn-danger btn-block">Voir le film</a>
+            <a href="movie_single.php?id=<?=$movie['id']; ?>" class="btn btn-danger btn-block">Voir le film</a>
         </div>
         <div class="card-footer text-muted">★★★☆☆</div>
     </div>

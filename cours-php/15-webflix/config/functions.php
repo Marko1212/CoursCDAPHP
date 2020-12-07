@@ -134,6 +134,18 @@ function getMoviesByCategory($id) {
 
 }
 
+function getMovieById($id) {
+
+    global $db;
+
+    $query = $db -> prepare('SELECT * FROM `movie` WHERE id = :id');
+    $query -> bindValue(':id', $id, PDO::PARAM_INT);
+    $query -> execute();
+
+    return $query -> fetch(); 
+
+}
+
 function getCategory($id) {
     global $db;
 
@@ -142,6 +154,43 @@ function getCategory($id) {
     $query -> execute();
 
     return $query -> fetch(); // fetch renvoie une seule ligne
+}
+
+function getCategoryPerMovieId($id) {
+    global $db;
+
+    $query = $db->prepare('SELECT category.id as categoryId, category.name as categoryName from category inner join movie on movie.id = category.id and movie.id= :id');
+    $query -> bindValue(':id', $id, PDO::PARAM_INT);
+    $query -> execute();
+
+    return $query -> fetch(); // fetch renvoie une seule ligne
+}
+
+function convertToHours($duration) {
+
+    $hours = floor($duration / 60); // Get the number of whole hours
+    $duration = $duration % 60; // Get the remainder of the hours
+    
+    if ($duration < 10) {
+        $duration = '0'.$duration;
+    }
+    return $hours.'h'.$duration; // Format it as hourshminutes where minutes is 2 digits
+
+}
+
+function formatDate($date) {
+
+$formatedDate = date('d F Y', strtotime($date));
+
+$frenchMonths = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+$englishMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+$formatedDate = str_replace($englishMonths, $frenchMonths, $formatedDate);
+
+return $formatedDate;
+
+
 }
     
     
