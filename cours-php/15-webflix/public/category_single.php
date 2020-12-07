@@ -22,6 +22,10 @@
  $movies = getMoviesByCategory($id);
  $category = getCategory($id);
 
+ if (!$category) {
+     display404();
+ }
+
  ?>
 
  <div class="container">
