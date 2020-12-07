@@ -92,8 +92,19 @@ return $query->fetchAll();
 
 global $db;
 
-$query = $db->query('SELECT * FROM `movie` where `title` like "%'.$q.'%"');
+$orderBy = $_GET['sort'] ?? 'id';
+//$query = $db->query('SELECT * FROM `movie` where `title` like "%'.$q.'%"');
 
+if (!in_array($orderBy, ['id', 'title', 'duration', 'released_at'])) {   
+    $orderBy = 'id';
+  }
+
+
+$query = $db-> prepare('SELECT * from `movie` WHERE `title` LIKE :q ORDER BY '.$orderBy);
+// Le bindValue permet de remplacer les paramètres de la requête préparée par
+// la "vraie" valeur
+$query -> bindValue(':q', '%'.$q.'%');
+$query -> execute();
 
 
 return $query->fetchAll();
