@@ -17,3 +17,7 @@ body {
     object-fit: cover;
     width: 33.33%;
  }
+
+ .small-text {
+     font-size: 10px;
+ }

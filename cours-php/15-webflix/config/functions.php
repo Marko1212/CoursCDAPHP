@@ -178,9 +178,9 @@ function convertToHours($duration) {
 
 }
 
-function formatDate($date) {
+function formatDate($date, $format = 'd F Y') {
 
-$formatedDate = date('d F Y', strtotime($date));
+$formatedDate = date($format, strtotime($date));
 
 $frenchMonths = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 

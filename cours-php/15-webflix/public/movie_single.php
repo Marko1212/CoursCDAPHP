@@ -67,7 +67,9 @@ if (!$category) {
                     <div class="mb-3">
                         <p class="mb-0">
                             <strong><?=$comment['nickname']; ?></strong>
-                            <span><?=$comment['created_at']; ?></span>
+                            <span class="small-text">
+                                le <?=formatDate($comment['created_at'], 'd/m/Y à H\hi'); ?>
+                            </span>
                         </p>
                         <p>
                         <?=$comment['message']; ?>
@@ -141,8 +143,7 @@ if (!$category) {
                 <br/>
 
                 <label for="message">Message</label>
-                <textarea type="text" name="message" id="message" class="form-control" rows="3">
-                </textarea>
+                <textarea type="text" name="message" id="message" class="form-control" rows="3"></textarea>
 
                 <br/>
 
