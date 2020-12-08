@@ -222,5 +222,28 @@ function getCommentsByMovie($id) {
 
     }
 
-    
-    ?>
+    function addMovie($title, $description, $duration, $released_at, $category_id) {
+
+
+        global $db;
+
+        $query = $db->prepare("INSERT INTO movie (title, description, duration, released_at, category_id) VALUES (:title, :description,:duration,:released_at,:category_id)");
+       
+        
+        $query->bindValue(':title', $title, PDO::PARAM_STR);
+        $query->bindValue(':description', $description, PDO::PARAM_STR);
+        $query->bindValue(':duration', $duration);
+        $query->bindValue(':released_at', $released_at);
+        $query->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+        $query->execute();
+
+        return "Sucess";
+       
+    }
+
+    function validateDate($date, $format = 'Y-m-d')
+        {
+            $d = DateTime::createFromFormat($format, $date);
+            // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
+             return $d && $d->format($format) === $date;
+        }
