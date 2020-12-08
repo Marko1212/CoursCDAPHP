@@ -82,8 +82,9 @@ if (!$category) {
 //  pas besoin d'utiliser isset ici parce que la variable $_POST existe toujours,
 // elle peut être vide éventuellement, mais elle existe. 
                 if (!empty($_POST)) {
-                    $nickname = $_POST['nickname'];
-                    $message = $_POST['message'];
+
+                    $nickname = htmlspecialchars($_POST['nickname']); //transforme <script> en &gt;script&lt;
+                    $message = strip_tags($_POST['message']);//supprime les tags <script> de la chaîne
                     $note = $_POST['note'];
                     $errors = [];
 
