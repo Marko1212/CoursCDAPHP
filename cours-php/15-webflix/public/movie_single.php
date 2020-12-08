@@ -1,5 +1,7 @@
 <?php
 
+
+ob_start(); //on met cette ligne pour éviter des bugs avec la fonction header() (redirection)
 /**
  *    Récupérer les informations du film
  * 1. Sur chaque lien "Voir le film", on doit rajouter un lien vers
@@ -33,7 +35,16 @@ if (!$category) {
 ?>
 
 <div class="container">
-    <h1 class="my-4 text-center"><?= $category['categoryName']; ?></h1>
+<?php
+if (isset($_GET['status'])) {
+  $status = $_GET['status'];
+  if ($status === "success") {
+  echo '<div class="alert alert-success text-center" role="alert">
+  Le film a bien été rajouté dans la base de données!
+   </div>';
+}
+}
+?>
 
     <div class="row">
         <div class="col-lg-6">
@@ -45,8 +56,8 @@ if (!$category) {
                 <div class="card-body">
                     <h5 class="card-title"><?= $movie['title']; ?></h5>
                     <p>Durée : <?= convertToHours($movie['duration']);
-                    
-                    ?></p>
+
+                                ?></p>
                     <p>Sorti le : <?= formatDate($movie['released_at']); ?></p>
                     <p>Catégorie : <?= $category['categoryName']; ?></p>
                     <div><?= $movie['description']; ?></div>
@@ -55,122 +66,121 @@ if (!$category) {
                     <a href="#" class="card-link">Another link</a>
                 </div>
                 <div class="card-footer text-muted">
-                   <?php 
-                   $averageMovie = getAverageMovie($movie['id']); 
-                   echo $averageMovie.'/5'; 
-                   
-                   //Boucle pour afficher les étoiles
+                    <?php
+                    $averageMovie = getAverageMovie($movie['id']);
+                    echo $averageMovie . '/5';
 
-                   for ($i = 1; $i <= 5; $i++) {
+                    //Boucle pour afficher les étoiles
+
+                    for ($i = 1; $i <= 5; $i++) {
                         echo ($i <= $averageMovie) ? '★' : '☆';
-                   }
-                ?>
+                    }
+                    ?>
                 </div>
             </div>
 
             <div class="card shadow mt-5">
                 <div class="card-body">
                     <?php
-                $comments = getCommentsByMovie($movie['id']);
+                    $comments = getCommentsByMovie($movie['id']);
 
-                foreach($comments as $comment) { ?>
+                    foreach ($comments as $comment) { ?>
 
-                    <div class="mb-3">
-                        <p class="mb-0">
-                            <strong><?=$comment['nickname']; ?></strong>
-                            <span class="small-text">
-                                le <?=formatDate($comment['created_at'], 'd/m/Y à H\hi'); ?>
-                            </span>
-                        </p>
-                        <p>
-                        <?=$comment['message']; ?>
-                        <?=$comment['note']; ?>/5
-                        </p>
-                    </div>
-                    <hr />
+                        <div class="mb-3">
+                            <p class="mb-0">
+                                <strong><?= $comment['nickname']; ?></strong>
+                                <span class="small-text">
+                                    le <?= formatDate($comment['created_at'], 'd/m/Y à H\hi'); ?>
+                                </span>
+                            </p>
+                            <p>
+                                <?= $comment['message']; ?>
+                                <?= $comment['note']; ?>/5
+                            </p>
+                        </div>
+                        <hr />
 
-                <?php } ?>
-
-                <?php 
-//  pas besoin d'utiliser isset ici parce que la variable $_POST existe toujours,
-// elle peut être vide éventuellement, mais elle existe. 
-                if (!empty($_POST)) {
-
-                    $nickname = htmlspecialchars($_POST['nickname']); //transforme <script> en &gt;script&lt;
-                    $message = strip_tags($_POST['message']);//supprime les tags <script> de la chaîne
-                    $note = $_POST['note'];
-                    $errors = [];
-
-                    if (empty($nickname)) {
-                        $errors['nickname'] = 'Le pseudo est vide';
-                    }
-                    //on peut aussi utiliser la fonction mb_strlen 
-                    if (strlen($message) < 15) {
-                        $errors['message'] = 'Le message est trop court';
-                    }
-
-                    if ($note < 0 || $note > 5) {
-                        $errors['note'] = "La note n'\est pas correcte";
-                    }
-
-                    // On fait la requête s'il n'y a pas d'erreurs
-
-                    if (empty($errors)) {
-
-                        // Requête SQL...
-                        $query = $db->prepare(
-                            'INSERT INTO `comment` (`nickname`,  `message`, `note`, `created_at`, `movie_id`)
-                            VALUES (:nickname, :message, :note, NOW(), :movie_id)');
-                        // on lie les paramètres à la requête préparée
-                        $query->bindValue(':nickname', $nickname);
-                        $query->bindValue(':message', $message);
-                        $query->bindValue(':note', $note, PDO::PARAM_INT);
-                        $query->bindValue(':movie_id', $movie['id'], PDO::PARAM_INT);
-                        $query->execute(); // On exécute la requête et c'est tout...
-
-                        // On redirige pour éviter que l'utilisateur ne renvoie le formulaire
-                        //header('Location: movie_single.php?id='.$movie['id']);
-                        echo '<meta http-equiv="refresh" content="0; URL=\'movie_single.php?id='.$movie['id'].'\'">';
-                    } else {
-
-                        //Afficher les erreurs...
-                        echo "<div class='container alert alert-danger'>";
-                        foreach($errors as $error) {
-                            echo '<p class="text-danger m-0">'.$error.'</p>';
-                        }
-                        echo '</div>';
-
-                    }
-
-                }
-
-                ?>
-
-                <form method="post">
-
-                <label for="nickname">Pseudo</label>
-                <input type="text" name="nickname" id="nickname" class="form-control">
-
-                <br/>
-
-                <label for="message">Message</label>
-                <textarea type="text" name="message" id="message" class="form-control" rows="3"></textarea>
-
-                <br/>
-
-                <label for="note">Note</label>
-                <select name="note" id="note" class="form-control">
-                    <?php for ($i = 0; $i <= 5; $i++) { ?>
-                        <option value="<?= $i; ?>"><?= $i; ?>/5</option>
                     <?php } ?>
 
-                    </select>
+                    <?php
+                    //  pas besoin d'utiliser isset ici parce que la variable $_POST existe toujours,
+                    // elle peut être vide éventuellement, mais elle existe. 
+                    if (!empty($_POST)) {
 
-                    <br/>
+                        $nickname = htmlspecialchars($_POST['nickname']); //transforme <script> en &gt;script&lt;
+                        $message = strip_tags($_POST['message']); //supprime les tags <script> de la chaîne
+                        $note = $_POST['note'];
+                        $errors = [];
 
-                <button class="btn btn-danger btn-block">Envoyer</button>
+                        if (empty($nickname)) {
+                            $errors['nickname'] = 'Le pseudo est vide';
+                        }
+                        //on peut aussi utiliser la fonction mb_strlen 
+                        if (strlen($message) < 15) {
+                            $errors['message'] = 'Le message est trop court';
+                        }
 
-                </form>
+                        if ($note < 0 || $note > 5) {
+                            $errors['note'] = "La note n'\est pas correcte";
+                        }
+
+                        // On fait la requête s'il n'y a pas d'erreurs
+
+                        if (empty($errors)) {
+
+                            // Requête SQL...
+                            $query = $db->prepare(
+                                'INSERT INTO `comment` (`nickname`,  `message`, `note`, `created_at`, `movie_id`)
+                            VALUES (:nickname, :message, :note, NOW(), :movie_id)'
+                            );
+                            // on lie les paramètres à la requête préparée
+                            $query->bindValue(':nickname', $nickname);
+                            $query->bindValue(':message', $message);
+                            $query->bindValue(':note', $note, PDO::PARAM_INT);
+                            $query->bindValue(':movie_id', $movie['id'], PDO::PARAM_INT);
+                            $query->execute(); // On exécute la requête et c'est tout...
+
+                            // On redirige pour éviter que l'utilisateur ne renvoie le formulaire
+                            header('Location: movie_single.php?id=' . $movie['id']);
+                            /*                      echo '<meta http-equiv="refresh" content="0; URL=\'movie_single.php?id='.$movie['id'].'\'">'; */
+                        } else {
+
+                            //Afficher les erreurs...
+                            echo "<div class='container alert alert-danger'>";
+                            foreach ($errors as $error) {
+                                echo '<p class="text-danger m-0">' . $error . '</p>';
+                            }
+                            echo '</div>';
+                        }
+                    }
+
+                    ?>
+
+                    <form method="post">
+
+                        <label for="nickname">Pseudo</label>
+                        <input type="text" name="nickname" id="nickname" class="form-control">
+
+                        <br />
+
+                        <label for="message">Message</label>
+                        <textarea type="text" name="message" id="message" class="form-control" rows="3"></textarea>
+
+                        <br />
+
+                        <label for="note">Note</label>
+                        <select name="note" id="note" class="form-control">
+                            <?php for ($i = 0; $i <= 5; $i++) { ?>
+                                <option value="<?= $i; ?>"><?= $i; ?>/5</option>
+                            <?php } ?>
+
+                        </select>
+
+                        <br />
+
+                        <button class="btn btn-danger btn-block">Envoyer</button>
+
+                    </form>
 
                 </div>
             </div>

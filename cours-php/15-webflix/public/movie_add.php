@@ -1,5 +1,7 @@
 <?php
 
+ob_start(); //on met cela pour éviter des bugs avec la fonction header() (redirection)
+
 /**
  * Formulaire d'ajout de film
  * 
@@ -23,14 +25,21 @@ require '../partials/header.php';
 
 <?php 
 
+    $title = null;
+    $description = null;
+    $cover = null;
+    $duration = null;
+    $released_at = null;
+    $categorySelected = null;
+
 if (!empty($_POST)) {
 
     $title = htmlspecialchars($_POST['title']);
-
     $description = strip_tags($_POST['description']);
+    $cover = $_POST['cover'];
     $duration = $_POST['duration'];
     $released_at = $_POST['released_at'];
-    $category = $_POST['category'];
+    $categorySelected = $_POST['category'];
 
     $errors = [];
     if (strlen($title) < 2) {
@@ -50,8 +59,10 @@ if (!empty($_POST)) {
 
     if (empty($errors)) {
 
-     addMovie($title, $description, $duration, $released_at, $category);
-     header('Location: movie_list.php?status=success');
+     addMovie($title, $description, $cover, $duration, $released_at, $categorySelected);
+     
+     header('Location: movie_single.php?id='.$db->lastInsertId().'&status=success');
+     //header('Location: movie_list.php?status=success');
 
 
     } else {
@@ -75,19 +86,23 @@ if (!empty($_POST)) {
     <form class="w-50 mx-auto" method="post">
         <div class="form-group">
             <label for="title">Titre</label>
-            <input type="text" class="form-control" id="title" placeholder="titre" name="title">
+            <input type="text" class="form-control" id="title" placeholder="titre" name="title" value="<?php echo $title; ?>">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="3" placeholder="description"></textarea>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="description"><?php echo $description; ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="cover">Jaquette</label>
+            <input type="text" class="form-control" id="cover" placeholder="cover" name="cover">
         </div>
         <div class="form-group">
             <label for="duration">Durée</label>
-            <input type="number" class="form-control" id="duration" placeholder="durée" name="duration">
+            <input type="number" class="form-control" id="duration" placeholder="durée" name="duration" value="<?php echo $duration; ?>">
         </div>
         <div class="form-group">
             <label for="date">Sortie</label>
-            <input type="date" class="form-control" id="date" placeholder="Date de sortie" name="released_at">
+            <input type="date" class="form-control" id="date" placeholder="Date de sortie" name="released_at" value="<?php echo $released_at; ?>">
         </div>
         <div class="form-group">
             <label for="category">Category</label>
@@ -96,7 +111,7 @@ if (!empty($_POST)) {
                 $categories = getCategories();
 
                 foreach ($categories as $category) { ?>
-                    <option value = '<?= $category['id']; ?>'><?= $category['name']; ?></option>
+                    <option <?php if ($categorySelected == $category['id']) { ?>selected="true" <?php } ?> value = '<?= $category['id']; ?>'><?= $category['name']; ?></option>
                 <?php } // Fin du foreach
                 ?>
             </select>

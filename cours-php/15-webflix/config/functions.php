@@ -222,23 +222,22 @@ function getCommentsByMovie($id) {
 
     }
 
-    function addMovie($title, $description, $duration, $released_at, $category_id) {
+    function addMovie($title, $description, $cover, $duration, $released_at, $category_id) {
 
 
         global $db;
 
-        $query = $db->prepare("INSERT INTO movie (title, description, duration, released_at, category_id) VALUES (:title, :description,:duration,:released_at,:category_id)");
+        $query = $db->prepare("INSERT INTO movie (title, description, cover, duration, released_at, category_id) VALUES (:title, :description,:cover, :duration,:released_at,:category_id)");
        
         
         $query->bindValue(':title', $title, PDO::PARAM_STR);
         $query->bindValue(':description', $description, PDO::PARAM_STR);
+        $query->bindValue(':cover', $cover);
         $query->bindValue(':duration', $duration);
         $query->bindValue(':released_at', $released_at);
         $query->bindValue(':category_id', $category_id, PDO::PARAM_INT);
-        $query->execute();
+        return $query->execute(); //return true si requête réussie, false sinon
 
-        return "Sucess";
-       
     }
 
     function validateDate($date, $format = 'Y-m-d')

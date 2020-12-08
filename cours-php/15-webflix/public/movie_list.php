@@ -19,17 +19,6 @@ $movies = getMovies($sort);
 
 <div class="container">
 
-<?php 
-if (isset($_GET['status'])) {
-  $status = $_GET['status'];
-  if ($status === "success") {
-  echo '<div class="alert alert-success text-center" role="alert">
-  Vous avez inséré un nouveau film dans la base de données!
-   </div>';
-}
-}
-?>
-
   <div class="dropdown my-4">
     <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
       Trier par
