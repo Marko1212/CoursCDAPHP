@@ -34,6 +34,11 @@ $movies = searchMovie($q);
 ?>
 
 <div class="container">
+<?php if (isset($_GET['q'])) {
+     $q = $_GET['q'];
+     echo "<h1 class='mt-3'>Vous avez cherché ".$q."</h1>";
+ }
+ ?>
 
 <div class="dropdown my-4">
   <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">

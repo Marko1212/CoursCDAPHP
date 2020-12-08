@@ -38,7 +38,7 @@ if (!empty($_POST)) {
 
     $title = htmlspecialchars($_POST['title']);
     $description = strip_tags($_POST['description']);
-    $cover = $_POST['cover'];
+    $cover = $_FILES['cover'];
     $duration = $_POST['duration'];
     $released_at = $_POST['released_at'];
     $categorySelected = $_POST['category'];
@@ -56,12 +56,37 @@ if (!empty($_POST)) {
     if (!validateDate($released_at)) {
         $errors['released_at'] = "La date n'est pas bonne";
     }
+
+    //Ici on peut faire l'upload
+    //on s'assure que le fichier fait au plus 10Mo
+    //on s'assure aussi que c'est bien une image
+    $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    $maxSize = 10 * 1024 * 1024;
+
+    if ($cover['error'] === 0 && $cover['size'] <= $maxSize && in_array($cover['type'], $allowedTypes)) {
+
+        //on s'assure que le dossier existe
+        if (!is_dir('assets/uploads')) {
+            mkdir('assets/uploads');
+        }
+
+
+        $extension = pathinfo($cover['name'])['extension'];
+        $fileName = str_replace(' ','-', strtolower($title)).'.'.$extension;
+
+        move_uploaded_file($cover['tmp_name'], 'assets/uploads/'.$fileName);
+        
+
+
+    }   else {
+        $errors['cover'] = 'Le fichier est trop lourd ou le format est incorrect...';
+    }
     
     // On fait la requête s'il n'y a pas d'erreurs
 
     if (empty($errors)) {
 
-     addMovie($title, $description, $cover, $duration, $released_at, $categorySelected);
+     addMovie($title, $description, $fileName, $duration, $released_at, $categorySelected);
      
      header('Location: movie_single.php?id='.$db->lastInsertId().'&status=success');
      //header('Location: movie_list.php?status=success');
@@ -85,8 +110,8 @@ if (!empty($_POST)) {
 
     <h1 class="text-center mt-3">Ajouter un film</h1>
 
-    <form class="w-50 mx-auto" method="post">
-        <div class="form-group">
+    <form class="w-50 mx-auto" method="post" enctype="multipart/form-data">
+        <div class="form-group"> 
             <label for="title">Titre</label>
             <input type="text" class="form-control" id="title" placeholder="titre" name="title" value="<?php echo $title; ?>">
         </div>
@@ -96,7 +121,7 @@ if (!empty($_POST)) {
         </div>
         <div class="form-group">
             <label for="cover">Jaquette</label>
-            <input type="text" class="form-control" id="cover" placeholder="cover" name="cover">
+            <input type="file" class="form-control" id="cover" placeholder="cover" name="cover">
         </div>
         <div class="form-group">
             <label for="duration">Durée</label>
