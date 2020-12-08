@@ -25,6 +25,8 @@ require '../partials/header.php';
 
 <?php 
 
+//on met cela dans le cas où il y a erreur de soumission du formulaire, pour ne pas avoir de message
+//d'erreur dans le formulaire (avec value)
     $title = null;
     $description = null;
     $cover = null;

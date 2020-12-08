@@ -46,7 +46,7 @@ if (isset($_GET['status'])) {
 }
 ?>
 
-    <div class="row">
+    <div class="row my-3">
         <div class="col-lg-6">
             <img class='img-fluid' src="assets/uploads/<?= $movie['cover']; ?>" alt="<?= $movie['title']; ?>">
         </div>
@@ -130,7 +130,7 @@ if (isset($_GET['status'])) {
 
                             // Requête SQL...
                             $query = $db->prepare(
-                                'INSERT INTO `comment` (`nickname`,  `message`, `note`, `created_at`, `movie_id`)
+                            'INSERT INTO `comment` (`nickname`,  `message`, `note`, `created_at`, `movie_id`)
                             VALUES (:nickname, :message, :note, NOW(), :movie_id)'
                             );
                             // on lie les paramètres à la requête préparée
