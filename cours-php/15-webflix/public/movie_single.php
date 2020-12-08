@@ -54,7 +54,18 @@ if (!$category) {
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
                 </div>
-                <div class="card-footer text-muted">★★★☆☆</div>
+                <div class="card-footer text-muted">
+                   <?php 
+                   $averageMovie = getAverageMovie($movie['id']); 
+                   echo $averageMovie.'/5'; 
+                   
+                   //Boucle pour afficher les étoiles
+
+                   for ($i = 1; $i <= 5; $i++) {
+                        echo ($i <= $averageMovie) ? '★' : '☆';
+                   }
+                ?>
+                </div>
             </div>
 
             <div class="card shadow mt-5">
