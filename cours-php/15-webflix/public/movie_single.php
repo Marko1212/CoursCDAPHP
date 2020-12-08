@@ -41,7 +41,7 @@ if (!$category) {
         </div>
         <div class="col-lg-6">
 
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
                     <h5 class="card-title"><?= $movie['title']; ?></h5>
                     <p>Durée : <?= convertToHours($movie['duration']);

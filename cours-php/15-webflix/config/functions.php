@@ -159,7 +159,7 @@ function getCategory($id) {
 function getCategoryPerMovieId($id) {
     global $db;
 
-    $query = $db->prepare('SELECT category.id as categoryId, category.name as categoryName from category inner join movie on movie.id = category.id and movie.id= :id');
+    $query = $db->prepare('SELECT category.id as categoryId, category.name as categoryName from category inner join movie on movie.category_id = category.id and movie.id= :id');
     $query -> bindValue(':id', $id, PDO::PARAM_INT);
     $query -> execute();
 
