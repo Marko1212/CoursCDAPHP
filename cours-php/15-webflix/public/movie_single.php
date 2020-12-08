@@ -59,6 +59,24 @@ if (!$category) {
 
             <div class="card shadow mt-5">
                 <div class="card-body">
+                    <?php
+                $comments = getCommentsByMovie($movie['id']);
+
+                foreach($comments as $comment) { ?>
+
+                    <div class="mb-3">
+                        <p class="mb-0">
+                            <strong><?=$comment['nickname']; ?></strong>
+                            <span><?=$comment['created_at']; ?></span>
+                        </p>
+                        <p>
+                        <?=$comment['message']; ?>
+                        <?=$comment['note']; ?>/5
+                        </p>
+                    </div>
+                    <hr />
+
+                <?php } ?>
 
                 <?php 
 //  pas besoin d'utiliser isset ici parce que la variable $_POST existe toujours,
@@ -97,8 +115,8 @@ if (!$category) {
                         $query->execute(); // On exécute la requête et c'est tout...
 
                         // On redirige pour éviter que l'utilisateur ne renvoie le formulaire
-                        header('Location: movie_single.php?id='.$movie['id']);
-
+                        //header('Location: movie_single.php?id='.$movie['id']);
+                        echo '<meta http-equiv="refresh" content="0; URL=\'movie_single.php?id='.$movie['id'].'\'">';
                     } else {
 
                         //Afficher les erreurs...

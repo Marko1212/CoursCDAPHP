@@ -192,6 +192,17 @@ return $formatedDate;
 
 
 }
+
+function getCommentsByMovie($id) {
+    global $db;
+
+    $query = $db->prepare(
+        'SELECT * FROM `comment` WHERE movie_id = :id'
+    );
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
+    $query -> execute();
+    return $query ->fetchAll();
+}
     
     
     ?>
