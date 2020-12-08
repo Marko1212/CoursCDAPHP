@@ -2,10 +2,10 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 07, 2020 at 10:24 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.13
+-- Хост: 127.0.0.1
+-- Время создания: Дек 08 2020 г., 18:45
+-- Версия сервера: 10.4.17-MariaDB
+-- Версия PHP: 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `webflix`
+-- База данных: `webflix`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `actor`
+-- Структура таблицы `actor`
 --
 
 CREATE TABLE `actor` (
@@ -35,7 +35,7 @@ CREATE TABLE `actor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `actor`
+-- Дамп данных таблицы `actor`
 --
 
 INSERT INTO `actor` (`id`, `name`, `firstname`, `birthday`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `actor` (`id`, `name`, `firstname`, `birthday`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Структура таблицы `category`
 --
 
 CREATE TABLE `category` (
@@ -62,7 +62,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `category`
+-- Дамп данных таблицы `category`
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
@@ -75,7 +75,7 @@ INSERT INTO `category` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- Структура таблицы `comment`
 --
 
 CREATE TABLE `comment` (
@@ -87,10 +87,27 @@ CREATE TABLE `comment` (
   `movie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `comment`
+--
+
+INSERT INTO `comment` (`id`, `nickname`, `message`, `note`, `created_at`, `movie_id`) VALUES
+(1, 'Marko', 'azezeaeazeazeazeazezaezaeazeazezaea', 5, '2020-12-07 17:01:14', 1),
+(2, 'sdg', '                qsdsqdsqdsqdqsdqsdsfsfdfsdfsdfsdfsq', 5, '2020-12-07 17:11:18', 1),
+(3, 'sdfsdfdsfdfdsdxs', '                sdgdgsdgdsfsdfs', 3, '2020-12-07 17:14:02', 1),
+(4, 'd', '                qfdqsdqsdqsdqsdqsdqsdqsdqsd', 2, '2020-12-08 08:53:45', 3),
+(5, 'dsqsd', '                qsdqsdq', 3, '2020-12-08 08:57:34', 1),
+(6, 'dsfdsf', '                dsfdsfsds', 2, '2020-12-08 09:04:38', 1),
+(7, 'Marko', 'commentaire                ', 4, '2020-12-08 09:05:49', 11),
+(11, 'hgbfvdc', '                ', 0, '2020-12-08 09:43:57', 20),
+(12, 'tgfdsezqsdfzdsqf', 'sdfzedfqsfqdsdqs', 4, '2020-12-08 09:57:15', 3),
+(13, 'Marko', 'superqsdqsdqsdqsdsqdqdqsqsdsqd', 1, '2020-12-08 17:07:37', 8),
+(14, 'Marko', 'gfqdqsdqdqsdqsdqsdsqdsqdqsdsqd', 4, '2020-12-08 17:07:49', 8);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movie`
+-- Структура таблицы `movie`
 --
 
 CREATE TABLE `movie` (
@@ -104,7 +121,7 @@ CREATE TABLE `movie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `movie`
+-- Дамп данных таблицы `movie`
 --
 
 INSERT INTO `movie` (`id`, `title`, `released_at`, `description`, `duration`, `cover`, `category_id`) VALUES
@@ -130,12 +147,13 @@ INSERT INTO `movie` (`id`, `title`, `released_at`, `description`, `duration`, `c
 (20, 'Usual Suspects', '1995-01-01', 'Lorem ipsum', 114, 'usual-suspects.jpg', 5),
 (21, 'Fight Club', '1999-01-01', 'Lorem ipsum', 108, 'fight-club.jpg', 5),
 (22, 'Inception', '2010-01-01', 'Lorem ipsum', 107, 'inception.jpg', 5),
-(23, 'New Deadpool 2', '2019-01-01', 'Lorem ipsum', 93, 'deadpool-2.jpg', 2);
+(23, 'Deadpool 2', '2019-01-01', 'Lorem ipsum', 93, 'deadpool-2.jpg', 2),
+(34, 'Star Wars 7', '2020-12-09', 'trrgergtrhrtjrthergsfgsfgsdfsfsfsfsqfqfqfqsdf', 258, 'star-wars-7.png', 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movie_has_actor`
+-- Структура таблицы `movie_has_actor`
 --
 
 CREATE TABLE `movie_has_actor` (
@@ -146,7 +164,7 @@ CREATE TABLE `movie_has_actor` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Структура таблицы `payment`
 --
 
 CREATE TABLE `payment` (
@@ -161,7 +179,7 @@ CREATE TABLE `payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Структура таблицы `user`
 --
 
 CREATE TABLE `user` (
@@ -174,44 +192,44 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `actor`
+-- Индексы таблицы `actor`
 --
 ALTER TABLE `actor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `category`
+-- Индексы таблицы `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `comment`
+-- Индексы таблицы `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_comment_movie1_idx` (`movie_id`);
 
 --
--- Indexes for table `movie`
+-- Индексы таблицы `movie`
 --
 ALTER TABLE `movie`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_movie_category_idx` (`category_id`);
 
 --
--- Indexes for table `movie_has_actor`
+-- Индексы таблицы `movie_has_actor`
 --
 ALTER TABLE `movie_has_actor`
   ADD KEY `fk_movie_has_actor_actor1_idx` (`actor_id`),
   ADD KEY `fk_movie_has_actor_movie1_idx` (`movie_id`);
 
 --
--- Indexes for table `payment`
+-- Индексы таблицы `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`),
@@ -219,7 +237,7 @@ ALTER TABLE `payment`
   ADD KEY `fk_payment_movie1_idx` (`movie_id`);
 
 --
--- Indexes for table `user`
+-- Индексы таблицы `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
@@ -227,70 +245,70 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `username_UNIQUE` (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `actor`
+-- AUTO_INCREMENT для таблицы `actor`
 --
 ALTER TABLE `actor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `category`
+-- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `comment`
+-- AUTO_INCREMENT для таблицы `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `movie`
+-- AUTO_INCREMENT для таблицы `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT для таблицы `payment`
 --
 ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- Constraints for table `comment`
+-- Ограничения внешнего ключа таблицы `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `fk_comment_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `movie`
+-- Ограничения внешнего ключа таблицы `movie`
 --
 ALTER TABLE `movie`
   ADD CONSTRAINT `fk_movie_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `movie_has_actor`
+-- Ограничения внешнего ключа таблицы `movie_has_actor`
 --
 ALTER TABLE `movie_has_actor`
   ADD CONSTRAINT `fk_movie_has_actor_actor1` FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_movie_has_actor_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `payment`
+-- Ограничения внешнего ключа таблицы `payment`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `fk_payment_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
