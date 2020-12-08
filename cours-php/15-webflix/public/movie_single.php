@@ -54,14 +54,13 @@ if (isset($_GET['status'])) {
 
             <div class="card shadow">
                 <div class="card-body">
-                    <h5 class="card-title"><?= $movie['title']; ?></h5>
+                    <h5 class="card-title"><?= $movie['title']; ?> <span class='small-text'><?= $category['categoryName']; ?></span></h5>
                     <p>Durée : <?= convertToHours($movie['duration']);
 
                                 ?></p>
                     <p>Sorti le : <?= formatDate($movie['released_at']); ?></p>
-                    <p>Catégorie : <?= $category['categoryName']; ?></p>
                     <div><?= $movie['description']; ?></div>
-                    <p class="my-3 card-text">Avec : </p>
+                    <p class="my-3 card-text"><strong>Avec : </strong></p>
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
                 </div>
