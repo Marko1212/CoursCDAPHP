@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Дек 08 2020 г., 18:45
+-- Время создания: Дек 09 2020 г., 21:04
 -- Версия сервера: 10.4.17-MariaDB
 -- Версия PHP: 7.4.13
 
@@ -48,7 +48,8 @@ INSERT INTO `actor` (`id`, `name`, `firstname`, `birthday`) VALUES
 (7, 'Stalone', 'Sylvester', '1946-07-06'),
 (8, 'Norton', 'Edward', '1969-08-18'),
 (9, 'Spacey', 'Kevin', '1959-07-26'),
-(10, 'Kilmer', 'Val', '1959-12-31');
+(10, 'Kilmer', 'Val', '1959-12-31'),
+(11, 'Ford', 'Harrison', '1942-07-13');
 
 -- --------------------------------------------------------
 
@@ -148,7 +149,9 @@ INSERT INTO `movie` (`id`, `title`, `released_at`, `description`, `duration`, `c
 (21, 'Fight Club', '1999-01-01', 'Lorem ipsum', 108, 'fight-club.jpg', 5),
 (22, 'Inception', '2010-01-01', 'Lorem ipsum', 107, 'inception.jpg', 5),
 (23, 'Deadpool 2', '2019-01-01', 'Lorem ipsum', 93, 'deadpool-2.jpg', 2),
-(34, 'Star Wars 7', '2020-12-09', 'trrgergtrhrtjrthergsfgsfgsdfsfsfsfsqfqfqfqsdf', 258, 'star-wars-7.png', 5);
+(34, 'Star Wars 7', '2020-12-09', 'trrgergtrhrtjrthergsfgsfgsdfsfsfsfsqfqfqfqsdf', 258, 'star-wars-7.png', 5),
+(35, 'Film', '2020-12-02', 'azzaeaze zeaze azazeaze zeae azazeaze azeazeazeaz azeazeaz eaz aze  zae azeazeaze azeazeazeaz azeazezaeza zaeazeza eazeazeazeaze azeazezaeazeazeaz  eaeazea azeazeazeaz azeazeaze azeazezaaz', 25, 'film.jpg', 2),
+(36, 'fddfsdfds', '2020-12-17', 'sdfsdfsdfdsfsdfdsf', 6, 'fddfsdfds.png', 3);
 
 -- --------------------------------------------------------
 
@@ -160,6 +163,27 @@ CREATE TABLE `movie_has_actor` (
   `movie_id` int(11) NOT NULL,
   `actor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `movie_has_actor`
+--
+
+INSERT INTO `movie_has_actor` (`movie_id`, `actor_id`) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(3, 3),
+(3, 5),
+(4, 1),
+(4, 3),
+(4, 10),
+(5, 4),
+(6, 6),
+(6, 7),
+(9, 7),
+(19, 4),
+(20, 9),
+(21, 8);
 
 -- --------------------------------------------------------
 
@@ -190,6 +214,18 @@ CREATE TABLE `user` (
   `token` varchar(255) DEFAULT NULL,
   `requested_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `token`, `requested_at`) VALUES
+(1, 'marko@mailinator.com', 'Marko', 'bla1', NULL, NULL),
+(2, 'aaaaa@a.ru', 'aaaa', 'aaa1', NULL, NULL),
+(3, 'rade@rade.fr', 'Radomir', 'rade1', NULL, NULL),
+(4, 'Olga@mailinator.com', 'Olga', 'olga5', NULL, NULL),
+(5, 'andja@mailinator.com', 'Andjelija', 'andja7', NULL, NULL),
+(6, 'Veljko@mailinator.com', 'Veljko', 'veki8', NULL, NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -270,7 +306,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT для таблицы `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT для таблицы `payment`
@@ -282,7 +318,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
