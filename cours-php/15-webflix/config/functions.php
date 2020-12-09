@@ -278,3 +278,18 @@ function getCommentsByMovie($id) {
 
     }
 
+    
+    function truncate($text) {
+        if (mb_strlen($text) <= 50) {
+            
+            return $text;
+        }
+
+        $text = mb_substr($text, 0, 50);//cette fonction est mieux que substr() par rapport aux accents
+
+        return $text.'...'; 
+    }
+
+
+
+    ?>
