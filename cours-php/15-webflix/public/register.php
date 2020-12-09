@@ -117,7 +117,7 @@ if (!empty($_POST)) {
         </div>
         <div class="form-group"> 
             <label for="password">Mot de passe</label>
-            <input type="text" class="form-control" id="password" placeholder="password" name="password" value="<?php echo $password; ?>">
+            <input type="text" class="form-control" id="password" placeholder="Mot de passe" name="password" value="<?php echo $password; ?>">
         </div>
         <div class="form-group"> 
             <label for="title">Confirmer le mot de passe</label>

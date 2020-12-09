@@ -269,8 +269,8 @@ function getCommentsByMovie($id) {
     function getActorsForMovie($id) {
         global $db;
 
-        $query = $db->prepare('SELECT * FROM movie inner join movie_has_actor on movie.id = movie_has_actor.movie_id
-        inner join actor on actor.id = movie_has_actor.actor_id where movie.id = :id');
+        $query = $db->prepare('SELECT * FROM movie_has_actor inner join actor on actor.id = movie_has_actor.actor_id where
+         movie_has_actor.movie_id = :id');
         $query -> bindValue(':id', $id, PDO::PARAM_INT);
         $query -> execute();
 
