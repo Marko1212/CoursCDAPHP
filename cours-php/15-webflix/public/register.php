@@ -68,7 +68,7 @@ if (!empty($_POST)) {
     }
    
     if (!is_null($confirm) && strcmp($password, $confirm) !== 0) {
-        $errors['confirm-2'] = 'Le mot de passe ne coincide pas avec la confirmation!';
+        $errors['confirm-2'] = 'La confirmation du mot de passe ne correspond pas!';
     }
 
     global $db;
@@ -91,8 +91,12 @@ if (!empty($_POST)) {
         $query -> bindValue(':pseudo', $pseudo);
         $query -> bindValue(':password', $password);
         $query -> execute();
+
+
+    $_SESSION['username'] = $pseudo;
      
-     header('Location: index.php');
+     header('Location: index.php?status=success');
+     
 
 
     } else {

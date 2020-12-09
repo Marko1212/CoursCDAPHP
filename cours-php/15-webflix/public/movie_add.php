@@ -79,7 +79,7 @@ if (!empty($_POST)) {
 
 
     }   else {
-        $errors['cover'] = 'Le fichier est trop lourd ou le format est incorrect...';
+        $errors['cover'] = "Aucun fichier n'est uploadé, le fichier est trop lourd ou le format est incorrect...";
     }
     
     // On fait la requête s'il n'y a pas d'erreurs

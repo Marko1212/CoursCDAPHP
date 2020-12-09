@@ -1,4 +1,7 @@
-<?php require '../partials/header.php';
+<?php
+
+session_start();
+require '../partials/header.php';
 ?>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -52,6 +55,23 @@
 </div>
 
 <div class='container mt-4 mb-5'>
+  <?php
+
+  if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+    if ($status === 'success') {
+      echo '<div class="alert alert-success text-center" role="alert">
+      Vous êtes maintenant bien inscrit!
+            </div>';
+    }
+  }
+  if (isset($_SESSION['username'])) {
+    echo '<div class="alert alert-success text-center" role="alert">
+  Bienvenue à ' . $_SESSION['username'] . '!
+   </div>';
+  }
+
+  ?>
   <h1>Sélection de films aléatoires</h1>
   <div class='row'>
     <?php
@@ -63,8 +83,8 @@
           <div class="card-body">
             <h5 class="card-title"><?= $movie['title']; ?></h5>
             <p class="card-text">Sorti en <?= substr($movie['released_at'], 0, 4); ?></p>
-            <p class="card-text"><?= $movie['description']; ?></p>
-            <a href="movie_single.php?id=<?=$movie['id']; ?>" class="btn btn-danger btn-block">Voir le film</a>
+            <p class="card-text"><?= truncate($movie['description']); ?></p>
+            <a href="movie_single.php?id=<?= $movie['id']; ?>" class="btn btn-danger btn-block">Voir le film</a>
           </div>
           <div class="card-footer text-muted">★★★☆☆</div>
         </div>

@@ -42,7 +42,7 @@ if (isset($_GET['status'])) {
   $status = $_GET['status'];
   if ($status === "success") {
   echo '<div class="alert alert-success text-center" role="alert">
-  Le film a bien été rajouté dans la base de données!
+  Le film a bien été ajouté dans la base de données!
    </div>';
 }
 }
