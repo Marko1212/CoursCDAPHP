@@ -65,7 +65,7 @@ if (isset($_GET['status'])) {
                     <p class="my-3 card-text"><strong>Avec : </strong></p>
                     <?php 
                         foreach ($actors as $actor) { ?>
-                            <a class="card-link" href="actor_single.php?id=<?=$actor['actor_id']; ?>"><?= $actor['firstname'].' '.$actor['name'].' (Wikipedia)'; ?></a></br>
+                            <a class="card-link" href="actor_single.php?id=<?=$actor['actor_id']; ?>"><?= $actor['firstname'].' '.$actor['name']; ?></a> <a href="https://fr.wikipedia.org/wiki/<?= $actor['firstname'].'_'.$actor['name']; ?>" target="_blank">(Wikipedia)</a></br>
                         <?php } 
                     ?>
                 </div>

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ob_start(); //on met cela pour éviter des bugs avec la fonction header() (redirection)
 
 /**
@@ -40,52 +42,57 @@ if (!empty($_POST)) {
     $confirm = $_POST['confirm'];
 
     $errors = [];
-    if (strlen($title) < 2) {
-        $errors['title'] = 'Le titre est trop court';
-    }
-    if (strlen($description) < 15) {
-        $errors['description'] = 'La description est trop courte';
-    }
-    if ($duration < 1 || $duration > 999) {
-        $errors['duration'] = "La durée n'est pas bonne";
-    }
-    if (!validateDate($released_at)) {
-        $errors['released_at'] = "La date n'est pas bonne";
+
+    if (!is_null($email) && empty(trim($email)) && !is_numeric(trim($email))) {
+        $errors['email-1'] = 'Le email est obligatoire!';
     }
 
-    //Ici on peut faire l'upload
-    //on s'assure que le fichier fait au plus 10Mo
-    //on s'assure aussi que c'est bien une image
-    $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    $maxSize = 10 * 1024 * 1024;
-
-    if ($cover['error'] === 0 && $cover['size'] <= $maxSize && in_array($cover['type'], $allowedTypes)) {
-
-        //on s'assure que le dossier existe
-        if (!is_dir('assets/uploads')) {
-            mkdir('assets/uploads');
-        }
-
-
-        $extension = pathinfo($cover['name'])['extension'];
-        $fileName = str_replace(' ','-', strtolower($title)).'.'.$extension;
-
-        move_uploaded_file($cover['tmp_name'], 'assets/uploads/'.$fileName);
-        
-
-
-    }   else {
-        $errors['cover'] = 'Le fichier est trop lourd ou le format est incorrect...';
+    if (!is_null($email) && filter_var(trim($email), FILTER_VALIDATE_EMAIL) === false) {
+        $errors['email-2'] = 'Le email n\'est pas valide';
     }
-    
-    // On fait la requête s'il n'y a pas d'erreurs
+
+    if (!is_null($pseudo) && empty(trim($pseudo)) && !is_numeric(trim($pseudo))) {
+        $errors['pseudo'] = 'Le pseudo est obligatoire!';
+    }
+
+    if (!is_null($password) && empty(trim($password)) && !is_numeric(trim($password))) {
+        $errors['password-1'] = 'Le mot de passe est obligatoire!';
+    }
+
+    if(!is_null($password) && !preg_match("#[0-9]+#", $password)) {
+        $errors['password-2'] = "Le mot de passe doit contenir un chiffre!";
+    }
+
+    if (!is_null($confirm) && empty(trim($confirm)) && !is_numeric(trim($confirm))) {
+        $errors['confirm-1'] = 'Vous devez confirmer le mot de passe!';
+    }
+   
+    if (!is_null($confirm) && strcmp($password, $confirm) !== 0) {
+        $errors['confirm-2'] = 'Le mot de passe ne coincide pas avec la confirmation!';
+    }
+
+    global $db;
+
+    $query = $db->prepare('SELECT * FROM user where user.email = :email or user.username = :pseudo');
+    $query -> bindValue(':email', $email);
+    $query -> bindValue(':pseudo', $pseudo);
+    $query -> execute();
+
+    $results = $query -> fetchAll();
+
+    if (count($results) === 1) {
+        $errors['pseudoEmailTaken'] = "Le pseudo ou email est déjà pris!";
+    }
 
     if (empty($errors)) {
-
-     addMovie($title, $description, $fileName, $duration, $released_at, $categorySelected);
+    
+        $query = $db->prepare('INSERT INTO user (email, username, password) VALUES (:email,:pseudo,:password)');
+        $query -> bindValue(':email', $email);
+        $query -> bindValue(':pseudo', $pseudo);
+        $query -> bindValue(':password', $password);
+        $query -> execute();
      
-     header('Location: movie_single.php?id='.$db->lastInsertId().'&status=success');
-     //header('Location: movie_list.php?status=success');
+     header('Location: index.php');
 
 
     } else {
@@ -117,11 +124,11 @@ if (!empty($_POST)) {
         </div>
         <div class="form-group"> 
             <label for="password">Mot de passe</label>
-            <input type="text" class="form-control" id="password" placeholder="Mot de passe" name="password" value="<?php echo $password; ?>">
+            <input type="password" class="form-control" id="password" placeholder="mot de passe" name="password" value="<?php echo $password; ?>">
         </div>
         <div class="form-group"> 
             <label for="title">Confirmer le mot de passe</label>
-            <input type="text" class="form-control" id="confirm" placeholder="Confirmer le mot de passe" name="confirm" value="<?php echo $confirm; ?>">
+            <input type="password" class="form-control" id="confirm" placeholder="confirmer le mot de passe" name="confirm" value="<?php echo $confirm; ?>">
         </div>
         <button class="btn btn-danger w-100 text-center mb-5" type="submit">S'inscrire</button>
 

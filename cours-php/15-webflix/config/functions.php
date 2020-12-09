@@ -116,7 +116,7 @@ return $query->fetchAll();
 
     global $db;
     
-    $query = $db-> prepare('SELECT * FROM movie right join movie_has_actor on movie.id = movie_has_actor.movie_id
+    $query = $db-> prepare('SELECT * FROM movie inner join movie_has_actor on movie.id = movie_has_actor.movie_id
     right join actor on actor.id = movie_has_actor.actor_id where actor.id = :id');
     $query -> bindValue(':id', $id);
     $query -> execute();
