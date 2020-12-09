@@ -21,6 +21,10 @@
 
 $movies = searchMoviesOfActor($id);
 
+if (!$movies) {
+    display404();
+}
+
 
 ?>
 
@@ -34,17 +38,21 @@ $movies = searchMoviesOfActor($id);
     <div class="row">
 
     <?php 
-    //6. Et s'il n'y a pas de films? On affiche : "Cet acteur n'a joué dans aucun film..."
-    if (empty($movies)) { ?>
+    //6. Et si cet acteur n'a pas joué dans aucun film ? On affiche : "Cet acteur n'a joué dans aucun film..."
+    if ($movies[0]['actor_id'] == null) { ?>
     <div class="col-12">
     <h1>Cet acteur n'a joué dans aucun film...</h1>
     </div>
     <?php
     }
+        else {
 
         foreach ($movies as $movie) {
         require '../partials/card-movie.php';
-    } ?>
+    } 
+    
+}
+    ?>
 
     </div>
 </div>
