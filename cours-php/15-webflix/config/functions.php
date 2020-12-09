@@ -115,7 +115,7 @@ return $query->fetchAll();
  function searchMoviesOfActor($id) {
 
     global $db;
-    
+    //ici select * ne va pas marcher parce qu'un bug apparaît alors (faux lien : 'Voir le film' sur la page actor_single.php)
     $query = $db-> prepare('SELECT `movie`.`id`, `title`, `description`, `released_at`, `duration`, `cover`, `name`, `firstname`, `actor_id` FROM movie inner join movie_has_actor on movie.id = movie_has_actor.movie_id right join actor on actor.id = movie_has_actor.actor_id where actor.id = :id');
     $query -> bindValue(':id', $id);
     $query -> execute();
