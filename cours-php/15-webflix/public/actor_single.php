@@ -8,9 +8,7 @@
  if (isset($_GET['id'])) {
      $id = $_GET['id'];
  } else {
-     echo "<div class='container'><h1>404</h1></div>";
-     require '../partials/footer.php';
-     exit();
+    display404();
  }
 
  // Nouvel opérateur en PHP 7 : Null Coalesce
@@ -23,10 +21,11 @@
 
 $movies = searchMoviesOfActor($id);
 
+
 ?>
 
 <div class="container mb-5">
-<?php if (isset($_GET['id'])) {
+<?php if (isset($_GET['id']) && !empty($movies)) {
      $id = $_GET['id'];
      echo "<h1 class='mt-3'>Les films de ".$movies[0]['firstname'].' '.$movies[0]['name']."</h1>";
  }
