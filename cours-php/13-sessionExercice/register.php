@@ -79,9 +79,9 @@
 
   if (isset($_POST['uname']) && isset($_POST['pwd'])) {
 
-    //attention : empty('0') et empty(0) == True
-    if (empty(trim($_POST['uname'])) || empty(trim($_POST['pwd']))) {
-      echo "<p class='danger'>Vous devez saisir un username et/ou mot de passe non vide ou égal à 0!</p>";
+    //attention : empty('0') et empty(0) == True, donc, on rajoute des conditions
+    if (empty(trim($_POST['uname']))&&!is_numeric(trim($_POST['uname'])) || empty(trim($_POST['pwd']))&&!is_numeric(trim($_POST['pwd']))) {
+      echo "<p class='danger'>Vous devez saisir un username et/ou mot de passe non vide!</p>";
     }
     
     else if ((isset($_SESSION['users'])) && array_search($_POST['uname'], array_column($_SESSION['users'], 0)) !== false || trim($_POST['uname'])=='admin') {
