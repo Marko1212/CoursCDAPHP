@@ -116,8 +116,7 @@ return $query->fetchAll();
 
     global $db;
     
-    $query = $db-> prepare('SELECT * FROM movie inner join movie_has_actor on movie.id = movie_has_actor.movie_id
-    right join actor on actor.id = movie_has_actor.actor_id where actor.id = :id');
+    $query = $db-> prepare('SELECT `movie`.`id`, `title`, `description`, `released_at`, `duration`, `cover`, `name`, `firstname`, `actor_id` FROM movie inner join movie_has_actor on movie.id = movie_has_actor.movie_id right join actor on actor.id = movie_has_actor.actor_id where actor.id = :id');
     $query -> bindValue(':id', $id);
     $query -> execute();
     
@@ -126,7 +125,7 @@ return $query->fetchAll();
     
     
      }
-    
+
 
 
  function display404() {
