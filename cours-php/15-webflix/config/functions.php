@@ -112,6 +112,23 @@ return $query->fetchAll();
 
  }
 
+ function searchMoviesOfActor($id) {
+
+    global $db;
+    
+    $query = $db-> prepare('SELECT * FROM movie inner join movie_has_actor on movie.id = movie_has_actor.movie_id
+    inner join actor on actor.id = movie_has_actor.actor_id where actor.id = :id');
+    $query -> bindValue(':id', $id);
+    $query -> execute();
+    
+    
+    return $query->fetchAll();
+    
+    
+     }
+    
+
+
  function display404() {
 
 http_response_code(404); // on force le statut 404 sur la requête (important pour les API!)
@@ -216,8 +233,9 @@ function getCommentsByMovie($id) {
 
         $query->bindValue('id', $id, PDO::PARAM_INT);
         $query->execute();
+        
 
-        //on ne prend que la valeur avec fetchColumn()
+        //on ne prend que la valeur avec fetchColumn(), on arrondit le résultat à 2 virgules après la décimale
         return round($query->fetchColumn(), 2);
 
     }
@@ -246,3 +264,17 @@ function getCommentsByMovie($id) {
             // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
              return $d && $d->format($format) === $date;
         }
+
+
+    function getActorsForMovie($id) {
+        global $db;
+
+        $query = $db->prepare('SELECT * FROM movie inner join movie_has_actor on movie.id = movie_has_actor.movie_id
+        inner join actor on actor.id = movie_has_actor.actor_id where movie.id = :id');
+        $query -> bindValue(':id', $id, PDO::PARAM_INT);
+        $query -> execute();
+
+        return $query -> fetchAll();
+
+    }
+

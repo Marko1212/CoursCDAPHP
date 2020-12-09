@@ -28,6 +28,8 @@ $movie = getMovieById($id);
 
 $category = getCategoryPerMovieId($id);
 
+$actors = getActorsForMovie($id);
+
 if (!$category) {
     display404();
 }
@@ -61,8 +63,11 @@ if (isset($_GET['status'])) {
                     <p>Sorti le : <?= formatDate($movie['released_at']); ?></p>
                     <div><?= $movie['description']; ?></div>
                     <p class="my-3 card-text"><strong>Avec : </strong></p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <?php 
+                        foreach ($actors as $actor) { ?>
+                            <a class="card-link" href="actor_single.php?id=<?=$actor['actor_id']; ?>"><?= $actor['firstname'].' '.$actor['name'].' (Wikipedia)'; ?></a></br>
+                        <?php } 
+                    ?>
                 </div>
                 <div class="card-footer text-muted">
                     <?php
