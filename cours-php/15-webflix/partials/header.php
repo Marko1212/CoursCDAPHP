@@ -61,14 +61,28 @@ require '../config/functions.php'; ?>
                     <input class="form-control mr-sm-2" type="search" name="q" placeholder="Rechercher..." aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Go</button>
                 </form>
+                
                 <ul class="navbar-nav ml-4">
-                    <li class="nav-item">
-                        <a href="login.php" class="btn btn-danger">Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="register.php" class="nav-link">Inscription</a>
-                    </li>
+                    <?php // Si on est connecté, on affiche un menu différent
+                    if (isset($_SESSION['connected'])) { ?>
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownNavbarButton" data-toggle="dropdown">
+                                <?= $_SESSION['connected']['username']; ?>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Mon compte</a>
+                                <a class="dropdown-item" href="#">Déconnexion</a>
+                            </div>
+                        </li>
+                    <?php } else { ?>
+                        <li class="nav-item">
+                            <a href="login.php" class="btn btn-danger">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="register.php" class="nav-link">Inscription</a>
+                        </li>
+                    <?php } ?>
                 </ul>
-            </div>
+
         </div> <!-- fin du container -->
     </nav>
