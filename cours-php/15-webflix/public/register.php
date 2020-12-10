@@ -121,7 +121,7 @@ if (!empty($_POST)) {
         $query -> execute();
 
 
-    $_SESSION['registered'] = $pseudo;
+    $_SESSION['user'] = ['email'=> $email, 'username' => $pseudo];
      
      header('Location: index.php?register=success');
      

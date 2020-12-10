@@ -64,11 +64,11 @@ require '../config/functions.php'; ?>
 
                 <ul class="navbar-nav ml-4">
                     <?php // Si on est connecté, on affiche un menu différent
-                    if (isset($_SESSION['connected'])) { ?>
+                    if (isset($_SESSION['user'])) { ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                             <img src="https://unavatar.now.sh/github/marko1212" width="40" alt="Marko" class="rounded-circle mr-2"/> 
-                                <?= $_SESSION['connected']['username']; ?>
+                                <?= $_SESSION['user']['username']; ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="#">Mon compte</a>

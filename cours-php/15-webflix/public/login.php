@@ -47,7 +47,7 @@ if (!empty($_POST)) {
     if (empty($errors) && !empty($results)) {
 
     unset($results[0]['password']);
-    $_SESSION['connected'] = $results[0];
+    $_SESSION['user'] = $results[0];
      
     header('Location: index.php?login=success');
      

@@ -72,15 +72,9 @@ require '../partials/header.php';
             </div>';
     }
   }
-  if (isset($_SESSION['connected'])) {
+  if (isset($_SESSION['user'])) {
     echo '<div class="alert alert-success text-center" role="alert">
-  Bienvenue à ' . $_SESSION['connected']['username'] . '!
-   </div>';
-  }
-  
-  if (isset($_SESSION['registered'])) {
-    echo '<div class="alert alert-success text-center" role="alert">
-  Bienvenue à ' . $_SESSION['registered'] . '!
+  Bienvenue à ' . $_SESSION['user']['username'] . '!
    </div>';
   }
 
