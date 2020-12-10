@@ -61,14 +61,15 @@ require '../config/functions.php'; ?>
                     <input class="form-control mr-sm-2" type="search" name="q" placeholder="Rechercher..." aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Go</button>
                 </form>
-                
+
                 <ul class="navbar-nav ml-4">
                     <?php // Si on est connecté, on affiche un menu différent
                     if (isset($_SESSION['connected'])) { ?>
                         <li class="nav-item dropdown">
-                            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownNavbarButton" data-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                            <img src="https://unavatar.now.sh/github/marko1212" width="40" alt="Marko" class="rounded-circle mr-2"/> 
                                 <?= $_SESSION['connected']['username']; ?>
-                            </button>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="#">Mon compte</a>
                                 <a class="dropdown-item" href="#">Déconnexion</a>
@@ -84,5 +85,5 @@ require '../config/functions.php'; ?>
                     <?php } ?>
                 </ul>
 
-        </div> <!-- fin du container -->
+            </div> <!-- fin du container -->
     </nav>
