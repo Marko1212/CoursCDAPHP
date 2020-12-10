@@ -266,6 +266,25 @@ function getCommentsByMovie($id) {
 
     }
 
+    function updateMovie($id, $title, $description, $cover, $duration, $released_at, $category_id) {
+
+
+        global $db;
+
+        $query = $db->prepare("UPDATE movie SET title=:title, description=:description, cover=:cover, duration=:duration, released_at =:released_at, category_id = :category_id WHERE id=:id");
+       
+        
+        $query->bindValue(':title', $title, PDO::PARAM_STR);
+        $query->bindValue(':description', $description, PDO::PARAM_STR);
+        $query->bindValue(':cover', $cover);
+        $query->bindValue(':duration', $duration);
+        $query->bindValue(':released_at', $released_at);
+        $query->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        return $query->execute(); //return true si requête réussie, false sinon
+
+    }
+
     function validateDate($date, $format = 'Y-m-d')
         {
             $d = DateTime::createFromFormat($format, $date);

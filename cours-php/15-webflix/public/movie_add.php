@@ -95,7 +95,7 @@ if (!empty($_POST)) {
 
      addMovie($title, $description, $fileName, $duration, $released_at, $categorySelected);
      
-     header('Location: movie_single.php?id='.$db->lastInsertId().'&status=success');
+     header('Location: movie_single.php?id='.$db->lastInsertId().'&status=created');
      //header('Location: movie_list.php?status=success');
 
 
@@ -131,7 +131,7 @@ if (!empty($_POST)) {
             <input type="file" class="form-control" id="cover" placeholder="cover" name="cover">
         </div>
         <div class="form-group">
-            <label for="duration">Durée</label>
+            <label for="duration">Durée (en min.)</label>
             <input type="number" class="form-control" id="duration" placeholder="durée" name="duration" value="<?php echo $duration; ?>">
         </div>
         <div class="form-group">

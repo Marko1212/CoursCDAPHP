@@ -37,16 +37,21 @@ if (!$category) {
 ?>
 
 <div class="container">
-<?php
-if (isset($_GET['status'])) {
-  $status = $_GET['status'];
-  if ($status === "success") {
-  echo '<div class="alert alert-success text-center" role="alert">
-  Le film a bien été ajouté dans la base de données!
-   </div>';
-}
-}
-?>
+    <?php
+    if (isset($_GET['status'])) {
+        $status = $_GET['status'];
+        if ($status === "created") {
+            echo '<div class="alert alert-success text-center" role="alert">
+        Le film a bien été créé dans la base de données!
+    </div>';
+        }
+        if ($status === "updated") {
+            echo '<div class="alert alert-success text-center" role="alert">
+        Le film a bien été mis à jour dans la base de données!
+     </div>';
+        }
+    }
+    ?>
 
     <div class="row my-3">
         <div class="col-lg-6">
@@ -63,10 +68,10 @@ if (isset($_GET['status'])) {
                     <p>Sorti le : <?= formatDate($movie['released_at']); ?></p>
                     <div><?= $movie['description']; ?></div>
                     <p class="my-3 card-text"><strong>Avec : </strong></p>
-                    <?php 
-                        foreach ($actors as $actor) { ?>
-                            <a class="card-link" href="actor_single.php?id=<?=$actor['actor_id']; ?>"><?= $actor['firstname'].' '.$actor['name']; ?></a> <a href="https://fr.wikipedia.org/wiki/<?= $actor['firstname'].'_'.$actor['name']; ?>" target="_blank">(Wikipedia)</a></br>
-                        <?php } 
+                    <?php
+                    foreach ($actors as $actor) { ?>
+                        <a class="card-link" href="actor_single.php?id=<?= $actor['actor_id']; ?>"><?= $actor['firstname'] . ' ' . $actor['name']; ?></a> <a href="https://fr.wikipedia.org/wiki/<?= $actor['firstname'] . '_' . $actor['name']; ?>" target="_blank">(Wikipedia)</a></br>
+                    <?php }
                     ?>
                 </div>
                 <div class="card-footer text-muted">
@@ -134,7 +139,7 @@ if (isset($_GET['status'])) {
 
                             // Requête SQL...
                             $query = $db->prepare(
-                            'INSERT INTO `comment` (`nickname`,  `message`, `note`, `created_at`, `movie_id`)
+                                'INSERT INTO `comment` (`nickname`,  `message`, `note`, `created_at`, `movie_id`)
                             VALUES (:nickname, :message, :note, NOW(), :movie_id)'
                             );
                             // on lie les paramètres à la requête préparée
