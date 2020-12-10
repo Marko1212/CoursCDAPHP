@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Дек 09 2020 г., 21:04
+-- Время создания: Дек 10 2020 г., 22:47
 -- Версия сервера: 10.4.17-MariaDB
 -- Версия PHP: 7.4.13
 
@@ -127,8 +127,8 @@ CREATE TABLE `movie` (
 
 INSERT INTO `movie` (`id`, `title`, `released_at`, `description`, `duration`, `cover`, `category_id`) VALUES
 (1, 'Le Parrain', '1972-01-01', 'Lorem ipsum', 186, 'le-parrain.jpg', 1),
-(2, 'Scarface', '1983-01-01', 'Lorem ipsum', 120, 'scarface.jpg', 1),
-(3, 'Les Affranchis', '1990-01-01', 'Lorem ipsum', 145, 'les-affranchis.jpg', 1),
+(2, 'Scarface', '1983-01-07', 'Lorem ipsum blablablab lablablab lablablabla sjjgk', 120, 'scarface.jpg', 1),
+(3, 'Les Affranchis', '1990-01-01', 'Lorem ipsumssdfsdfsdfs dfsdfsd fsdfsdfsdfsdfsdfsdfsdfsfs', 145, 'les-affranchis.jpg', 1),
 (4, 'Heat', '1995-01-01', 'Lorem ipsum', 146, 'heat.jpg', 1),
 (5, 'Die Hard', '1988-01-01', 'Lorem ipsum', 124, 'die-hard.jpg', 2),
 (6, 'Demolition Man', '1993-01-01', 'Lorem ipsum', 89, 'demolition-man.jpg', 2),
@@ -220,12 +220,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `token`, `requested_at`) VALUES
-(1, 'marko@mailinator.com', 'Marko', 'bla1', NULL, NULL),
-(2, 'aaaaa@a.ru', 'aaaa', 'aaa1', NULL, NULL),
-(3, 'rade@rade.fr', 'Radomir', 'rade1', NULL, NULL),
-(4, 'Olga@mailinator.com', 'Olga', 'olga5', NULL, NULL),
-(5, 'andja@mailinator.com', 'Andjelija', 'andja7', NULL, NULL),
-(6, 'Veljko@mailinator.com', 'Veljko', 'veki8', NULL, NULL);
+(12, 'marko@mailinator.com', 'Marko', '$2y$10$6/YY7Mt3iOHkZDW8y/Icl.SZ8or5NUuY/sGSycF3Jzerp4hsk2ykK', NULL, NULL),
+(13, 'olga@mailinator.com', 'Olga', '$2y$10$4IBRJ/8bwRo8Se3MPQC0/OlMPCH.cV1zGky6Z4YmmusWLFUPhEq0O', NULL, NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -318,7 +314,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
