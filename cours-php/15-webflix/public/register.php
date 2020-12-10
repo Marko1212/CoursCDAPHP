@@ -84,7 +84,7 @@ if (!empty($_POST)) {
     // [0-9]+ -> Vérifie qu'une chaine contient un nombre au moins une fois
     // [^a-zA-Z0-9]+ -> Vérifie qu'une chaine contient un caractère spécial au moins une fois
     // le signe ^ veut dire : 'tout sauf', le '+' : au moins une fois
-    // donc, tout sauf un caractère ou un chiffre (=caractère spécial) au moins une fois; le ç, é sont considérés comme caractères spéciaux
+    // donc, tout sauf un caractère (minuscule ou majuscule) ou un chiffre (=caractère spécial) au moins une fois; le ç, é sont considérés comme caractères spéciaux
 
     if(!is_null($password) && !preg_match('/[^a-zA-Z0-9]+/', $password)) {
         $errors['password-4'] = "Le mot de passe doit contenir au moins 1 caractère spécial!";
