@@ -20,7 +20,7 @@ require '../partials/header.php';
 
 if (!empty($_POST)) {
 
-    $emailPseudo = htmlspecialchars($_POST['emailPseudo']);
+    $emailPseudo = $_POST['emailPseudo'];
     $password = trim($_POST['password']);
 
     $errors = [];
@@ -30,7 +30,7 @@ if (!empty($_POST)) {
     }
 
 
-    if (!is_null($password) && empty(trim($password)) && !is_numeric(trim($password))) {
+    if (!is_null($password) && empty($password) && !is_numeric($password)) {
         $errors['password'] = 'Vous devez saisir votre mot de passe!';
     }
 
