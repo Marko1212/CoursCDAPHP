@@ -1,5 +1,28 @@
 <?php
 
+// Les Regex permettent de valider un "format" de chaine
+    // (+33 [1-9]|0[1-9])([.- ]?[0-9]{2}){4} valide un téléphone :
+    // 0612345678
+    // 06.12.34.56.78
+    // 06-12-34-56-78
+    // 09 12 34 56 78
+    // +33 6 12 34 58 64
+    // 06 12 45 65 74
+    // +33 7 45 74 14 45
+   /*  preg_match('/(+33 [1-9]|0[1-9])([.- ]?[0-9]{2}){4}/', '06-12-34-56-78'); // Renvoie true
+    preg_match('/(+33 [1-9]|0[1-9])([.- ]?[0-9]{2}){4}/', '012-34-56-78'); // Renvoie false */
+
+    // [0-9]+ -> Vérifie qu'une chaine contient un nombre au moins une fois
+    // ?????? -> Vérifie qu'une chaine contient un caractère spécial au moins une fois
+
+    // La regex doit être entouré du délimiteur /
+ /*    preg_match('/[0-9]+/', 'azerty'); // Renvoie false car azerty ne contient pas de chiffres
+    preg_match('/[0-9]+/', 'azerty1'); // Renvoie true
+
+    if (!preg_match('/[0-9]+/', $password)) {
+        $errors['password'] = 'Le mot de passe doit contenir au moins un chiffre';
+    } */
+
 session_start();
 
 ob_start(); //on met cela pour éviter des bugs avec la fonction header() (redirection)
@@ -46,8 +69,25 @@ if (!empty($_POST)) {
         $errors['password-1'] = 'Le mot de passe est obligatoire!';
     }
 
-    if(!is_null($password) && (!preg_match("#[0-9]+#", $password) || strlen($password) < 8)) {
-        $errors['password-2'] = "Le mot de passe doit contenir au moins 8 caractères dont 1 chiffre!";
+    if(!is_null($password) && strlen($password) < 8) {
+        $errors['password-2'] = "Le mot de passe doit contenir au moins 8 caractères!";
+    }
+
+    //les # sont des délimiteurs. Il faut mettre la regex entre délimiteurs: / ; le signe '+' dans la regex veut dire 'au moins'
+    if(!is_null($password) && !preg_match('/[0-9]+/', $password)) {
+        $errors['password-3'] = "Le mot de passe doit contenir au moins 1 chiffre!";
+    }
+
+    // caractères spéciaux : ni caractères (a-z, A-Z), ni chiffres (0-9)
+    // @, espace, !, ?, > => caractères spéciaux
+
+    // [0-9]+ -> Vérifie qu'une chaine contient un nombre au moins une fois
+    // [^a-zA-Z0-9]+ -> Vérifie qu'une chaine contient un caractère spécial au moins une fois
+    // le signe ^ veut dire : 'tout sauf', le '+' : au moins une fois
+    // donc, tout sauf un caractère ou un chiffre - au moins une fois; le ç, é sont considérés comme caractères spéciaux
+
+    if(!is_null($password) && !preg_match('/[^a-zA-Z0-9]+/', $password)) {
+        $errors['password-4'] = "Le mot de passe doit contenir au moins 1 caractère spécial!";
     }
 
     if (!is_null($confirm) && empty($confirm) && !is_numeric($confirm)) {
