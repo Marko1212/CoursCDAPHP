@@ -23,10 +23,10 @@ require '../partials/header.php';
 
 if (!empty($_POST)) {
 
-    $email = htmlspecialchars($_POST['email']);
-    $pseudo = strip_tags($_POST['pseudo']);
-    $password = $_POST['password'];
-    $confirm = $_POST['confirm'];
+    $email = $_POST['email'];
+    $pseudo = htmlspecialchars($_POST['pseudo']);
+    $password = trim($_POST['password']);
+    $confirm = trim($_POST['confirm']);
 
     $errors = [];
 
@@ -42,15 +42,15 @@ if (!empty($_POST)) {
         $errors['pseudo'] = 'Le pseudo est obligatoire!';
     }
 
-    if (!is_null($password) && empty(trim($password)) && !is_numeric(trim($password))) {
+    if (!is_null($password) && empty($password) && !is_numeric($password)) {
         $errors['password-1'] = 'Le mot de passe est obligatoire!';
     }
 
-    if(!is_null($password) && !preg_match("#[0-9]+#", $password)) {
-        $errors['password-2'] = "Le mot de passe doit contenir un chiffre!";
+    if(!is_null($password) && (!preg_match("#[0-9]+#", $password) || strlen($password) < 8)) {
+        $errors['password-2'] = "Le mot de passe doit contenir au moins 8 caractères dont 1 chiffre!";
     }
 
-    if (!is_null($confirm) && empty(trim($confirm)) && !is_numeric(trim($confirm))) {
+    if (!is_null($confirm) && empty($confirm) && !is_numeric($confirm)) {
         $errors['confirm-1'] = 'Vous devez confirmer le mot de passe!';
     }
    
