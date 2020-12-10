@@ -4,4 +4,8 @@
 
 $pageActive = basename($_SERVER['PHP_SELF']);
 
+//on démarre la session
+
+session_start();
+
 ?>

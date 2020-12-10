@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 ob_start(); //on met cela pour éviter des bugs avec la fonction header() (redirection)
 
 
@@ -43,15 +41,15 @@ if (!empty($_POST)) {
     $results = $query -> fetchAll();
 
     if (empty($results) || !password_verify($password, $results[0]['password'])) {
-        $errors['wrongData'] = "Utilisateur ou mot de passe incorrect!";
+        $errors['wrongData'] = "Utilisateur et/ou mot de passe incorrect!";
     }
 
     if (empty($errors) && !empty($results)) {
 
-
-    $_SESSION['connected'] = $results[0]['username'];
+    unset($results[0]['password']);
+    $_SESSION['connected'] = $results[0];
      
-     header('Location: index.php?login=success');
+    header('Location: index.php?login=success');
      
 
 

@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 require '../partials/header.php';
 ?>
 
@@ -61,7 +60,7 @@ require '../partials/header.php';
     $register = $_GET['register'];
     if ($register === 'success') {
       echo '<div class="alert alert-success text-center" role="alert">
-      Vous êtes maintenant inscrit(e)!
+      Vous êtes bien inscrit(e)!
             </div>';
     }
   }
@@ -69,13 +68,13 @@ require '../partials/header.php';
     $login = $_GET['login'];
     if ($login === 'success') {
       echo '<div class="alert alert-success text-center" role="alert">
-      Vous êtes maintenant connecté(e)!
+      Vous êtes bien connecté(e)!
             </div>';
     }
   }
   if (isset($_SESSION['connected'])) {
     echo '<div class="alert alert-success text-center" role="alert">
-  Bienvenue à ' . $_SESSION['connected'] . '!
+  Bienvenue à ' . $_SESSION['connected']['username'] . '!
    </div>';
   }
   

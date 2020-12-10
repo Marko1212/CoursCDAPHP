@@ -23,8 +23,6 @@
         $errors['password'] = 'Le mot de passe doit contenir au moins un chiffre';
     } */
 
-session_start();
-
 ob_start(); //on met cela pour éviter des bugs avec la fonction header() (redirection)
 
 
