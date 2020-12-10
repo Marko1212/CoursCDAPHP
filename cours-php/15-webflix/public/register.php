@@ -76,7 +76,10 @@ if (!empty($_POST)) {
         $query = $db->prepare('INSERT INTO user (email, username, password) VALUES (:email,:pseudo,:password)');
         $query -> bindValue(':email', $email);
         $query -> bindValue(':pseudo', $pseudo);
-        $query -> bindValue(':password', $password);
+        $query -> bindValue(':password', password_hash($password, PASSWORD_DEFAULT));
+        //Cryptage du password avant de l'enregistrer dans la bdd
+        //avec l'option PASSWORD_DEFAULT, php choisit le meilleur algo de hachage (argon2i ou argon2id ou bcrypt...) 
+        //en fonction de la version de php
         $query -> execute();
 
 

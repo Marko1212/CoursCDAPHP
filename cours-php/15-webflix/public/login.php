@@ -36,18 +36,17 @@ if (!empty($_POST)) {
 
     global $db;
 
-    $query = $db->prepare('SELECT * FROM user where user.email = :emailPseudo or user.username = :emailPseudo and user.password = :password');
+    $query = $db->prepare('SELECT * FROM user where user.email = :emailPseudo or user.username = :emailPseudo');
     $query -> bindValue(':emailPseudo', $emailPseudo);
-    $query -> bindValue(':password', $password);
     $query -> execute();
 
     $results = $query -> fetchAll();
 
-    if (count($results) === 0) {
+    if (empty($results) || !password_verify($password, $results[0]['password'])) {
         $errors['wrongData'] = "Utilisateur ou mot de passe incorrect!";
     }
 
-    if (empty($errors) && count($results) === 1) {
+    if (empty($errors) && !empty($results)) {
 
 
     $_SESSION['connected'] = $emailPseudo;
