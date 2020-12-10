@@ -49,7 +49,7 @@ if (!empty($_POST)) {
     if (empty($errors) && !empty($results)) {
 
 
-    $_SESSION['connected'] = $emailPseudo;
+    $_SESSION['connected'] = $results[0]['username'];
      
      header('Location: index.php?login=success');
      
