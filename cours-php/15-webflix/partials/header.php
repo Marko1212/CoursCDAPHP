@@ -13,7 +13,9 @@ require '../config/functions.php'; ?>
     <title>Webflix</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css" </head> <body>
+    <link rel="stylesheet" href="assets/css/style.css" 
+</head> 
+    <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="index.php">Webflix</a>
@@ -38,18 +40,6 @@ require '../config/functions.php'; ?>
                         <div class="dropdown-menu">
 
                             <?php
-                            // $query est un objet PDOStatement
-                            // $query = $db->query('SELECT * FROM category');
-
-                            // $result et $results sont des tableaux / objets
-                            // contenant les colonnes en clé et les données en valeur
-                            //$result = $query->fetch(); // Renvoie une seule ligne de résultat
-
-
-                            // $categories = $query->fetchAll(); // Renvoie toutes les lignes de résultat
-
-                            //On va parcourir toutes les catégories
-                            // RAPPEL : <?= équivaut à <?php echo
                             foreach ($categories as $category) { ?>
                                 <a class="dropdown-item" href="category_single.php?id=<?= $category['id']; ?>"><?= $category['name']; ?></a>
                             <?php } // Fin du foreach
@@ -58,7 +48,7 @@ require '../config/functions.php'; ?>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="movie_search.php">
-                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Rechercher..." aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Rechercher...">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Go</button>
                 </form>
 
@@ -71,6 +61,9 @@ require '../config/functions.php'; ?>
                                 <?= $_SESSION['user']['username']; ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
+                                <?php if (isAdmin()) { ?>
+                                    <a class="dropdown-item" href="movie_add.php">Ajouter un film</a>
+                                    <?php } ?>
                                 <a class="dropdown-item" href="#">Mon compte</a>
                                 <a class="dropdown-item" href="logout.php">Déconnexion</a>
                             </div>
@@ -84,6 +77,6 @@ require '../config/functions.php'; ?>
                         </li>
                     <?php } ?>
                 </ul>
-
+                </div>
             </div> <!-- fin du container -->
     </nav>

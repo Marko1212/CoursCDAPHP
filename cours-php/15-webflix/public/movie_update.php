@@ -2,29 +2,21 @@
 
 ob_start(); //on met cela pour éviter des bugs avec la fonction header() (redirection)
 
-/**
- * Formulaire d'ajout de film
- * 
- * Ici, on va créer un formulaire permettant d'ajouter un film.
- * Le champ title devra faire 2 caractères minimum.
- * Le champ description devra faire 15 caractères minimum.
- * On pourra uploader une jaquette. Le nom du fichier uploadé doit être le nom du film "transformé", "Le Parrain" -> "le-parrain.jpg"
- * Le champ durée devra être un nombre entre 1 et 999.
- * Le champ released_at devra être une date valide.
- * Le champ category devra être un select généré dynamiquement avec les catégories de la BDD
- * On doit afficher les messages d'erreurs et s'il n'y a pas d'erreurs on ajoute le film et on redirige sur la page movie_list.php
- * BONUS : Il faudrait afficher un message de succès après la redirection. Il faudra utiliser soit la session, soit un paramètre dans l'URL
- */
-
-
 require '../partials/header.php';
 
-// Vérifie que l'utilisateur a le droit d'accéder à la page
 
 if (!isAdmin()) {
     display403();
-    //code d'erreur si la page existe mais l'utilisateur n'a pas le droit d'y accéder
 }
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    display404();
+}
+
+$movie = getMovieById($id);
+
 
 ?>
 
@@ -34,12 +26,12 @@ if (!isAdmin()) {
 
 //on met cela dans le cas où il y a erreur de soumission du formulaire, pour ne pas avoir de message
 //d'erreur dans le formulaire (avec value)
-    $title = null;
-    $description = null;
-    $cover = null;
-    $duration = null;
-    $released_at = null;
-    $categorySelected = null;
+    $title = $movie['title'];
+    $description = $movie['description'];
+    $cover = $movie['cover'];
+    $duration = $movie['duration'];
+    $released_at = $movie['released_at'];
+    $categorySelected = $movie['category_id'];
 
 if (!empty($_POST)) {
 
@@ -115,7 +107,7 @@ if (!empty($_POST)) {
 ?>
 
 
-    <h1 class="text-center mt-3">Ajouter un film</h1>
+    <h1 class="text-center mt-3">Modifier un film</h1>
 
     <form class="w-50 mx-auto" method="post" enctype="multipart/form-data">
         <div class="form-group"> 
@@ -151,7 +143,7 @@ if (!empty($_POST)) {
             </select>
         </div>
 
-        <button class="btn btn-danger w-100 text-center mb-5" type="submit">Ajouter</button>
+        <button class="btn btn-danger w-100 text-center mb-5" type="submit">Modifier</button>
 
     </form>
 

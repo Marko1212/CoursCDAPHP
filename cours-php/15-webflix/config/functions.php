@@ -127,7 +127,7 @@ return $query->fetchAll();
      }
 
 
-
+//erreur affichée si la page n'existe pas
  function display404() {
 
 http_response_code(404); // on force le statut 404 sur la requête (important pour les API!)
@@ -136,6 +136,15 @@ require '../partials/footer.php';
 exit();
 
     }
+//erreur affichée si la page existe mais l'utilisateur n'a pas le droit d'accès
+    function display403() {
+
+        http_response_code(403); // on force le statut 403 sur la requête (important pour les API!)
+        echo '<div class="container"><h1>403</h1> </div>';
+        require '../partials/footer.php'; 
+        exit();
+        
+            }
 
 
 function getMoviesByCategory($id) {
@@ -158,7 +167,7 @@ function getMovieById($id) {
     $query -> bindValue(':id', $id, PDO::PARAM_INT);
     $query -> execute();
 
-    return $query -> fetch(); 
+    return $query -> fetch();
 
 }
 
@@ -290,5 +299,22 @@ function getCommentsByMovie($id) {
     }
 
 
+    function isAdmin() {
+        $admins = ['marko@mailinator.com']; //On définit la liste des admins
+
+        if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+
+        } else {
+            return false;
+        }
+
+        if (in_array($user['email'], $admins)) {
+            return true;
+        }
+
+        return false;
+
+    }
 
     ?>

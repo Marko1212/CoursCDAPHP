@@ -6,6 +6,10 @@
             <p class="card-text">Sorti en <?= substr($movie['released_at'], 0, 4); ?></p>
             <p class="card-text"><?= truncate($movie['description']); ?></p>
             <a href="movie_single.php?id=<?=$movie['id']; ?>" class="btn btn-danger btn-block">Voir le film</a>
+            <?php if (isAdmin()) { ?>
+            <a href="movie_update.php?id=<?=$movie['id']; ?>" class="btn btn-secondary btn-block">Modifier le film</a>
+            <a href="movie_delete.php?id=<?=$movie['id']; ?>" class="btn btn-secondary btn-block">Supprimer le film</a>
+            <?php } ?>
         </div>
         <div class="card-footer text-muted">
         <?php 
