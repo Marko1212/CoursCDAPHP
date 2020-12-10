@@ -28,7 +28,7 @@ $movie = getMovieById($id);
 //d'erreur dans le formulaire (avec value)
     $title = $movie['title'];
     $description = $movie['description'];
-    $cover = $movie['cover'];
+    $cover = null;
     $duration = $movie['duration'];
     $released_at = $movie['released_at'];
     $categorySelected = $movie['category_id'];
@@ -77,9 +77,11 @@ if (!empty($_POST)) {
         
 
 
-    }   else {
-        $errors['cover'] = "Aucun fichier n'est uploadé, le fichier est trop lourd ou le format est incorrect...";
-    }
+    }   else if ($cover['error'] !== 4) {
+        $errors['cover'] = "Le fichier est trop lourd ou le format est incorrect...";
+    } else if ($cover['error'] == 4) {
+        $filename = null;
+    } 
     
     // On fait la requête s'il n'y a pas d'erreurs
 
