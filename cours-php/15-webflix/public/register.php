@@ -4,19 +4,6 @@ session_start();
 
 ob_start(); //on met cela pour éviter des bugs avec la fonction header() (redirection)
 
-/**
- * Formulaire d'ajout de film
- * 
- * Ici, on va créer un formulaire permettant d'ajouter un film.
- * Le champ title devra faire 2 caractères minimum.
- * Le champ description devra faire 15 caractères minimum.
- * On pourra uploader une jaquette. Le nom du fichier uploadé doit être le nom du film "transformé", "Le Parrain" -> "le-parrain.jpg"
- * Le champ durée devra être un nombre entre 1 et 999.
- * Le champ released_at devra être une date valide.
- * Le champ category devra être un select généré dynamiquement avec les catégories de la BDD
- * On doit afficher les messages d'erreurs et s'il n'y a pas d'erreurs on ajoute le film et on redirige sur la page movie_list.php
- * BONUS : Il faudrait afficher un message de succès après la redirection. Il faudra utiliser soit la session, soit un paramètre dans l'URL
- */
 
 
 require '../partials/header.php';
@@ -93,9 +80,9 @@ if (!empty($_POST)) {
         $query -> execute();
 
 
-    $_SESSION['username'] = $pseudo;
+    $_SESSION['registered'] = $pseudo;
      
-     header('Location: index.php?status=success');
+     header('Location: index.php?register=success');
      
 
 

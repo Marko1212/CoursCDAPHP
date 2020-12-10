@@ -1,20 +1,8 @@
 <?php
 
-ob_start(); //on met cela pour éviter des bugs avec la fonction header() (redirection)
+session_start();
 
-/**
- * Formulaire d'ajout de film
- * 
- * Ici, on va créer un formulaire permettant d'ajouter un film.
- * Le champ title devra faire 2 caractères minimum.
- * Le champ description devra faire 15 caractères minimum.
- * On pourra uploader une jaquette. Le nom du fichier uploadé doit être le nom du film "transformé", "Le Parrain" -> "le-parrain.jpg"
- * Le champ durée devra être un nombre entre 1 et 999.
- * Le champ released_at devra être une date valide.
- * Le champ category devra être un select généré dynamiquement avec les catégories de la BDD
- * On doit afficher les messages d'erreurs et s'il n'y a pas d'erreurs on ajoute le film et on redirige sur la page movie_list.php
- * BONUS : Il faudrait afficher un message de succès après la redirection. Il faudra utiliser soit la session, soit un paramètre dans l'URL
- */
+ob_start(); //on met cela pour éviter des bugs avec la fonction header() (redirection)
 
 
 require '../partials/header.php';
@@ -27,69 +15,45 @@ require '../partials/header.php';
 
 //on met cela dans le cas où il y a erreur de soumission du formulaire, pour ne pas avoir de message
 //d'erreur dans le formulaire (avec value)
-    $title = null;
-    $description = null;
-    $cover = null;
-    $duration = null;
-    $released_at = null;
-    $categorySelected = null;
+    $emailPseudo = null;
+    $password = null;
 
 if (!empty($_POST)) {
 
-    $title = htmlspecialchars($_POST['title']);
-    $description = strip_tags($_POST['description']);
-    $cover = $_FILES['cover'];
-    $duration = $_POST['duration'];
-    $released_at = $_POST['released_at'];
-    $categorySelected = $_POST['category'];
+    $emailPseudo = htmlspecialchars($_POST['emailPseudo']);
+    $password = trim($_POST['password']);
 
     $errors = [];
-    if (strlen($title) < 2) {
-        $errors['title'] = 'Le titre est trop court';
-    }
-    if (strlen($description) < 15) {
-        $errors['description'] = 'La description est trop courte';
-    }
-    if ($duration < 1 || $duration > 999) {
-        $errors['duration'] = "La durée n'est pas bonne";
-    }
-    if (!validateDate($released_at)) {
-        $errors['released_at'] = "La date n'est pas bonne";
+
+    if (!is_null($emailPseudo) && empty(trim($emailPseudo)) && !is_numeric(trim($emailPseudo))) {
+        $errors['emailPseudo'] = 'Vous devez saisir votre email ou pseudo!';
     }
 
-    //Ici on peut faire l'upload
-    //on s'assure que le fichier fait au plus 10Mo
-    //on s'assure aussi que c'est bien une image
-    $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    $maxSize = 10 * 1024 * 1024;
 
-    if ($cover['error'] === 0 && $cover['size'] <= $maxSize && in_array($cover['type'], $allowedTypes)) {
-
-        //on s'assure que le dossier existe
-        if (!is_dir('assets/uploads')) {
-            mkdir('assets/uploads');
-        }
-
-
-        $extension = pathinfo($cover['name'])['extension'];
-        $fileName = str_replace(' ','-', strtolower($title)).'.'.$extension;
-
-        move_uploaded_file($cover['tmp_name'], 'assets/uploads/'.$fileName);
-        
-
-
-    }   else {
-        $errors['cover'] = 'Le fichier est trop lourd ou le format est incorrect...';
+    if (!is_null($password) && empty(trim($password)) && !is_numeric(trim($password))) {
+        $errors['password'] = 'Vous devez saisir votre mot de passe!';
     }
-    
-    // On fait la requête s'il n'y a pas d'erreurs
 
-    if (empty($errors)) {
+    global $db;
 
-     addMovie($title, $description, $fileName, $duration, $released_at, $categorySelected);
+    $query = $db->prepare('SELECT * FROM user where user.email = :emailPseudo or user.username = :emailPseudo and user.password = :password');
+    $query -> bindValue(':emailPseudo', $emailPseudo);
+    $query -> bindValue(':password', $password);
+    $query -> execute();
+
+    $results = $query -> fetchAll();
+
+    if (count($results) === 0) {
+        $errors['wrongData'] = "Utilisateur ou mot de passe incorrect!";
+    }
+
+    if (empty($errors) && count($results) === 1) {
+
+
+    $_SESSION['connected'] = $emailPseudo;
      
-     header('Location: movie_single.php?id='.$db->lastInsertId().'&status=success');
-     //header('Location: movie_list.php?status=success');
+     header('Location: index.php?login=success');
+     
 
 
     } else {
@@ -108,44 +72,18 @@ if (!empty($_POST)) {
 ?>
 
 
-    <h1 class="text-center mt-3">Ajouter un film</h1>
+    <h1 class="text-center mt-3">Connexion</h1>
 
-    <form class="w-50 mx-auto" method="post" enctype="multipart/form-data">
+    <form class="w-50 mx-auto" method="post">
         <div class="form-group"> 
-            <label for="title">Titre</label>
-            <input type="text" class="form-control" id="title" placeholder="titre" name="title" value="<?php echo $title; ?>">
+            <label for="emailPseudo">Email ou pseudo</label>
+            <input type="text" class="form-control" id="emailPseudo" placeholder="email ou pseudo" name="emailPseudo" value="<?php echo $emailPseudo; ?>">
         </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="3" placeholder="description"><?php echo $description; ?></textarea>
+        <div class="form-group"> 
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" placeholder="mot de passe" name="password" value="<?php echo $password; ?>">
         </div>
-        <div class="form-group">
-            <label for="cover">Jaquette</label>
-            <input type="file" class="form-control" id="cover" placeholder="cover" name="cover">
-        </div>
-        <div class="form-group">
-            <label for="duration">Durée</label>
-            <input type="number" class="form-control" id="duration" placeholder="durée" name="duration" value="<?php echo $duration; ?>">
-        </div>
-        <div class="form-group">
-            <label for="date">Sortie</label>
-            <input type="date" class="form-control" id="date" placeholder="Date de sortie" name="released_at" value="<?php echo $released_at; ?>">
-        </div>
-        <div class="form-group">
-            <label for="category">Category</label>
-            <select class="form-control" id="category" name="category">
-                <?php
-                $categories = getCategories();
-
-                foreach ($categories as $category) { ?>
-                    <option <?php if ($categorySelected == $category['id']) { ?>selected="true" <?php } ?> value = '<?= $category['id']; ?>'><?= $category['name']; ?></option>
-                <?php } // Fin du foreach
-                ?>
-            </select>
-        </div>
-
-        <button class="btn btn-danger w-100 text-center mb-5" type="submit">Ajouter</button>
-
+        <button class="btn btn-danger w-100 text-center mb-5" type="submit">Se connecter</button>
     </form>
 
 </div>

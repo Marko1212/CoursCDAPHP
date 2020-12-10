@@ -57,17 +57,31 @@ require '../partials/header.php';
 <div class='container mt-4 mb-5'>
   <?php
 
-  if (isset($_GET['status'])) {
-    $status = $_GET['status'];
-    if ($status === 'success') {
+  if (isset($_GET['register'])) {
+    $register = $_GET['register'];
+    if ($register === 'success') {
       echo '<div class="alert alert-success text-center" role="alert">
-      Vous êtes maintenant bien inscrit!
+      Vous êtes maintenant inscrit(e)!
             </div>';
     }
   }
-  if (isset($_SESSION['username'])) {
+  if (isset($_GET['login'])) {
+    $login = $_GET['login'];
+    if ($login === 'success') {
+      echo '<div class="alert alert-success text-center" role="alert">
+      Vous êtes maintenant connecté(e)!
+            </div>';
+    }
+  }
+  if (isset($_SESSION['connected'])) {
     echo '<div class="alert alert-success text-center" role="alert">
-  Bienvenue à ' . $_SESSION['username'] . '!
+  Bienvenue à ' . $_SESSION['connected'] . '!
+   </div>';
+  }
+  
+  if (isset($_SESSION['registered'])) {
+    echo '<div class="alert alert-success text-center" role="alert">
+  Bienvenue à ' . $_SESSION['registered'] . '!
    </div>';
   }
 

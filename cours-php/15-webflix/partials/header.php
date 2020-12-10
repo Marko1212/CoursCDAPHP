@@ -29,7 +29,7 @@ require '../config/functions.php'; ?>
                         <a class="nav-link" href="movie_list.php">Nos films</a>
                     </li>
                     <?php
-                        $categories = getCategories();
+                    $categories = getCategories();
                     ?>
                     <li class="nav-item dropdown pl-3">
                         <a class="btn btn-outline-danger dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
@@ -51,16 +51,24 @@ require '../config/functions.php'; ?>
                             //On va parcourir toutes les catégories
                             // RAPPEL : <?= équivaut à <?php echo
                             foreach ($categories as $category) { ?>
-                                <a class="dropdown-item" href="category_single.php?id=<?=$category['id']; ?>"><?= $category['name']; ?></a>
+                                <a class="dropdown-item" href="category_single.php?id=<?= $category['id']; ?>"><?= $category['name']; ?></a>
                             <?php } // Fin du foreach
                             ?>
                         </div>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="movie_search.php">
-                    <input class="form-control mr-sm-2" type="search" name = "q" placeholder="Rechercher..." aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Rechercher..." aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Go</button>
                 </form>
+                <ul class="navbar-nav ml-4">
+                    <li class="nav-item">
+                        <a href="login.php" class="btn btn-danger">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="register.php" class="nav-link">Inscription</a>
+                    </li>
+                </ul>
             </div>
         </div> <!-- fin du container -->
     </nav>
