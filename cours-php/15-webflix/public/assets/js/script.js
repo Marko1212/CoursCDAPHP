@@ -11,6 +11,10 @@ if ($(window).height() >= $(document).height()) {
 
 $(window).resize(function() {
 
+    if ($('footer').offset().top <= $('html').height()){
+        $('footer').removeClass('sticky-to-bottom');
+    }
+
     if ($(window).height() >= $(document).height()) {
         $('footer').addClass('sticky-to-bottom');
     } else {
