@@ -294,6 +294,16 @@ function updateMovie($id, $title, $description, $cover, $duration, $released_at,
 
 }
 
+function deleteMovie($id) {
+
+    global $db;
+
+    $query = $db->prepare("DELETE FROM movie WHERE id = :id");
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
+    return $query->execute();
+
+}
+
 function validateDate($date, $format = 'Y-m-d')
 {
     $d = DateTime::createFromFormat($format, $date);
