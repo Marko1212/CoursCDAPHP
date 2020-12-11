@@ -31,7 +31,6 @@ require '../partials/header.php';
 
             <img src="assets/uploads/<?= getSliderMovies()[$j]['cover']; ?>" class='d-block' alt="<?= getSliderMovies()[$j]['title']; ?>">
 
-
           <?php
           }
           ?>

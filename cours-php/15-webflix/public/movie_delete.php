@@ -15,6 +15,20 @@ if (isset($_GET['id'])) {
 } else {
     //pas de id fourni dans l'url, on affiche une erreur 404
     display404();
+
+   /**
+    * Attention à la faille CSRF
+    * Pour se protéger de la faille, il faut générer un token (un stock aléatoire)
+    * qu'on stocke dans la session.
+    * Pour supprimer un film, on ajutera le token dans
+    * l'url et on vérifiera que ce token correspond à celui de la session.
+    *
+    */
+}
+
+// Ici on vérifie que l'utilisateur n'est pas victime d'une faille CSRF
+if (!isset($_GET['token']) || $_GET['token'] !== $_SESSION['token'] ) {
+    display403();
 }
 
 $movie = deleteMovie($id);
