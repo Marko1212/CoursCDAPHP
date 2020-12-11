@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Дек 10 2020 г., 22:47
+-- Время создания: Дек 11 2020 г., 10:05
 -- Версия сервера: 10.4.17-MariaDB
 -- Версия PHP: 7.4.13
 
@@ -149,9 +149,7 @@ INSERT INTO `movie` (`id`, `title`, `released_at`, `description`, `duration`, `c
 (21, 'Fight Club', '1999-01-01', 'Lorem ipsum', 108, 'fight-club.jpg', 5),
 (22, 'Inception', '2010-01-01', 'Lorem ipsum', 107, 'inception.jpg', 5),
 (23, 'Deadpool 2', '2019-01-01', 'Lorem ipsum', 93, 'deadpool-2.jpg', 2),
-(34, 'Star Wars 7', '2020-12-09', 'trrgergtrhrtjrthergsfgsfgsdfsfsfsfsqfqfqfqsdf', 258, 'star-wars-7.png', 5),
-(35, 'Film', '2020-12-02', 'azzaeaze zeaze azazeaze zeae azazeaze azeazeazeaz azeazeaz eaz aze  zae azeazeaze azeazeazeaz azeazezaeza zaeazeza eazeazeazeaze azeazezaeazeazeaz  eaeazea azeazeazeaz azeazeaze azeazezaaz', 25, 'film.jpg', 2),
-(36, 'fddfsdfds', '2020-12-17', 'sdfsdfsdfdsfsdfdsf', 6, 'fddfsdfds.png', 3);
+(34, 'Star Wars 7', '2020-12-09', 'trrgergtrhrtjrthergsfgsfgsdfsfsfsfsqfqfqfqsdf', 258, 'star-wars-7.png', 5);
 
 -- --------------------------------------------------------
 
@@ -296,13 +294,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT для таблицы `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT для таблицы `payment`
@@ -324,7 +322,7 @@ ALTER TABLE `user`
 -- Ограничения внешнего ключа таблицы `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `fk_comment_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_comment_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Ограничения внешнего ключа таблицы `movie`
@@ -337,7 +335,7 @@ ALTER TABLE `movie`
 --
 ALTER TABLE `movie_has_actor`
   ADD CONSTRAINT `fk_movie_has_actor_actor1` FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_movie_has_actor_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_movie_has_actor_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Ограничения внешнего ключа таблицы `payment`

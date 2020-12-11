@@ -13,7 +13,7 @@ if (!isAdmin()) {
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } else {
-    //pas de id fourni
+    //pas de id fourni dans l'url, on affiche une erreur 404
     display404();
 }
 
