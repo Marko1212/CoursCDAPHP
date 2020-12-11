@@ -10,9 +10,32 @@ require '../partials/header.php';
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <?php
 
-    $n_imagesParSlide = 3;
+
+  <?php foreach (getSliderMovies() as $index => $movie) {
+        ?>
+            <!-- On peut écrire un if sur un seul ligne grâce au ternaire -->
+            <!-- ? équivaut à if () { } -->
+            <!-- : équivaut au else -->
+            <!-- On peut aussi faire ($index !== 0) ?: 'active'; -->
+            <?php if ($index % 3 === 0) { ?>
+                <div class="carousel-item <?php echo ($index === 0) ? 'active' : ''; ?>">
+                    <div class="d-flex">
+            <?php } ?>
+
+                <img src="assets/uploads/<?= $movie['cover']; ?>" class="d-block" alt="<?= $movie['title']; ?>">
+
+            <?php if (($index + 1) % 3 === 0 || ($index + 1) === count(getSliderMovies())) { ?>
+                    </div> <!-- Fin de la div .d-flex -->
+                </div>
+            <?php } ?>
+
+        <?php } ?>
+
+
+   <?php
+
+ /*    $n_imagesParSlide = 3;
 
     $i = 0;
 
@@ -29,16 +52,22 @@ require '../partials/header.php';
           for ($j = $i; $j <= $i + $n_imagesParSlide - 1; $j++) {
           ?>
 
+
             <img src="assets/uploads/<?= getSliderMovies()[$j]['cover']; ?>" class='d-block' alt="<?= getSliderMovies()[$j]['title']; ?>">
 
-          <?php
-          }
-          ?>
-        </div>
-      </div>
+
+
+
+
+
+          <?php }  */ ?>
+
+
+      <!--   </div>
+      </div> -->
     <?php
-      $i += $n_imagesParSlide;
-    }
+ /*      $i += $n_imagesParSlide;
+    } */
     ?>
 
   </div>
