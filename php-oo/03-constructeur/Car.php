@@ -73,11 +73,15 @@ class Car {
         return $this->fuelLevel;
 
     }
-        return 'no fuel';
+        return 0;
     }
 
-    public function setFuelLevel($fuelLevel) {
-        $this->fuelLevel = $fuelLevel;
+    public function addFuel($fuel) {
+        $this->fuelLevel += $fuel;
+
+        if ($this->fuelLevel > 50) {
+            $this->fuelLevel = 50;
+        }
 
         return $this;
     }
@@ -89,6 +93,9 @@ class Car {
 
             return $this->brand .' '. $this->model. ' moves !';
         }
+        //on remet le niveau d'huile à 0 pour ne pas avoir un niveau d'essence négatif
+        $this->fuelLevel = 0;
+
         return $this->brand .' '. $this->model. ' does not have any fuel, please refuel immediately !';
     }
 
