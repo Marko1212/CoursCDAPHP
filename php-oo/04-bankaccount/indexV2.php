@@ -29,28 +29,31 @@
         //Ajouter le compte dans la BDD et si c'est OK, afficher un message de succès
 
     $owner = null;
-    $balance = null;
-    $overdraft = null;
+    $balance = 0;
+    $overdraft = 0;
 
 if (!empty($_POST)) {
 
-    $owner = $_POST['owner'];
+    $owner = strip_tags($_POST['owner']);
     $balance = $_POST['balance'];
     $overdraft = $_POST['overdraft'];
-    
-    $errors = [];
+    //$errors = [];
+
+    //Faire la validation...
 
     $bankAccount = new BankAccount($owner, $balance, $overdraft);
-
-    $manager->add($bankAccount);
+    $errors = $bankAccount->getErrors();
 
 
     if (empty($errors)) {
 
-        echo "<div class='container alert alert-success'>";
-        echo '<p class="text-success m-0">Le client a été enregistré avec succès!</p>';
-        echo '</div>';
+        $manager->add($bankAccount);
 
+        echo '<div class="container alert alert-success">
+            Le compte a bien été créé!
+        </div>';
+    } else {
+        var_dump($errors);
     }
 
 }
@@ -60,13 +63,13 @@ if (!empty($_POST)) {
             <div class="col-lg-4 offset-lg-4">
                 <form action="" method="post">
                     <label for="owner">Client</label>
-                    <input type="text" name="owner" id="owner" class="form-control"> <br />
+                    <input type="text" name="owner" id="owner" class="form-control" value="<?=$owner; ?>"> <br />
 
                     <label for="balance">Montant initial</label>
-                    <input type="number" name="balance" id="balance" class="form-control"> <br />
+                    <input type="number" name="balance" id="balance" class="form-control" value="<?=$balance; ?>"> <br />
 
                     <label for="overdraft">Découvert autorisé</label>
-                    <input type="number" name="overdraft" id="overdraft" class="form-control"> <br />
+                    <input type="number" name="overdraft" id="overdraft" class="form-control" value="<?=$overdraft; ?>"> <br />
 
                     <button class="btn btn-primary btn-block">Ajouter le compte</button>
 

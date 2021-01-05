@@ -103,4 +103,22 @@ public function __construct($owner, $balance=0, $overdraft=0) {
 
         return $this;
     }
+
+    public function getErrors() {
+        $errors = [];
+
+        if (empty($this->owner)) {
+            $errors['owner'] = "Le nom est vide";
+        }
+
+        if (!is_numeric($this->balance) || $this->balance < 0) {
+            $erreurs['balance'] = 'Montant non valide';
+        }
+
+        if (!is_numeric($this->overdraft) || $this->overdraft < 0) {
+            $errors['overdraft'] = "Montant non valide";
+        }
+
+        return $errors;
+    }
 }
