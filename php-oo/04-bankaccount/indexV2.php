@@ -28,61 +28,72 @@
         //Créer une instance de compte avec les données du formulaire
         //Ajouter le compte dans la BDD et si c'est OK, afficher un message de succès
 
-    $owner = null;
-    $balance = 0;
-    $overdraft = 0;
+        $owner = null;
+        $balance = 0;
+        $overdraft = 0;
 
-if (!empty($_POST)) {
+        if (!empty($_POST)) {
 
-    $owner = strip_tags($_POST['owner']);
-    $balance = $_POST['balance'];
-    $overdraft = $_POST['overdraft'];
-    //$errors = [];
+            $owner = strip_tags($_POST['owner']);
+            $balance = $_POST['balance'];
+            $overdraft = $_POST['overdraft'];
+            //$errors = [];
 
-    //Faire la validation...
+            //Faire la validation...
 
-    $bankAccount = new BankAccount($owner, $balance, $overdraft);
-    $errors = $bankAccount->getErrors();
+            $bankAccount = new BankAccount($owner, $balance, $overdraft);
+            $errors = $bankAccount->getErrors();
 
 
-    if (empty($errors)) {
+            if (empty($errors)) {
 
-        $manager->add($bankAccount);
+                $manager->add($bankAccount);
 
-        echo '<div class="container alert alert-success">
+                echo '<div class="container alert alert-success">
             Le compte a bien été créé!
         </div>';
-    } else {
-        var_dump($errors);
-    }
-
-}
+            } else {
+                var_dump($errors);
+            }
+        }
         ?>
 
         <div class="row">
             <div class="col-lg-4 offset-lg-4">
                 <form action="" method="post">
                     <label for="owner">Client</label>
-                    <input type="text" name="owner" id="owner" class="form-control" value="<?=$owner; ?>"> <br />
+                    <input type="text" name="owner" id="owner" class="form-control" value="<?= $owner; ?>"> <br />
 
                     <label for="balance">Montant initial</label>
-                    <input type="number" name="balance" id="balance" class="form-control" value="<?=$balance; ?>"> <br />
+                    <input type="number" name="balance" id="balance" class="form-control" value="<?= $balance; ?>"> <br />
 
                     <label for="overdraft">Découvert autorisé</label>
-                    <input type="number" name="overdraft" id="overdraft" class="form-control" value="<?=$overdraft; ?>"> <br />
+                    <input type="number" name="overdraft" id="overdraft" class="form-control" value="<?= $overdraft; ?>"> <br />
 
-                    <button class="btn btn-primary btn-block">Ajouter le compte</button>
+                    <button class="btn btn-primary btn-block mb-4">Ajouter le compte</button>
 
                 </form>
-                
+
             </div>
         </div>
 
         <?php
-            //On veut récupérer la liste des comptes sur la BDD
+        //On veut récupérer la liste des comptes sur la BDD
 
         $bankAccounts = $manager->getList();
-        var_dump($bankAccounts);
+
+        foreach ($bankAccounts as $bankAccount) { ?>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $bankAccount->getOwner(); ?></h5>
+                    <p>Montant du compte : <?= $bankAccount->getBalance(); ?></p>
+                    <p>Découvert autorisé : <?= $bankAccount->getOverdraft(); ?></p>
+                </div>
+            </div>
+
+        <?php }
+
         ?>
 
     </div>

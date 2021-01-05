@@ -29,7 +29,20 @@ class BankManager {
     public function getList() {
         $query = $this->db->query('SELECT * from bankaccount');
 
-        return $query->fetchAll();
+        $bankAccounts= [];
+
+        //le résultat renvoyé par le SELECT est un tableau de tableaux
+        //on le transforme ci-dessous en un tableau d'objets de classe BankAccount
+        foreach($query->fetchAll() as $bankAccount) {
+
+            // Attention ! les objets qu'on crée ci-dessous n'ont pas l'attribut $number qui est dans la BDD
+            //en effet, l'attribut $number est créé à l'intérieur du constructeur ci-dessous, donc, il ne correspond
+            //pas à celui de la BDD
+            $bankAccounts[] = new BankAccount($bankAccount['owner'], $bankAccount['balance'], $bankAccount['overdraft']);
+
+        }
+
+        return $bankAccounts;
     }
 
 
