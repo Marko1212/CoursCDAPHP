@@ -14,7 +14,7 @@ La vitesse du véhicule est un attribut idéalement.
 Une moto peut faire du 1 roue (Surcharge de accélérer) à 100 km/h
 - Une voiture possède TOUJOURS 4 roues.
 Une voiture peut accélérer à 130 km/h
-- Un Camion possède un chargement (attribut de type tableau), une capacité de chargement (propriété, à définir dans son constructeur)
+- Un Camion possède un chargement (tableau), une capacité de chargement (à définir dans son constructeur)
 Par exemple, si le camion a une capacité de 5, il ne peut avoir que 5 éléments dans son tableau chargement
 On doit pouvoir faire $camion->addItem('Tomates');
 Si je dépasse la capacité, j'ai une erreur
@@ -24,5 +24,29 @@ BONUS:
 Un camion peut attacher ou détacher une remorque (méthode)
 Le fait d'attacher LA remorque permet d'agrandir la capacité du camion (x2)
 Attention, si on détache la remarque, on perd le chargement qui est de trop
+BONUS:
+Un véhicule ne peut accélérer que s'il a déjà démarré.
 */
+
+$car1 = new Car('BMW', 10000);
+$car1->start();
+$car1->accelerate();
+
+$moto1 = new Moto('Yamaha', 5000);
+$moto1->start();
+$moto1->accelerate();
+
+$camion1 = new Camion('Mercedes', 50000, 3);
+$camion1->addItem('PC')->addItem('iPhone')->addItem('TV');
+
+$camion1->addItem('Tomate'); // Le camion est plein
+$camion1->attachTrailer(); // On double la capacité du camion (6)
+$camion1->addItem('Tomate')->addItem('Salade')->addItem('Frites');
+
+$camion1->start();
+$camion1->accelerate();
+
+$camion1->detachTrailer();
+$camion1->getItems(); // Tableau avec PC, iPhone, TV
+
 
