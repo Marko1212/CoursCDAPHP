@@ -96,7 +96,7 @@
     var_dump($bianca instanceof Animal);
     var_dump($bianca instanceof Cat);
 
-    echo '<br>';
+    echo '<br><br>';
 
     class Dog extends Animal {
 
@@ -112,7 +112,7 @@
         }
 
         public function takeAWalk() {
-            return $this->name. ' se promène avec son maître...<br>';
+            return $this->name. ' sort avec son maître...<br>';
         }
 
     }
