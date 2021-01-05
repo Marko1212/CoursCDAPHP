@@ -101,7 +101,7 @@
     class Dog extends Animal {
 
         public function __construct($name, $type) {
-            parent::__construct($name);
+            parent::__construct($name); // J'appelle d'abord le constructeur de Animal
             $this->type = $type;
         }        
 
