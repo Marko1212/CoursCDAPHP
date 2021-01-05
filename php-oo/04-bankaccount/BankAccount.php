@@ -56,6 +56,12 @@ public function __construct($owner, $balance=0, $overdraft=0) {
     {
         return $this->balance;
     }
+
+    public function getOverdraft()
+    {
+        return $this->overdraft;
+    }
+
     public function depositMoney($credit)
     {
 
