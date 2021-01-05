@@ -3,8 +3,8 @@
 class BankAccount
 {
 
+     //private static $id=1;
     private $number;
-    //private static $id=1;
     private $owner;
     private $balance;
     private $overdraft;
