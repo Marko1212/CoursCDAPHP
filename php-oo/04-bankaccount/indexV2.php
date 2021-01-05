@@ -78,6 +78,13 @@ if (!empty($_POST)) {
             </div>
         </div>
 
+        <?php
+            //On veut récupérer la liste des comptes sur la BDD
+
+        $bankAccounts = $manager->getList();
+        var_dump($bankAccounts);
+        ?>
+
     </div>
 </body>
 

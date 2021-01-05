@@ -26,5 +26,11 @@ class BankManager {
         return $query->execute();
     }
 
+    public function getList() {
+        $query = $this->db->query('SELECT * from bankaccount');
+
+        return $query->fetchAll();
+    }
+
 
 }
