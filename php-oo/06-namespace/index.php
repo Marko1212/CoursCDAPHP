@@ -16,8 +16,17 @@
   *
   */
 
-require_once 'Earth/Nature/Animal.php';
-require_once 'Mars/Animal.php';
+  spl_autoload_register(function($class) {
+      
+   // var_dump($class.'.php');
+    require_once $class.'.php';
+  });
+
+  //équivaut à : spl_autoload_register();
+  
+
+//require_once 'Earth/Nature/Animal.php';
+//require_once 'Mars/Animal.php';
 
 // Earth\Nature\Animal est le FQCN (Full Qualified Class Name)
 $animal1 = new Earth\Nature\Animal();
@@ -42,8 +51,8 @@ var_dump($animal4);
 
 // On peut utiliser les use dans les classes elles-mêmes
 
-require_once 'Earth/Nature/Cat.php';
-require_once 'Earth/Nature/Alien.php';
+/* require_once 'Earth/Nature/Cat.php';
+require_once 'Earth/Nature/Alien.php'; */
 
 // Cette Classe va hériter de Earth\Nature\Animal;
 use Earth\Nature\Cat;
