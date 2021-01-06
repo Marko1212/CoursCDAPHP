@@ -38,21 +38,21 @@ class ExpressoMachine {
         $this->consumedWater += $this->litresByExpresso;
         $this->consumedBeans += 1;
         
-        return 'Voici vos '. $this->litresByExpresso .' litres de café <br>';
+        return 'Voici vos '. $this->litresByExpresso .' litre(s) de café <br>';
     } 
 
     public function makeDoubleExpresso() {
         $this->consumedWater += 2*$this->litresByExpresso;
         $this->consumedBeans += 2;
 
-        return 'Voici vos '. 2 * $this->litresByExpresso .' litres de café <br>';
+        return 'Voici vos '. 2 * $this->litresByExpresso .' litre(s) de café <br>';
     } 
 
     public function makeExpressos($quantity) {
         $this->consumedWater += $quantity * $this->litresByExpresso;
         $this->consumedBeans += $quantity;
 
-        return 'Voici vos '. $quantity * $this->litresByExpresso .' litres de café <br>';
+        return 'Voici vos '. $quantity * $this->litresByExpresso .' litre(s) de café <br>';
     }
 
     public function getStatus() {
@@ -68,7 +68,7 @@ class ExpressoMachine {
     $status .= 'Il reste '. ($this->capacityBeans - $this->consumedBeans). ' café(s)<br>';
 
     if ($this->consumedWater > 0) {
-    $status .= 'Ajouter de l\'eau : '. $this->consumedWater . ' litres <br>';
+    $status .= 'Ajouter de l\'eau : '. $this->consumedWater . ' litre(s) <br>';
     }
 
     if ($this->consumedBeans > 0) {
