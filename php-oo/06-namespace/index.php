@@ -8,6 +8,14 @@
  * 
  */
 
+ /**
+  * Autoloading des classes
+  * On peut utiliser spl_autoload_register() à la place des require
+  * La fonction va chercher dans le dossier dans lequel le fichier index.php se situe
+  * La fonction ne charge la classe que si elle est utilisée par le code.
+  *
+  */
+
 require_once 'Earth/Nature/Animal.php';
 require_once 'Mars/Animal.php';
 
