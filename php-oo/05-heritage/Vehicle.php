@@ -12,7 +12,7 @@ La vitesse du véhicule est un attribut idéalement.
 class Vehicle
 {
 
-    private static $countInstancesVehicle = 0;
+    private static $lastRegistration = 0;
     private $registerNumber = 0;
     private $price;
     protected $brand;
@@ -24,8 +24,7 @@ class Vehicle
 
     public function __construct($brand, $price)
     {
-        self::$countInstancesVehicle++;
-        $this->registerNumber = self::$countInstancesVehicle;
+        $this->registerNumber = ++self::$lastRegistration;
         $this->price = $price;
         $this->brand = $brand;
     }
