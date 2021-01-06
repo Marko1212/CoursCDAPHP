@@ -17,18 +17,20 @@ class Vehicle
     private $price;
     protected $brand;
     protected $speed = 0;
+    protected $maxSpeed = 10;
     protected $started = false;
-    protected $nbWheels;
+    protected $nbWheels = 4;
     
 
-    public function __construct($brand, $price, $nbWheels = 4)
+    public function __construct($brand, $price)
     {
         self::$countInstancesVehicle++;
         $this->registerNumber = self::$countInstancesVehicle;
         $this->price = $price;
         $this->brand = $brand;
-        $this->nbWheels = $nbWheels;
     }
+
+    // le $this doit se trouver dans une méthode ou le constructeur!
 
     public function start()
     {
@@ -41,13 +43,11 @@ class Vehicle
     public function accelerate()
     {
         if ($this->started) {
-            $this->speed = 10;
-            echo $this->brand . ' has accelerated <br>';
+            $this->speed = $this->maxSpeed;
+            return $this->brand . ' has accelerated, current speed is : '.$this->maxSpeed.' km/h<br>';
         } else {
-            echo 'You must start your vehicle before accelerating!<br>';
+            return 'You must start your vehicle before accelerating!<br>';
         }
-
-        return $this->speed;
     }
 
     public function getRegisterNumber()

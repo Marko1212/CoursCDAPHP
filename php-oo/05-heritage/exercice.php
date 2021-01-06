@@ -38,20 +38,20 @@ require_once 'Moto.php';
 require_once 'Camion.php';
 
 $car1 = new Car('BMW', 10000);
-$car1->accelerate();
+echo $car1->accelerate();
 $car1->start();
 $car1->getRegisterNumber();
-$car1->accelerate();
+echo $car1->accelerate();
 
 $moto1 = new Moto('Yamaha', 5000);
 $moto1->start();
-$moto1->accelerate();
+echo $moto1->accelerate();
 $moto1->getRegisterNumber();
 
 $camion1 = new Camion('Mercedes', 50000, 3);
 $camion1->getRegisterNumber();
 $camion1->addItem('PC')->addItem('iPhone')->addItem('TV');
-$camion1->accelerate();
+echo $camion1->accelerate();
 
 
 $camion1->addItem('Tomate'); // Le camion est plein
@@ -64,7 +64,7 @@ $camion1->addItem('Tomate')->addItem('Salade')->addItem('Frites');
 $camion1->getItems();
 
 $camion1->start();
-$camion1->accelerate();
+echo $camion1->accelerate();
 
 $camion1->detachTrailer();
 $camion1->getItems(); // Tableau avec PC, iPhone, TV */

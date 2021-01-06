@@ -24,6 +24,7 @@ class Camion extends Vehicle {
     { 
         parent::__construct($brand, $price);
         $this->loadingCapacity = $loadingCapacity;
+        $this->maxSpeed += 80;
         $this->nbWheels = $nbWheels;
     }
 
@@ -35,19 +36,6 @@ class Camion extends Vehicle {
         }
         return $this;
     }
-
-    public function accelerate()
-    {
-        if ($this->started) {
-            $this->speed = 90;
-            echo $this->brand . ' has accelerated, current speed is : '.$this->speed.' km/h <br>';
-        } else {
-            echo 'You must start your '. $this->brand .' before accelerating! Current speed is : '.$this->speed.' km/h <br>';
-        }
-
-        return $this->speed;
-    }
-
 
     public function attachTrailer() {
         if (!$this->trailer) {
