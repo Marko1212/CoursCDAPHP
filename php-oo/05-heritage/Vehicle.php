@@ -13,7 +13,13 @@ class Vehicle
 {
 
     private static $lastRegistration = 0;
-    private $registerNumber = 0;
+    private $registerNumber;
+    //il faut bien créer 2 variables, 1 static l'autre dynamique pour que ça marche
+    //si on a une seule variable static, toutes les instances auront la même immatriculation à la fin
+    //puisque une variable static a la même valeur pour toutes les instances de la classe
+    // or, les immatriculations sont différentes pour chaque véhicule
+    //d'où la nécessité d'avoir 2 variables: une variable static et une variable d'instance
+
     private $price;
     protected $brand;
     protected $speed = 0;
