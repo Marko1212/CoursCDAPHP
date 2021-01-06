@@ -75,7 +75,7 @@ class ExpressoMachine {
     $status .= 'Ajouter des dosettes : '. $this->consumedBeans . '<br>';
     }
 
-    if ($this->consumedWater >= $this->descale && ($this->capacityWater - $this->consumedWater >= $this->litresByDescale)) {
+    if ($this->consumedWater >= $this->descale) {
         $status .= 'Détartrage nécessaire <br>';
     }
     
