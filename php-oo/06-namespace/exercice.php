@@ -7,11 +7,12 @@ use Nespresso\ExpressoMachine as ClooneyMachine;
 $litresByExpresso = 0.05; // On utilise 0.05L pour chaque expresso
 $litresByDescale = 1; // On utilise 1L pour détartrer
 $descale = 5; // On doit détartrer tous les 5L de service
+$unitPriceCoffee = 0.5; //prix unitaire d'un expresso 
 
 // ClooneyMachine est un alias de Nespresso\ExpressoMachine
-$machine = new ClooneyMachine($litresByExpresso, $litresByDescale, $descale);
+$machine = new ClooneyMachine($litresByExpresso, $litresByDescale, $descale, $unitPriceCoffee);
 
-$machine->addWater(6); // On ajoute 5 litres dans la machine
+$machine->addWater(6); // On ajoute 6 litres dans la machine
 $machine->addBeans(100); // On ajoute 100 dosettes dans la machine
 
 echo $machine->makeExpresso(); // Voici vos 0,05L de café
@@ -31,7 +32,7 @@ echo $machine->descale();
 
 // BONUS: Ajouter un paramètre dans le constructeur pour gérer le prix d'un café
 // Récupère l'argent de la machine
-//$machine->getMoney(); // Renvoie 3 euros pour 6 cafés et remet le compteur à 0
+echo $machine->getMoney(); // Renvoie 3 euros pour 6 cafés et remet le compteur à 0
 
 // BONUS: La machine devrait être limitée au niveau de la capacité en eau et dosettes
 // Il faudra ajouter des objets Container pour augmenter la capacité

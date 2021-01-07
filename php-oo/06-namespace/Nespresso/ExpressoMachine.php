@@ -7,6 +7,7 @@ class ExpressoMachine {
     private $litresByExpresso; 
     private $litresByDescale;
     private $descale;
+    private $unitPriceCoffee;
 
     private $remainingWater = 0;
     private $remainingBeans = 0;
@@ -14,11 +15,14 @@ class ExpressoMachine {
     private $consumedWater = 0;
     private $consumedBeans = 0;
 
-    public function __construct($litresByExpresso, $litresByDescale, $descale)
+    private $cashInMachine = 0;
+
+    public function __construct($litresByExpresso, $litresByDescale, $descale, $unitPriceCoffee)
     {
         $this->litresByExpresso = $litresByExpresso;
         $this->litresByDescale = $litresByDescale;
         $this->descale = $descale;
+        $this->unitPriceCoffee = $unitPriceCoffee;
     }
 
     public function addWater($waterQuantity) {
@@ -40,6 +44,7 @@ class ExpressoMachine {
         $this->consumedBeans += 1;
         $this->remainingBeans -= 1;
         $this->remainingWater -= $this->litresByExpresso;
+        $this->cashInMachine += $this->unitPriceCoffee;
         return 'Voici vos '. $this->litresByExpresso .' litre(s) de café <br>';
         } else {
         
@@ -54,6 +59,7 @@ class ExpressoMachine {
             $this->consumedBeans += 2;
             $this->remainingBeans -= 2;
             $this->remainingWater -= 2*$this->litresByExpresso;
+            $this->cashInMachine += 2*$this->unitPriceCoffee;
             return 'Voici vos '. 2*$this->litresByExpresso .' litre(s) de café <br>';
             } else {
             
@@ -68,6 +74,7 @@ class ExpressoMachine {
             $this->consumedBeans += $quantity;
             $this->remainingBeans -= $quantity;
             $this->remainingWater -= $quantity*$this->litresByExpresso;
+            $this->cashInMachine += $quantity*$this->unitPriceCoffee;
             return 'Voici vos '. $quantity*$this->litresByExpresso .' litre(s) de café <br>';
             } else {
             
@@ -121,6 +128,11 @@ class ExpressoMachine {
     }
 
 
+    public function getMoney() {
+        $message = 'Vous récupérez '.$this->cashInMachine.' euros pour '.$this->consumedBeans.' café(s)';
+        $this->cashInMachine = 0;
+        return $message;
+    }
 
 
 
