@@ -13,7 +13,7 @@ class Alien extends Animal {
         //comme PDO, DateTime
         // On doit ajouter un \ devant ( \ est la racine comme C: )
 
-        $db = new \PDO('mysql:host=localhost', 'root', '');
+        //$db = new \PDO('mysql:host=localhost', 'root', '');
         $date = new \DateTime();
 
 
