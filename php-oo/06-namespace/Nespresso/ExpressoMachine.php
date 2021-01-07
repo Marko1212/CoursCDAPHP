@@ -90,7 +90,7 @@ class ExpressoMachine {
             return 'Voici vos '. $quantity*$this->litresByExpresso .' litre(s) de café <br>';
             } else {
             
-            return 'Désolé, il n\'y a pas assez d\'eau et/ou dosettes pour faire le café <br>';
+            return 'Désolé, il n\'y a pas assez d\'eau et/ou dosette(s) pour faire le café <br>';
     
             }
     }
