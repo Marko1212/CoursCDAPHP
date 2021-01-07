@@ -112,7 +112,7 @@ class ExpressoMachine {
 
     $status = 'Status : <br>';
 
-    $status .= 'Il reste '. $this->remainingBeans . ' café(s)<br>';
+    $status .= 'Il reste '. min($this->remainingWater / $this->litresByExpresso, $this->remainingBeans) . ' café(s)<br>';
 
     if ($this->consumedWater > 0) {
     $status .= 'Ajouter de l\'eau : '. $this->consumedWater . ' litre(s) <br>';
