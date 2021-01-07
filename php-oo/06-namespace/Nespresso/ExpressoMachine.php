@@ -17,26 +17,38 @@ class ExpressoMachine {
 
     private $cashInMachine = 0;
 
-    public function __construct($litresByExpresso, $litresByDescale, $descale, $unitPriceCoffee)
+    private $beansMaxCapacity;
+    private $waterMaxCapacity;
+
+    public function __construct($litresByExpresso, $litresByDescale, $descale, $unitPriceCoffee, $beansMaxCapacity, $waterMaxCapacity)
     {
         $this->litresByExpresso = $litresByExpresso;
         $this->litresByDescale = $litresByDescale;
         $this->descale = $descale;
         $this->unitPriceCoffee = $unitPriceCoffee;
+        $this->beansMaxCapacity = $beansMaxCapacity;
+        $this->waterMaxCapacity = $waterMaxCapacity;
     }
 
     public function addWater($waterQuantity) {
+        if ($waterQuantity <= $this->waterMaxCapacity - $this->remainingWater) {
         $this->remainingWater += $waterQuantity;
+        } else {
+            $this->remainingWater = $this->waterMaxCapacity;
+        }
 
         return $this;
     }
 
     public function addBeans($beansQuantity) {
-        $this->remainingBeans += $beansQuantity;
+        if ($beansQuantity <= $this->beansMaxCapacity - $this->remainingBeans) {
+            $this->remainingBeans += $beansQuantity;
+            } else {
+                $this->remainingBeans = $this->beansMaxCapacity;
+            }
 
         return $this;
     }
-
 
     public function makeExpresso() {
         if ($this->remainingBeans >= 1 && $this->remainingWater >= $this->litresByExpresso) {
@@ -132,6 +144,16 @@ class ExpressoMachine {
         $message = 'Vous récupérez '.$this->cashInMachine.' euros pour '.$this->consumedBeans.' café(s)';
         $this->cashInMachine = 0;
         return $message;
+    }
+
+
+    public function addCapacity($container) {
+        $this->beansMaxCapacity += $container->getContainerBeansCapacity();
+        $this->waterMaxCapacity += $container->getContainerWaterCapacity();
+        //echo $this->beansMaxCapacity .'<br>';
+        //echo $this->waterMaxCapacity .'<br>';
+
+        return $this;
     }
 
 
