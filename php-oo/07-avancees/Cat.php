@@ -1,12 +1,16 @@
 <?php
 
-class Cat implements KingdomAnimalInterface {
+class Cat extends Animal implements KingdomAnimalInterface {
     public function cry() {
-        return 'Miaule';
+        return 'Miaule <br>';
     }
 
     public function breathe() {
-        return 'Respire';
+        return 'Respire <br>';
+    }
+
+    public function walk() {
+        return 'Marche <br>';
     }
 }
 
