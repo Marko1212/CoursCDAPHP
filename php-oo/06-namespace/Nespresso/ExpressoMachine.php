@@ -51,7 +51,8 @@ class ExpressoMachine {
     }
 
     public function makeExpresso() {
-        if ($this->remainingBeans >= 1 && $this->remainingWater >= $this->litresByExpresso) {
+        if ($this->remainingBeans >= 1 && $this->remainingWater >= $this->litresByExpresso && 
+        ($this->consumedWater + $this->litresByExpresso < $this->descale)) {
         $this->consumedWater += $this->litresByExpresso;
         $this->consumedBeans += 1;
         $this->remainingBeans -= 1;
@@ -60,13 +61,13 @@ class ExpressoMachine {
         return 'Voici vos '. $this->litresByExpresso .' litre(s) de café <br>';
         } else {
         
-        return 'Désolé, il n\'y a pas assez d\'eau et/ou dosettes pour faire le café <br>';
+        return 'Désolé, il n\'y a pas assez d\'eau et/ou dosettes pour faire le café ou la bien la machine doit être détartrée!<br>';
 
         }
     } 
 
     public function makeDoubleExpresso() {
-        if ($this->remainingBeans >= 2 && $this->remainingWater >= 2*$this->litresByExpresso) {
+        if ($this->remainingBeans >= 2 && $this->remainingWater >= 2*$this->litresByExpresso &&         ($this->consumedWater + 2*$this->litresByExpresso < $this->descale)) {
             $this->consumedWater += 2*$this->litresByExpresso;
             $this->consumedBeans += 2;
             $this->remainingBeans -= 2;
@@ -75,13 +76,13 @@ class ExpressoMachine {
             return 'Voici vos '. 2*$this->litresByExpresso .' litre(s) de café <br>';
             } else {
             
-            return 'Désolé, il n\'y a pas assez d\'eau et/ou dosettes pour faire le café <br>';
+            return 'Désolé, il n\'y a pas assez d\'eau et/ou dosettes pour faire le café ou la bien la machine doit être détartrée!<br>';
     
             }
     } 
 
     public function makeExpressos($quantity) {
-        if ($this->remainingBeans >= $quantity && $this->remainingWater >= $quantity*$this->litresByExpresso) {
+        if ($this->remainingBeans >= $quantity && $this->remainingWater >= $quantity*$this->litresByExpresso && $this->consumedWater + $quantity*$this->litresByExpresso < $this->descale) {
             $this->consumedWater += $quantity*$this->litresByExpresso;
             $this->consumedBeans += $quantity;
             $this->remainingBeans -= $quantity;
@@ -90,7 +91,7 @@ class ExpressoMachine {
             return 'Voici vos '. $quantity*$this->litresByExpresso .' litre(s) de café <br>';
             } else {
             
-            return 'Désolé, il n\'y a pas assez d\'eau et/ou dosette(s) pour faire le café <br>';
+            return 'Désolé, il n\'y a pas assez d\'eau et/ou dosette(s) pour faire le café ou la bien la machine doit être détartrée!<br>';
     
             }
     }
