@@ -95,6 +95,12 @@ class ExpressoMachine {
             }
     }
 
+    public function getMaximumCapacity() {
+        echo 'La capacité maximale de la machine à café est : <br>';
+        echo 'Capacité maximale en dosettes : '. $this->beansMaxCapacity . '<br>';
+        echo 'Capacité maximale en eau (litres) : '. $this->waterMaxCapacity . '<br>';
+    }
+
     public function getStatus() {
 // - Renvoie un message en fonction de l'état de la machine
 // - Reste 94 cafés, What else ?
@@ -150,8 +156,9 @@ class ExpressoMachine {
     public function addCapacity($container) {
         $this->beansMaxCapacity += $container->getContainerBeansCapacity();
         $this->waterMaxCapacity += $container->getContainerWaterCapacity();
-        //echo $this->beansMaxCapacity .'<br>';
-        //echo $this->waterMaxCapacity .'<br>';
+        echo 'Un conteneur ajouté à la machine à café : <br>';
+        echo 'Capacité en dosettes : '. $container->getContainerBeansCapacity() .'<br>';
+        echo 'Capacité en eau (en litres): '. $container->getContainerWaterCapacity() .'<br>';
 
         return $this;
     }
