@@ -135,8 +135,8 @@ class ExpressoMachine {
 
         if (($this->consumedWater >= $this->descale) && ($this->remainingWater >= $this->litresByDescale)) {
             $detartrage = 'Détartrage effectué <br>';
-            $this->remainingWater = 0;
-            $this->consumedWater = 0;
+            $this->remainingWater = 0; //lors d'un détartrage, on vide la machine
+            $this->consumedWater = 0; // et on remet à 0 le volume d'eau consommé
         } else if ($this->consumedWater < $this->descale) {
             $detartrage = 'Détartrage non nécessaire<br>';
         } else {
