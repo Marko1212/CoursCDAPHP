@@ -4,7 +4,7 @@ namespace Rpg;
 
 class Objet {
 
-    private $nom;
+    protected $nom;
     
     public function __construct($nom)
     {

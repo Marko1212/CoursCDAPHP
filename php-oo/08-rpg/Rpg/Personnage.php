@@ -5,50 +5,78 @@ namespace Rpg;
 abstract class Personnage
 {
 
-    protected $nom;
+    private $nom;
     protected $pointsDeVie = 100;
     protected $pointsDeForce = 10;
     protected $pointsDeMana = 10;
     protected $inventaire = [];
+    private $xp = 0;
+    private $level = 0;
+    private $alive = true;
+    private $destructiveForce = 0;
+    private static $list = []; 
 
 
     public function __construct($nom)
     {
         $this->nom = $nom;
+        self::$list[] = $this;
     }
 
-    public function attaquer($person)
+    public function attaquer($victime)
     {
 
-        if ($person === $this) {
-            return "On ne doit pas s\'attaquer soi-même!";
+        if ($victime === $this) {
+            return "On ne doit pas s'attaquer soi-même!<br>";
         }
 
-        $person->recevoirDegats($this);
+        $victime->recevoirDegats($this);
 
         return $this;
     }
 
-    public function recevoirDegats(Personnage $person)
-    {
+    public function recevoirDegats(Personnage $bourreau)
+    {   
 
-        if ($person instanceof Guerrier) {
-            $this->pointsDeVie -= 2 * $person->getPointsDeForce();
+        if ($this->alive === false) {
+            return 'Je suis déjà mort!';
         }
 
-        if ($person instanceof Chasseur) {
-            $this->pointsDeVie -= 3 * $person->getPointsDeForce();
-        }
+        if ($this->pointsDeVie <= $bourreau->getDestructiveForce()) {
+            $this->alive = false;
+            $this->pointsDeVie = 0;
+            $bourreau -> addExperience();
+            if ($bourreau->getExperience() >= 3) {
+                $bourreau->increaseLevel();
+            }
+            else if ($bourreau->getExperience() >= 6) {
+                $bourreau->increaseLevel();
+            } else if ($bourreau->getExperience() >= 9) {
+                $bourreau->increaseLevel();
+            }   
 
-        if ($person instanceof Magicien) {
-            $this->pointsDeVie -= 3 * $person->getPointsDeMana();
-        }
-
-        if ($this->pointsDeVie <= 0) {
             return $this->nom . ' tué!';
-        }
+        }   
+
+            $this->pointsDeVie -= $bourreau->getDestructiveForce();
 
         return $this->nom . ' attaqué!';
+    }
+
+
+   public function getDestructiveForce() {
+        if ($this instanceof Guerrier) {
+            return $this->destructiveForce = 2 * $this->getPointsDeForce();
+        }
+
+        if ($this instanceof Chasseur) {
+            return $this->destructiveForce = 3 * $this->getPointsDeForce();
+        }
+
+        if ($this instanceof Magicien) {
+            return $this->destructiveForce = 3 * $this->getPointsDeMana();
+        }
+
     }
 
 
@@ -67,9 +95,41 @@ abstract class Personnage
         return $this->pointsDeVie;
     }
 
-    public function pick($arme)
+    public function addPointsDeVie($pointsDeVie)
     {
-        $this->inventaire[] = $arme;
+        $this->pointsDeVie += $pointsDeVie;
+        return $this;
+    }
+
+    public function addPointsDeForce($pointsDeForce)
+    {
+        $this->pointsDeForce += $pointsDeForce;
+        return $this;
+    }
+
+    public function consume(UsableInterface $item)
+    {
+        $item->use($this);
+        return $this;
+    }
+
+    public function equip(EquipableInterface $item)
+    {
+        if ($item->support($this)) {
+        $item->use($this);
+        return $this;
+        }
+    }
+
+
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    public function pick($item)
+    {
+        $this->inventaire[] = $item;
         return $this;
     }
 
@@ -79,4 +139,28 @@ abstract class Personnage
             echo $item->getNom() . '<br>';
         }
     }
+
+    public function getLevel() {
+        return "Le niveau de " . $this->getNom() . ' est : ' . $this->level . '<br>';
+    }
+
+    public function increaseLevel() {
+        $this->level++;
+        return $this;
+    }
+
+    public function getExperience() {
+        return $this->xp;
+    }
+
+    public function addExperience() {
+        $this->xp++;
+
+        return $this;
+    }
+
+    public static function getList() {
+        return self::$list;
+    }
+
 }

@@ -6,6 +6,5 @@ class Guerrier extends Personnage {
 
     protected $pointsDeForce = 20;
 
-    
 
 }
