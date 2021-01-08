@@ -24,7 +24,9 @@ abstract class Personnage
             return "On ne doit pas s\'attaquer soi-même!";
         }
 
-        return $person->recevoirDegats($this);
+        $person->recevoirDegats($this);
+
+        return $this;
     }
 
     public function recevoirDegats(Personnage $person)

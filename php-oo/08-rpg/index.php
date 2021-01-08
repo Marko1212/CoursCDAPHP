@@ -29,6 +29,21 @@ $aragorn->pick($potion) // Aragorn ramasse une potion
 
 echo $aragorn->afficheInventaire();
 
+$aragorn->attaquer($legolas)
+        ->attaquer($legolas)
+        ->attaquer($legolas);
+
+echo $legolas->getPointsDeVie() . '<br>';
+
+// Si Legolas meurt, Aragorn gagne de l'expérience. On gagne 1 point par personnage.
+// Un personnage doit donc avoir un niveau actuel et une expérience actuelle.
+// Un niveau correspond à un nombre de points (Niveau * 3)
+// 0 - 1 : 3
+// 1 - 2 : 6
+// 2 - 3 : 9
+
+//echo $aragorn->level; // Affiche le niveau du personnage
+//echo $aragorn->xp; // Affiche le nombre de points d'expérience
 
 
 /**
