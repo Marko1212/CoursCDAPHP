@@ -12,7 +12,7 @@ class Potion extends Objet implements UsableInterface {
 
     public function use($personnage) {
 
-        $personnage->addPointsDeVie(10);
+        $personnage->addPointsDeVie(20);
 
     }
 
