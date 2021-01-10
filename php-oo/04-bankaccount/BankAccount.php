@@ -112,11 +112,11 @@ public function __construct($owner, $balance=0, $overdraft=0) {
         }
 
         if (!is_numeric($this->balance) || $this->balance < 0) {
-            $erreurs['balance'] = 'Montant non valide';
+            $errors['balance'] = 'Montant non valide';
         }
 
         if (!is_numeric($this->overdraft) || $this->overdraft < 0) {
-            $errors['overdraft'] = "Montant non valide";
+            $errors['overdraft'] = "Découvert non valide";
         }
 
         return $errors;

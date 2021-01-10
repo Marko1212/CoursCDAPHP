@@ -53,7 +53,7 @@
             Le compte a bien été créé!
         </div>';
             } else {
-                var_dump($errors);
+               //var_dump($errors);
             }
         }
         ?>
@@ -63,12 +63,20 @@
                 <form action="" method="post">
                     <label for="owner">Client</label>
                     <input type="text" name="owner" id="owner" class="form-control" value="<?= $owner; ?>"> <br />
-
+                    <?php if (isset($errors['owner'])) {
+                        echo '<p class="text-danger">' . $errors['owner'] . '</p>';
+                    } ?>
                     <label for="balance">Montant initial</label>
                     <input type="number" name="balance" id="balance" class="form-control" value="<?= $balance; ?>"> <br />
+                    <?php if (isset($errors['balance'])) {
+                        echo '<p class="text-danger">' . $errors['balance'] . '</p>';
+                    } ?>
 
                     <label for="overdraft">Découvert autorisé</label>
                     <input type="number" name="overdraft" id="overdraft" class="form-control" value="<?= $overdraft; ?>"> <br />
+                    <?php if (isset($errors['overdraft'])) {
+                        echo '<p class="text-danger">' . $errors['overdraft'] . '</p>';
+                    } ?>
 
                     <button class="btn btn-primary btn-block mb-4">Ajouter le compte</button>
 
