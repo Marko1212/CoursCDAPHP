@@ -42,6 +42,10 @@ abstract class Personnage
             return 'Je suis déjà mort!';
         }
 
+        if ($bourreau === $this) {
+            return "On ne doit pas s'attaquer soi-même!<br>";
+        }
+
         if ($this->pointsDeVie <= $bourreau->getDestructiveForce()) {
             $this->alive = false;
             $this->pointsDeVie = 0;
