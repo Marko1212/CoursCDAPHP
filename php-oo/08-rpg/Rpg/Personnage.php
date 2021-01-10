@@ -14,13 +14,13 @@ abstract class Personnage
     private $level = 0;
     private $alive = true;
     private $destructiveForce = 0;
-    private static $list = []; 
+    private static $listOfPersonnages = [];
 
 
     public function __construct($nom)
     {
         $this->nom = $nom;
-        self::$list[] = $this;
+        self::$listOfPersonnages[] = $this;
     }
 
     public function attaquer($victime)
