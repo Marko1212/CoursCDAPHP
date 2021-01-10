@@ -70,7 +70,8 @@ abstract class Personnage
 
    public function getDestructiveForce() {
         if ($this instanceof Guerrier) {
-            return $this->destructiveForce = 2 * $this->getPointsDeForce();
+            $this->destructiveForce = 2 * $this->getPointsDeForce();
+            return $this->destructiveForce;
         }
 
         if ($this instanceof Chasseur) {
@@ -125,7 +126,6 @@ abstract class Personnage
         }
     }
 
-
     public function getNom()
     {
         return $this->nom;
@@ -137,11 +137,24 @@ abstract class Personnage
         return $this;
     }
 
-    public function afficheInventaire()
+ /*    public function afficheInventaire()
     {
         foreach ($this->inventaire as $item) {
             echo $item->getNom() . '<br>';
         }
+    }
+ */
+       /**
+     * Afficher l'inventaire du personnage
+     */
+    public function afficheInventaire() {
+        $html = '<ul>';
+        foreach ($this->inventaire as $item) {
+            // .= permet de concaténer à la suite
+            $html .= '<li>'.$item->getNom().'</li>';
+        }
+        $html .= '</ul>';
+        return $html;
     }
 
     public function getLevel() {
@@ -164,7 +177,7 @@ abstract class Personnage
     }
 
     public static function getList() {
-        return self::$list;
+        return self::$listOfPersonnages;
     }
 
 }
