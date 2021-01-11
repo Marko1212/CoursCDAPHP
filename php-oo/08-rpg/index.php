@@ -17,6 +17,7 @@
         use Rpg\Magicien;
         use Rpg\Guerrier;
         use Rpg\Personnage;
+        use Rpg\Sword;
 
         $aragorn = new Guerrier('Aragorn');
         $legolas = new Chasseur('Legolas');
@@ -31,11 +32,13 @@
         $sword = new Objet('Andùril');
         $arc = new Objet('Arc');
         $potion = new Potion();
+        $sword = new Sword('Andùril', 5);
 
         $aragorn->pick($potion)->pick($sword);
         $legolas->pick($arc);
 
         $aragorn->consume($potion);
+        $aragorn->equip($sword);
 
         // Tableau avec les personnages
         $personnages = Personnage::getList();
