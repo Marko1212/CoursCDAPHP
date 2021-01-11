@@ -18,7 +18,7 @@
 
     //Pour les erreurs
 
-    $form->getErrors(['email', 'telephone', 'message']);
+    $form->getErrors(['email' => 'required', 'telephone' => 'required', 'message' => 'required|min_length:15']);
 
     ?>
 
