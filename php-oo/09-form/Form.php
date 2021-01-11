@@ -30,6 +30,42 @@ class Form {
 
     }
 
+    public function select($name, $values) {
+        $this->fields[] = $name;
+        $label = ucfirst($name);
+
+        $value = $this->getData($name);
+
+        //on génère les options du select
+
+        $options = '';
+
+        foreach($values as $value) {
+            $options .= "<option value=\"$value\">$value</option>";
+        }
+
+
+
+        return "<label for=\"$name\">$label</label>
+                <select name=\"$name\" id=\"$name\"
+                class=\"form-control\">
+                $options
+                </select>";
+
+    }
+
+    public function textarea($name) {
+        $this->fields[] = $name;
+        $label = ucfirst($name);
+
+        $value = $this->getData($name);
+
+        return "<label for=\"$name\">$label</label>
+                <textarea name=\"$name\" id=\"$name\"
+                class=\"form-control\">$value</textarea>";
+
+    }
+
     public function button($name) {
         return "<button class=\"btn btn-primary\">$name</button>";
     }

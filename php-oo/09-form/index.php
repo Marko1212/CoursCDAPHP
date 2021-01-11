@@ -30,13 +30,13 @@
 
     <form method='post' action=''>
 
-        <?php echo $form->input('civility'); ?>
+        <?php echo $form->select('civility', ['Mr', 'Mme']); ?>
         <?php echo $validation->getError('civility'); ?>
         <?php echo $form->input('email'); ?>
         <?php echo $validation->getError('email'); ?>
         <?php echo $form->input('telephone', 'number'); ?>
         <?php echo $validation->getError('telephone'); ?>
-        <?php echo $form->input('message'); ?>
+        <?php echo $form->textarea('message'); ?>
         <?php echo $validation->getError('message'); ?>
 
         <?= $form->button('Envoyer'); ?>
