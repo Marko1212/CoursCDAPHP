@@ -18,7 +18,12 @@
 
     //Pour les erreurs
 
-    $form->getErrors(['email' => 'required', 'telephone' => 'required', 'message' => 'required|min_length:15']);
+    //$validation = new Validation();
+    //$validation -> name('email')->required();
+    //$_POSTvalidation -> name('message')->min(15)->required();
+    //$form->setValidation($validation);
+
+
 
     ?>
 
@@ -39,6 +44,8 @@
         var_dump($form->getData());
         //le getData doit me renvoyer toutes les données
         //du formulaire ($_POST)
+
+        //var_dump($form->getErrors());
     }
 
     ?>
