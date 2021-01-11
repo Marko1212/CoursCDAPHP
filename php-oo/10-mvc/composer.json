@@ -1,0 +1,13 @@
+{
+    "name": "marko/10-mvc",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Marko1212",
+            "email": "shihonage7@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^5.2"
+    }
+}
