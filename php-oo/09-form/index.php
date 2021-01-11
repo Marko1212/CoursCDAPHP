@@ -24,6 +24,8 @@
         <?php echo $form->input('email'); ?>
         <?php echo $form->input('telephone'); ?>
         <?php echo $form->input('message'); ?>
+
+        <?= $form->button('Envoyer'); ?>
     </form>
 
 

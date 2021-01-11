@@ -18,5 +18,9 @@ class Form {
 
     }
 
+    public function button($name) {
+        return "<button class=\"btn btn-primary\">$name</button>";
+    }
+
 }
 
