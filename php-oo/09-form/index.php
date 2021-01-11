@@ -14,7 +14,7 @@
     spl_autoload_register();
 
 
-    $form = new Form();
+    $form = new Form($_POST);
 
 
 
@@ -22,11 +22,24 @@
 
     <form method='post' action=''>
         <?php echo $form->input('email'); ?>
-        <?php echo $form->input('telephone'); ?>
+        <?php echo $form->input('telephone', 'number'); ?>
         <?php echo $form->input('message'); ?>
 
         <?= $form->button('Envoyer'); ?>
     </form>
+
+    <?php 
+
+    //
+
+    if ($form->isSubmit()) {
+
+        var_dump($form->getData());
+        //le getData doit me renvoyer toutes les données
+        //du formulaire ($_POST)
+    }
+
+    ?>
 
 
 
