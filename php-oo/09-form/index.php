@@ -18,19 +18,26 @@
 
     //Pour les erreurs
 
-    //$validation = new Validation();
-    //$validation -> name('email')->required();
-    //$_POSTvalidation -> name('message')->min(15)->required();
-    //$form->setValidation($validation);
+    $validation = new Validation($form);
+    $validation -> name('civility') -> min(2) -> required();
+    $validation -> name('email')->required();
+    $validation -> name('telephone')->required();
+    $validation -> name('message')->min(15)->required();
 
 
 
     ?>
 
     <form method='post' action=''>
+
+        <?php echo $form->input('civility'); ?>
+        <?php echo $validation->getError('civility'); ?>
         <?php echo $form->input('email'); ?>
+        <?php echo $validation->getError('email'); ?>
         <?php echo $form->input('telephone', 'number'); ?>
+        <?php echo $validation->getError('telephone'); ?>
         <?php echo $form->input('message'); ?>
+        <?php echo $validation->getError('message'); ?>
 
         <?= $form->button('Envoyer'); ?>
     </form>
@@ -45,7 +52,7 @@
         //le getData doit me renvoyer toutes les données
         //du formulaire ($_POST)
 
-        //var_dump($form->getErrors());
+        var_dump($validation->getErrors());
     }
 
     ?>

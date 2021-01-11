@@ -46,14 +46,14 @@ class Form {
     public function getData($key = null) {
 
         if ($key !== null) {
-            return $this->dat[$key] ?? null;
+            return $this->data[$key] ?? null;
         }
         return $this->data;
     }
 
     public function getErrors($errors) {
         if (strlen($this->getData('message')) < 15) {
-            
+
         }
 
     }
