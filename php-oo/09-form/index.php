@@ -16,7 +16,9 @@
 
     $form = new Form($_POST);
 
+    //Pour les erreurs
 
+    $form->getErrors(['email', 'telephone', 'message']);
 
     ?>
 

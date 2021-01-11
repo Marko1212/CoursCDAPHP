@@ -51,5 +51,11 @@ class Form {
         return $this->data;
     }
 
+    public function getErrors($errors) {
+        if (strlen($this->getData('message')) < 15) {
+            
+        }
+
+    }
 }
 
