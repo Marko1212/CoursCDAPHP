@@ -39,7 +39,7 @@ abstract class Personnage
     {   
 
         if ($this->alive === false) {
-            return 'Je suis déjà mort!';
+            return 'Je suis déjà mort!<br>';
         }
 
         if ($bourreau === $this) {
@@ -59,12 +59,12 @@ abstract class Personnage
                 $bourreau->increaseLevel();
             }   
 
-            return $this->nom . ' tué!';
+            return $this->nom . ' tué!<br>';
         }   
 
             $this->pointsDeVie -= $bourreau->getDestructiveForce();
 
-        return $this->nom . ' attaqué!';
+        return $this->nom . ' attaqué!<br>';
     }
 
 
