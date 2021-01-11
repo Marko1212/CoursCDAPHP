@@ -175,6 +175,8 @@ abstract class Personnage
     }
 
     public function addExperience() {
+
+
         $this->xp++;
 
         return $this;
