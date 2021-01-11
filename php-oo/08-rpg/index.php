@@ -40,6 +40,10 @@
         $aragorn->consume($potion);
         $aragorn->equip($sword);
 
+        $aragorn->attaquer($legolas)
+                ->attaquer($legolas)
+                ->attaquer($legolas);
+
         // Tableau avec les personnages
         $personnages = Personnage::getList();
     ?>
@@ -47,7 +51,7 @@
     <div class="container">
         <div class="row">
             <?php foreach ($personnages as $personnage) { ?>
-                <div class="col-lg-4">
+                <div class="col-lg-4 bg-dark">
                     <h1><?= $personnage->getNom(); ?></h1>
                     <img src="<?= $personnage->getImage(); ?>" alt="">
 
@@ -63,6 +67,9 @@
 
                     <!-- Afficher l'inventaire sous forme de liste -->
                     <?= $personnage->afficheInventaire(); ?>
+
+                    <span>Niveau : <?=$personnage->getNiveau(); ?></span>
+                    <span>Expérience : <?=$personnage->getExperience(); ?></span>
                 </div>
             <?php } ?>
         </div>

@@ -11,7 +11,7 @@ abstract class Personnage
     protected $pointsDeMana = 10;
     protected $inventaire = [];
     private $xp = 0;
-    private $level = 0;
+    private $level = 1;
     private $alive = true;
     private $destructiveForce = 0;
     private static $listOfPersonnages = [];
@@ -168,6 +168,10 @@ abstract class Personnage
 
     public function getExperience() {
         return $this->xp;
+    }
+
+    public function getNiveau() {
+        return $this->level;
     }
 
     public function addExperience() {
