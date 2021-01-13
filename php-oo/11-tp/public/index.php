@@ -12,8 +12,22 @@ spl_autoload_register(function($class) {
     // convertit les '/' en '\' sur windows
 });
 
+$controller= $_GET['controller'] ?? 'driver';
+$action = $_GET['action'] ?? 'list';
+
+// On va aiguiller vers la bonne page
 // Accès à la page index.php?controller=driver&action=list
 // La notation php utilise des '\' (cf. ci-dessous)
-$driverController = new Controller\DriverController();
-$driverController->list();
+
+    $controllerClassName = 'Controller\\'.ucfirst($controller).'Controller';
+    $driverController = new $controllerClassName();
+
+
+   /* if ($action === 'list') {
+        $driverController->list();
+    } else if ($action === 'create') {
+        $driverController->create();
+    } */
+
+    $driverController->$action();
 
