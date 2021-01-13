@@ -16,4 +16,8 @@ class DriverController
         include '../templates/driver/list.html.php';
     }
 
+    public function create() {
+
+    }
+
 }
