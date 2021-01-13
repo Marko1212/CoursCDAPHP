@@ -74,4 +74,12 @@ class DriverController
         header('Location: index.php?controller=driver&action=list');
     }
 
+    public function show() {
+        $manager = new DriverManager();
+        $driver = $manager->getDriverById($_GET['id']);
+
+        include '../templates/driver/show.html.php';
+
+    }
+
 }

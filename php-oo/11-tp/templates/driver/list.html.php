@@ -14,7 +14,7 @@
     <?php foreach ($drivers as $driver) { ?>
 <tr>
     <td><?= $driver->getId(); ?></td>
-    <td><?= $driver->getFirstName(); ?></td>
+    <td><a href = "index.php?controller=driver&action=show&id=<?= $driver->getId(); ?>"><?= $driver->getFirstName(); ?></a></td>
     <td><?= $driver->getName(); ?></td>
     <td><a href="index.php?controller=driver&action=edit&id=<?= $driver->getId(); ?>"><i class="fa fa-edit"></i>
         </a></td>
