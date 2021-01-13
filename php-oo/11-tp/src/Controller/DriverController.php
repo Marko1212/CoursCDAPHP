@@ -35,8 +35,14 @@ class DriverController
         include '../templates/driver/list.html.php';
     }
 
-    public function create() {
-        echo 'TOTO';
+    public function edit() {
+        echo 'EDIT';
+    }
+
+    public function delete() {
+        $manager = new DriverManager();
+        $manager -> delete($_GET['id']);
+        header('Location: index.php?controller=driver&action=list');
     }
 
 }

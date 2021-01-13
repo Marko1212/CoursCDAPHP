@@ -3,12 +3,23 @@
 
     <div class="container">
     <h1>Liste des conducteurs</h1>
-    <table class="table">
+    <table class="table text-center">
+        <thead>
+            <th>ID</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Modification</th>
+            <th>Suppression</th>
+        </thead>
     <?php foreach ($drivers as $driver) { ?>
 <tr>
     <td><?= $driver->getId(); ?></td>
     <td><?= $driver->getFirstName(); ?></td>
     <td><?= $driver->getName(); ?></td>
+    <td><a href="index.php?controller=driver&action=edit&id=<?= $driver->getId(); ?>"><i class="fa fa-edit"></i>
+        </a></td>
+    <td><a href="index.php?controller=driver&action=delete&id=<?= $driver->getId(); ?>"><i class="fa fa-times"></i>
+        </a></td>
 </tr>
 <?php } ?>
     </table>
