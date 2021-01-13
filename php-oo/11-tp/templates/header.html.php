@@ -12,13 +12,13 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">VTC</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-link active" href="index.php?controller=driver&action=list">Conducteurs</a>
-      <a class="nav-link" href="#">Véhicules</a>
+      <a class="nav-link" href="index.php?controller=vehicle&action=list">Véhicules</a>
       <a class="nav-link" href="#">Associations</a>
     </div>
   </div>
