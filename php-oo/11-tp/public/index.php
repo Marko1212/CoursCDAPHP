@@ -15,5 +15,5 @@ spl_autoload_register(function($class) {
 // Accès à la page index.php?controller=driver&action=list
 // La notation php utilise des '\' (cf. ci-dessous)
 $driverController = new Controller\DriverController();
-echo $driverController->list();
+$driverController->list();
 
