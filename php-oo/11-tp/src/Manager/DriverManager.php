@@ -43,10 +43,36 @@ class DriverManager
 
     public function delete ($id) {
         $query= $this->db->prepare('DELETE FROM driver WHERE id = :id');
-
         $query->bindValue(':id', $id);
-     
+        $query->execute();
+
+        return $query->fetch();
+    }
+
+    public function getDriverById ($id) {
+        $query= $this->db->prepare('SELECT * FROM driver where id = :id');
+        $query->bindValue(':id', $id);
+        $query->execute();
+
+        $fetch = $query->fetch();
+        $driver = new Driver($fetch['name'], $fetch['firstname']);
+        $driver->setId($fetch['id']);
+
+        return $driver;
+    }
+
+    public function update(Driver $driver) {
+
+        $query= $this->db->prepare(
+            'UPDATE driver SET name = :name, firstname = :firstname where id = :id');
+
+        $query->bindValue(':name', $driver->getName());
+        $query->bindValue(':firstname', $driver->getFirstname());
+        $query->bindValue(':id', $driver->getId());
+
         return $query->execute();
+
+
     }
 
 }
