@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Entity\Driver;
 use Manager\DriverManager;
 
 class DriverController
@@ -21,7 +22,12 @@ class DriverController
         // Ajouter le chauffeur en BDD
 
         if ($form->isSubmit() && empty($validation->getErrors())) {
-            var_dump($form->getData());
+            // On hydrate un objet Driver avec les données du formulaire
+            // Hydrater veut simplement dire qu'on crée l'objet avec des données
+            $driver = new Driver($form->getData('name'), $form->getData('firstname'));
+            // On insère l'objet dans la BDD grâce au manager
+            $manager->add($driver);
+            header('Location: index.php?controller=driver&action=list');
         }
 
         // Le controller appelle la vue et donc l'affiche (html)
