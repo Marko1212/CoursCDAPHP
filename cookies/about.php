@@ -9,4 +9,4 @@ setcookie('abouts', 'je suis dans abouts', $httponly = true);
 
 <h1>about</h1>
 <h2><?= $_COOKIE['abouts'] ?? '' ?></h2>
-<a href="/cookies-et-sessions">index</a>
+<a href="/cookies">index</a>
