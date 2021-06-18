@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;700&display=swap");
+/* mixins */
+/* basic styles */
+body {
+  font-family: "Public Sans", sans-serif;
+  font-size: 16px;
+  color: #444;
+  font-weight: 300;
+}
+
+a {
+  transition: 0.3s ease;
+}
+
+/* nav */
+nav img {
+  width: 150px;
+}
+nav .nav-link {
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 0 1px #231f20;
+}
+nav .nav-link:hover {
+  color: #d8303e;
+}
+nav .active .nav-link {
+  color: #d8303e;
+}
+
+/**************
+mainHeader
+**************/
+.mainHeader {
+  background-image: linear-gradient(rgba(35, 31, 32, 0.3), rgba(35, 31, 32, 0.3)), url(img/skola-veb-dizajna-header.jpg);
+  background-position: 50% 0;
+  background-size: cover;
+  height: 100vh;
+  clip-path: polygon(0 0, 100% 0%, 100% 80%, 50% 100%, 0 80%);
+}
+.mainHeader article {
+  height: 100vh;
+}
+.mainHeader article h1 {
+  font-size: 4rem;
+  text-shadow: 0 0 10px #231f20;
+}
+.mainHeader article p {
+  text-shadow: 0 0 10px #231f20;
+}
+.mainHeader article .col-md-4 {
+  background: rgba(216, 48, 62, 0.9);
+  flex: 0 0 30%;
+}
+.mainHeader article .col-md-4:nth-child(1) {
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+.mainHeader article .col-md-4:nth-child(2) {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+.mainHeader article .col-md-4:nth-child(3) {
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+}
+
+/*# sourceMappingURL=style.css.map */

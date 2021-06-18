@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;700&display=swap');
+$red: #d8303e;
+$red2: #c1262e;
+$red3: #a72230;
+$black: #231f20;
+$text:#444;
+$white:#fff;
+$link:rgb(52,52,52);
+$lightgray: #f3f3f3;
+$fontFamily: 'Public Sans', sans-serif;
+$fontSize: 16px;
+$transition: .3s ease;
+
+/* mixins */
+
+@mixin bgImg($position, $size, $height) {
+    background-position: $position;
+    background-size: $size;
+    height: $height;
+}
+
+/* basic styles */
+
+body {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    color: $text;
+    font-weight: 300;
+}
+
+a {
+    transition: $transition;
+}
+
+/* nav */
+
+nav {
+    img {
+        width: 150px;
+    }
+
+    .nav-link {
+        color: $white;
+        text-transform: uppercase;
+        text-shadow: 0 0 1px $black;
+        &:hover {
+            color: $red;
+        }
+    }
+
+    .active {
+        .nav-link {
+            color: $red;
+        }
+    }
+}
+
+/**************
+mainHeader
+**************/
+.mainHeader {
+    background-image: linear-gradient(rgba($black,.3),rgba($black,.3)), url(img/skola-veb-dizajna-header.jpg);
+    @include bgImg(50% 0, cover, 100vh);
+    clip-path: polygon(0 0, 100% 0%, 100% 80%, 50% 100%, 0 80%);
+    article {
+        height: 100vh;
+        h1 {
+            font-size: 4rem;
+            text-shadow: 0 0 10px $black;
+        }
+        p {
+            text-shadow: 0 0 10px $black;
+        }
+        .col-md-4 {
+            background: rgba($red,.9);
+            flex: 0 0 30%;
+            &:nth-child(1) {
+                clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+            }
+            &:nth-child(2) {
+                clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            }
+            &:nth-child(3) {
+                clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+            }
+        }
+    }
+}
