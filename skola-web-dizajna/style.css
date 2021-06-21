@@ -12,6 +12,22 @@ a {
   transition: 0.3s ease;
 }
 
+.py-5 {
+  padding: 80px 0 !important;
+}
+
+.underline, h2::after {
+  display: block;
+  content: "";
+  width: 200px;
+  height: 5px;
+  background: linear-gradient(to right, #d8303e, #c1262e, #a72230);
+  margin: 20px auto;
+}
+
+h2 {
+  font-size: 3rem;
+}
 /* nav */
 nav img {
   width: 150px;
@@ -26,6 +42,15 @@ nav .nav-link:hover {
 }
 nav .active .nav-link {
   color: #d8303e;
+}
+
+.stickyAdd {
+  background: rgba(255, 255, 255, 0.6);
+  transition: 0.5s all ease-in-out;
+  box-shadow: 0 1px 8px 3px rgba(35, 31, 32, 0.2);
+}
+.stickyAdd .nav-link {
+  color: #444;
 }
 
 /**************
@@ -52,6 +77,9 @@ mainHeader
   background: rgba(216, 48, 62, 0.9);
   flex: 0 0 30%;
 }
+.mainHeader article .col-md-4 a {
+  color: #fff;
+}
 .mainHeader article .col-md-4:nth-child(1) {
   clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
 }
@@ -60,6 +88,82 @@ mainHeader
 }
 .mainHeader article .col-md-4:nth-child(3) {
   clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+}
+
+/******************
+footer 
+******************/
+footer {
+  background: #f3f3f3;
+  clip-path: polygon(50% 0%, 100% 20%, 100% 100%, 0 100%, 0 20%);
+  padding: 150px 0 80px 0;
+}
+footer a {
+  color: #d8303e;
+}
+footer a:hover {
+  color: #343434;
+}
+footer .container:first-child {
+  border-bottom: 1px solid rgba(68, 68, 68, 0.2);
+}
+footer .container:first-child img {
+  width: 150px;
+}
+footer .container:first-child h4 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+footer .container:first-child ul {
+  line-height: 2;
+}
+footer .container:first-child a {
+  color: #343434;
+  text-decoration: none;
+}
+footer .container:first-child a:hover {
+  color: #d8303e;
+}
+
+/******************
+onama
+******************/
+.onama .col-md-6 {
+  flex: 0 0 47%;
+}
+
+/**************
+kursevi
+**************/
+.kursevi {
+  background: linear-gradient(to right, #d8303e, #c1262e, #a72230);
+  clip-path: polygon(0 20%, 100% 0, 99% 80%, 0% 100%);
+  padding: 250px 0;
+}
+.kursevi h2::after {
+  display: none;
+}
+.kursevi .card {
+  border: none;
+}
+.kursevi .card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.kursevi .card button {
+  background: #231f20;
+  color: #fff;
+  padding: 10px 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+}
+.kursevi .card button:hover {
+  background: #d8303e;
+  padding: 10px 60px;
 }
 
 /*# sourceMappingURL=style.css.map */

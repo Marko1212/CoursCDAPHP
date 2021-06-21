@@ -19,6 +19,21 @@ $transition: .3s ease;
     height: $height;
 }
 
+@mixin btn($bg, $color, $bgHover) {
+    background: $bg;
+    color: $color;
+    padding: 10px 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: $transition;
+    border: none;
+    clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+    &:hover {
+        background: $bgHover;
+        padding: 10px 60px;
+    }
+}
+
 /* basic styles */
 
 body {
@@ -30,6 +45,25 @@ body {
 
 a {
     transition: $transition;
+}
+
+.py-5 {
+    padding: 80px 0 !important;
+}
+
+.underline {
+    display: block;
+    content: "";
+    width: 200px;
+    height: 5px;
+    background: linear-gradient(to right,$red, $red2, $red3);
+    margin: 20px auto;
+}
+h2 {
+    font-size: 3rem;
+    &::after {
+        @extend .underline;
+    }
 }
 
 /* nav */
@@ -55,6 +89,15 @@ nav {
     }
 }
 
+.stickyAdd {
+    background: rgba($white, .6);
+    transition: .5s all ease-in-out;
+    box-shadow: 0 1px 8px 3px rgba($black, .2);
+    .nav-link {
+        color: $text;
+    }
+}
+
 /**************
 mainHeader
 **************/
@@ -74,6 +117,10 @@ mainHeader
         .col-md-4 {
             background: rgba($red,.9);
             flex: 0 0 30%;
+            a {
+                color: $white;
+
+            }
             &:nth-child(1) {
                 clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
             }
@@ -86,3 +133,86 @@ mainHeader
         }
     }
 }
+
+/******************
+footer 
+******************/
+
+footer {
+    background: $lightgray;
+    clip-path: polygon(50% 0%, 100% 20%, 100% 100%, 0 100%, 0 20%);
+    padding: 150px 0 80px 0;
+
+    a {
+        color: $red;
+        &:hover {
+            color: $link;
+        }
+    }
+
+    .container:first-child {
+        border-bottom: 1px solid rgba($text, .2);
+        img {
+            width: 150px;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            line-height: 2;
+        }
+
+        a {
+            color: $link;
+            text-decoration: none;
+
+            &:hover {
+                color: $red;
+            }
+        }
+    }
+}
+
+/******************
+onama
+******************/
+
+.onama {
+
+    .col-md-6 {
+        flex: 0 0 47%;
+    }
+}
+
+/**************
+kursevi
+**************/
+.kursevi {
+    background: linear-gradient(to right, $red, $red2, $red3);
+    clip-path: polygon(0 20%, 100% 0, 99% 80%, 0% 100%);
+    padding: 250px 0;
+    h2  {
+        &::after {
+            display: none;
+
+    }
+}
+
+.card {
+    border: none;
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit:cover;
+    }
+
+    button {
+        @include btn($black, $white, $red);
+        }
+}
+
+}
+
