@@ -135,23 +135,24 @@ onama
 /**************
 kursevi
 **************/
-.kursevi {
+.kursevi, .utisci {
   background: linear-gradient(to right, #d8303e, #c1262e, #a72230);
-  clip-path: polygon(0 20%, 100% 0, 99% 80%, 0% 100%);
+  clip-path: polygon(0 20%, 100% 0, 100% 80%, 0% 100%);
   padding: 250px 0;
 }
-.kursevi h2::after {
+.kursevi h2::after, .utisci h2::after {
   display: none;
 }
-.kursevi .card {
+.kursevi .card, .utisci .card {
   border: none;
+  margin-bottom: 30px !important;
 }
-.kursevi .card img {
+.kursevi .card img, .utisci .card img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.kursevi .card button {
+.kursevi .card button, .utisci .card button {
   background: #231f20;
   color: #fff;
   padding: 10px 40px;
@@ -161,8 +162,123 @@ kursevi
   border: none;
   clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
 }
-.kursevi .card button:hover {
+.kursevi .card button:hover, .utisci .card button:hover {
   background: #d8303e;
+  padding: 10px 60px;
+}
+
+/* blog */
+.blog .card {
+  position: relative;
+}
+.blog .card .meta {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(167, 34, 48, 0.8);
+}
+.blog .card .meta p {
+  margin-bottom: 0;
+  padding: 10px;
+  color: #fff;
+}
+.blog .card .meta p a {
+  color: #fff;
+  text-decoration: underline;
+}
+.blog .card .meta p a:hover {
+  text-decoration: none;
+}
+.blog .card .holder {
+  overflow: hidden;
+}
+.blog .card .holder img {
+  transition: transform 0.5s ease-in-out;
+}
+.blog .card .holder img:hover {
+  transform: scale(1.1);
+}
+.blog .card .card-body {
+  padding: 30px;
+}
+.blog .card .card-body button {
+  background: #231f20;
+  color: #fff;
+  padding: 10px 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+}
+.blog .card .card-body button:hover {
+  background: #d8303e;
+  padding: 10px 60px;
+}
+
+/**************
+utisci
+**************/
+.utisci .item {
+  background: #fff;
+  padding: 30px;
+  position: relative;
+  margin: 0 0 50px 0;
+  border-radius: 5px;
+}
+.utisci .item img {
+  width: 70px;
+  border-radius: 50%;
+  outline: 5px solid #fff;
+  position: absolute;
+  bottom: -35px;
+}
+.utisci .item h5 {
+  margin-bottom: 30px;
+}
+
+/* onama stranica */
+.onamaHeader {
+  background-image: linear-gradient(rgba(35, 31, 32, 0.3), rgba(35, 31, 32, 0.3)), url(img/onama-dog.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 80vh;
+  clip-path: polygon(0 0, 100% 0%, 100% 80%, 50% 100%, 0 80%);
+}
+.onamaHeader h1 {
+  font-size: 5rem;
+  text-shadow: 0 0 10px #231f20;
+}
+
+/* onamaUvod */
+.onamaUvod h3 {
+  color: #d8303e;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  text-shadow: 0 0 1px #231f20;
+}
+
+/*** ctaKursevi ***/
+.ctaKursevi {
+  background-image: linear-gradient(rgba(35, 31, 32, 0.6), rgba(35, 31, 32, 0.6)), url(img/cta.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 70vh;
+  background-attachment: fixed;
+  clip-path: polygon(0 20%, 100% 0, 100% 80%, 0% 100%);
+}
+.ctaKursevi button {
+  background: #d8303e;
+  color: #fff;
+  padding: 10px 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+}
+.ctaKursevi button:hover {
+  background: #a72230;
   padding: 10px 60px;
 }
 

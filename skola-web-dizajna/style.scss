@@ -192,7 +192,7 @@ kursevi
 **************/
 .kursevi {
     background: linear-gradient(to right, $red, $red2, $red3);
-    clip-path: polygon(0 20%, 100% 0, 99% 80%, 0% 100%);
+    clip-path: polygon(0 20%, 100% 0, 100% 80%, 0% 100%);
     padding: 250px 0;
     h2  {
         &::after {
@@ -203,6 +203,7 @@ kursevi
 
 .card {
     border: none;
+    margin-bottom: 30px !important;
     img {
         height: 100%;
         width: 100%;
@@ -216,3 +217,107 @@ kursevi
 
 }
 
+/* blog */
+
+.blog {
+    .card {
+        position: relative;
+        .meta {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba($red3, .8);
+            p {
+                margin-bottom: 0;
+                padding: 10px;
+                color: $white;
+                a {
+                    color: $white;
+                    text-decoration: underline;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
+        .holder {
+
+            overflow: hidden;
+            img {
+                transition: transform .5s ease-in-out;
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        .card-body {
+            padding: 30px;
+            button {
+                @include btn($black, $white, $red);
+            }
+        }
+
+        }
+     
+}
+
+/**************
+utisci
+**************/
+.utisci {
+    @extend .kursevi;
+    .item {
+        background: $white;
+        padding: 30px;
+        position: relative;
+        margin: 0 0 50px 0;
+        border-radius: 5px;
+        img {
+            width: 70px;
+            border-radius: 50%;
+            outline: 5px solid $white;
+            position: absolute;
+            bottom: -35px;
+        }
+        h5 {
+            margin-bottom: 30px;
+        }
+    }
+}
+
+/* onama stranica */
+
+.onamaHeader {
+    background-image: linear-gradient(rgba($black, .3), rgba($black, .3)), url(img/onama-dog.jpg);
+    @include bgImg(center, cover, 80vh);
+    clip-path: polygon(0 0, 100% 0%, 100% 80%, 50% 100%, 0 80%);
+
+    h1 {
+        font-size: 5rem;
+        text-shadow: 0 0 10px $black;
+    }
+}
+
+/* onamaUvod */
+
+.onamaUvod {
+    h3 {
+        color: $red;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        text-shadow: 0 0 1px $black;
+    }
+}
+
+/*** ctaKursevi ***/ 
+.ctaKursevi {
+    background-image: linear-gradient(rgba($black,.6), rgba($black,.6)), url(img/cta.jpg);
+    @include bgImg(center,cover, 70vh);
+    background-attachment: fixed;
+    clip-path: polygon(0 20%, 100% 0, 100% 80%, 0% 100%);
+    button {
+        @include btn($red, $white, $red3);
+    }
+}
