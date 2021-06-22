@@ -10,15 +10,14 @@ $lightgray: #f3f3f3;
 $fontFamily: 'Public Sans', sans-serif;
 $fontSize: 16px;
 $transition: .3s ease;
-
-/* mixins */
-
-@mixin bgImg($position, $size, $height) {
+/**************
+mixins
+**************/
+@mixin bgImg($position,$size,$height) {
     background-position: $position;
     background-size: $size;
     height: $height;
 }
-
 @mixin btn($bg, $color, $bgHover) {
     background: $bg;
     color: $color;
@@ -33,24 +32,21 @@ $transition: .3s ease;
         padding: 10px 60px;
     }
 }
-
-/* basic styles */
-
+/**************
+basic styles
+**************/
 body {
     font-family: $fontFamily;
     font-size: $fontSize;
     color: $text;
     font-weight: 300;
 }
-
 a {
     transition: $transition;
 }
-
 .py-5 {
     padding: 80px 0 !important;
 }
-
 .underline {
     display: block;
     content: "";
@@ -65,14 +61,13 @@ h2 {
         @extend .underline;
     }
 }
-
-/* nav */
-
+/**************
+nav
+**************/
 nav {
     img {
         width: 150px;
     }
-
     .nav-link {
         color: $white;
         text-transform: uppercase;
@@ -81,23 +76,20 @@ nav {
             color: $red;
         }
     }
-
     .active {
         .nav-link {
             color: $red;
         }
     }
 }
-
 .stickyAdd {
     background: rgba($white, .6);
     transition: .5s all ease-in-out;
-    box-shadow: 0 1px 8px 3px rgba($black, .2);
+    box-shadow: 0 1px 8px 3px rgba($black,.2);
     .nav-link {
         color: $text;
     }
 }
-
 /**************
 mainHeader
 **************/
@@ -119,7 +111,6 @@ mainHeader
             flex: 0 0 30%;
             a {
                 color: $white;
-
             }
             &:nth-child(1) {
                 clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
@@ -133,55 +124,44 @@ mainHeader
         }
     }
 }
-
-/******************
-footer 
-******************/
-
+/**************
+footer
+**************/
 footer {
     background: $lightgray;
     clip-path: polygon(50% 0%, 100% 20%, 100% 100%, 0 100%, 0 20%);
     padding: 150px 0 80px 0;
-
     a {
         color: $red;
         &:hover {
             color: $link;
         }
     }
-
     .container:first-child {
         border-bottom: 1px solid rgba($text, .2);
         img {
             width: 150px;
         }
-
         h4 {
             font-size: 1.5rem;
             margin-bottom: 20px;
         }
-
         ul {
             line-height: 2;
         }
-
         a {
             color: $link;
             text-decoration: none;
-
             &:hover {
                 color: $red;
             }
         }
     }
 }
-
-/******************
+/**************
 onama
-******************/
-
+**************/
 .onama {
-
     .col-md-6 {
         flex: 0 0 47%;
     }
@@ -191,34 +171,31 @@ onama
 kursevi
 **************/
 .kursevi {
-    background: linear-gradient(to right, $red, $red2, $red3);
+    background: linear-gradient(to right, $red,$red2,$red3);
     clip-path: polygon(0 20%, 100% 0, 100% 80%, 0% 100%);
     padding: 250px 0;
-    h2  {
+    h2 {
         &::after {
             display: none;
-
-    }
-}
-
-.card {
-    border: none;
-    margin-bottom: 30px !important;
-    img {
-        height: 100%;
-        width: 100%;
-        object-fit:cover;
-    }
-
-    button {
-        @include btn($black, $white, $red);
         }
+    }
+    .card {
+        border: none;
+        margin-bottom: 30px !important;
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        button {
+            @include btn($black,$white,$red);
+        }
+    }
 }
 
-}
-
-/* blog */
-
+/**************
+blog
+**************/
 .blog {
     .card {
         position: relative;
@@ -226,7 +203,7 @@ kursevi
             position: absolute;
             top: 0;
             right: 0;
-            background: rgba($red3, .8);
+            background: rgba($red3,.8);
             p {
                 margin-bottom: 0;
                 padding: 10px;
@@ -240,9 +217,7 @@ kursevi
                 }
             }
         }
-
         .holder {
-
             overflow: hidden;
             img {
                 transition: transform .5s ease-in-out;
@@ -251,16 +226,13 @@ kursevi
                 }
             }
         }
-
         .card-body {
             padding: 30px;
             button {
-                @include btn($black, $white, $red);
+                @include btn($black, $white,$red);
             }
         }
-
-        }
-     
+    }
 }
 
 /**************
@@ -287,21 +259,19 @@ utisci
     }
 }
 
-/* onama stranica */
-
+/**************
+onama stranica
+**************/
 .onamaHeader {
-    background-image: linear-gradient(rgba($black, .3), rgba($black, .3)), url(img/onama-dog.jpg);
-    @include bgImg(center, cover, 80vh);
+    background-image: linear-gradient(rgba($black,.3), rgba($black,.3)), url(img/onama-dog.jpg);
+    @include bgImg(center,cover, 80vh);
     clip-path: polygon(0 0, 100% 0%, 100% 80%, 50% 100%, 0 80%);
-
     h1 {
         font-size: 5rem;
         text-shadow: 0 0 10px $black;
     }
 }
-
-/* onamaUvod */
-
+/*** onamaUvod ***/ 
 .onamaUvod {
     h3 {
         color: $red;
@@ -310,7 +280,6 @@ utisci
         text-shadow: 0 0 1px $black;
     }
 }
-
 /*** ctaKursevi ***/ 
 .ctaKursevi {
     background-image: linear-gradient(rgba($black,.6), rgba($black,.6)), url(img/cta.jpg);

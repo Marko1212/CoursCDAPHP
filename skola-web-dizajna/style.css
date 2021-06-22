@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;700&display=swap");
-/* mixins */
-/* basic styles */
+/**************
+mixins
+**************/
+/**************
+basic styles
+**************/
 body {
   font-family: "Public Sans", sans-serif;
   font-size: 16px;
@@ -28,7 +32,9 @@ a {
 h2 {
   font-size: 3rem;
 }
-/* nav */
+/**************
+nav
+**************/
 nav img {
   width: 150px;
 }
@@ -90,9 +96,9 @@ mainHeader
   clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
 }
 
-/******************
-footer 
-******************/
+/**************
+footer
+**************/
 footer {
   background: #f3f3f3;
   clip-path: polygon(50% 0%, 100% 20%, 100% 100%, 0 100%, 0 20%);
@@ -125,9 +131,9 @@ footer .container:first-child a:hover {
   color: #d8303e;
 }
 
-/******************
+/**************
 onama
-******************/
+**************/
 .onama .col-md-6 {
   flex: 0 0 47%;
 }
@@ -167,7 +173,9 @@ kursevi
   padding: 10px 60px;
 }
 
-/* blog */
+/**************
+blog
+**************/
 .blog .card {
   position: relative;
 }
@@ -237,7 +245,9 @@ utisci
   margin-bottom: 30px;
 }
 
-/* onama stranica */
+/**************
+onama stranica
+**************/
 .onamaHeader {
   background-image: linear-gradient(rgba(35, 31, 32, 0.3), rgba(35, 31, 32, 0.3)), url(img/onama-dog.jpg);
   background-position: center;
@@ -250,7 +260,7 @@ utisci
   text-shadow: 0 0 10px #231f20;
 }
 
-/* onamaUvod */
+/*** onamaUvod ***/
 .onamaUvod h3 {
   color: #d8303e;
   margin-bottom: 30px;
