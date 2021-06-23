@@ -237,7 +237,7 @@ utisci
 .utisci .item img {
   width: 70px;
   border-radius: 50%;
-  outline: 5px solid #fff;
+  box-shadow: 0 0 5px 5px #fff;
   position: absolute;
   bottom: -35px;
 }

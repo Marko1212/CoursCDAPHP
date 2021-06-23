@@ -249,7 +249,8 @@ utisci
         img {
             width: 70px;
             border-radius: 50%;
-            outline: 5px solid $white;
+           // outline: 5px solid $white;// outline with rounded corners works only in Firefox Mozilla!
+            box-shadow: 0 0 5px 5px $white;
             position: absolute;
             bottom: -35px;
         }
