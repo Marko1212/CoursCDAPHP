@@ -292,4 +292,101 @@ onama stranica
   padding: 10px 60px;
 }
 
+/*** predavaci ***/
+.predavaci .card {
+  border: 1px solid #231f20;
+  margin-bottom: 30px !important;
+}
+.predavaci .card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.predavaci .card a {
+  background: #231f20;
+  color: #fff;
+  padding: 10px 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+  text-decoration: none;
+}
+.predavaci .card a:hover {
+  background: #d8303e;
+  padding: 10px 60px;
+}
+.predavaci .card .card-body {
+  padding: 30px;
+}
+.predavaci .card .card-body .card-text {
+  padding: 10px 0;
+}
+
+/* blog stranica */
+/* blogPosts */
+.blogPosts .post {
+  position: relative;
+}
+.blogPosts .post img {
+  width: 100%;
+  height: auto;
+}
+.blogPosts .post .text {
+  padding: 30px;
+  line-height: 1.7;
+}
+.blogPosts .post .text .meta {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(216, 48, 62, 0.8);
+  padding: 10px;
+  color: #fff;
+}
+.blogPosts .post .text .meta a {
+  color: #fff;
+  text-decoration: underline;
+}
+.blogPosts .post .text .meta a:hover {
+  background: #fff;
+  color: #444;
+}
+.blogPosts .post .text .excerpt {
+  padding: 20px 0;
+}
+.blogPosts .post .text .excerpt + a {
+  background: #231f20;
+  color: #fff;
+  padding: 10px 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+  text-decoration: none;
+}
+.blogPosts .post .text .excerpt + a:hover {
+  background: #d8303e;
+  padding: 10px 60px;
+}
+.blogPosts .widget {
+  padding: 30px;
+  margin-bottom: 80px;
+  background: linear-gradient(90deg, #d8303e, #a72230);
+}
+.blogPosts .widget h3 {
+  background: #fff;
+  text-align: center;
+}
+.blogPosts .widget ul {
+  list-style: none;
+  padding-left: 0;
+  line-height: 2;
+}
+.blogPosts .widget ul a {
+  color: #fff;
+}
+
 /*# sourceMappingURL=style.css.map */

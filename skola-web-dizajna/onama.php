@@ -1,11 +1,8 @@
 <?php include "header.php"; ?>
 
 <!-- header -->
-
 <header class="onamaHeader d-flex justify-content-center align-items-center">
-    <h1 class="text-white container text-center">
-        O nama
-    </h1>
+    <h1 class="text-white container text-center">O nama</h1>
 </header>
 
 <!-- onama uvod -->
@@ -30,7 +27,6 @@
     </article>
 </section>
 
-<!-- ctaKursevi -->
 
 <!-- ctaKursevi -->
 <section class="ctaKursevi text-center py-5 text-white d-flex justify-content-center align-items-center">
@@ -40,5 +36,46 @@
         <button>Kursevi</button>
     </article>
 </section>
+
+<!-- predavaci -->
+<section class="predavaci container py-5">
+        <h2 class="text-center">Predavaci skole</h2>
+        <article class="row pt-5">
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-5">
+                            <img class="img-fluid" src="img/sloba.jpg" alt="...">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">Slobodan Miric</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, in aperiam culpa illo et soluta sapiente dolorem. Unde amet harum deserunt similique, nemo dignissimos saepe dolores delectus! Dolor, pariatur esse! Officia dolor reiciendis, similique labore ab ut numquam delectus vel.</p>
+                                <a href="">Saznaj vise</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-5">
+                            <img class="img-fluid" src="img/danilo.jpg" alt="...">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">Danilo Vesovic</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, in aperiam culpa illo et soluta sapiente dolorem. Unde amet harum deserunt similique, nemo dignissimos saepe dolores delectus! Dolor, pariatur esse! Officia dolor reiciendis, similique labore ab ut numquam delectus vel.</p>
+                                <a href="">Saznaj vise</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+
+
 
 <?php include "footer.php"; ?>

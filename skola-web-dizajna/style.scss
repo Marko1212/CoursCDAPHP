@@ -291,3 +291,89 @@ onama stranica
         @include btn($red, $white, $red3);
     }
 }
+
+/*** predavaci ***/ 
+.predavaci {
+    .card {
+        border: 1px solid $black;
+        margin-bottom: 30px !important;
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        a {
+            @include btn($black,$white,$red);
+            text-decoration: none;
+        }
+        .card-body {
+            padding: 30px;
+            .card-text {
+                padding: 10px 0; 
+            }
+        }
+    }
+}
+
+/* blog stranica */
+
+/* blogPosts */
+
+.blogPosts {
+    .post {
+        position: relative;
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .text {
+            padding: 30px;
+            line-height: 1.7;
+            .meta {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: rgba($red, .8);
+                padding: 10px;
+                color: $white;
+                a {
+                    color: $white;
+                    text-decoration: underline;
+                    &:hover {
+                        background: $white;
+                        color: $text;
+                    }
+                }
+            }
+            .excerpt {
+                padding: 20px 0;
+                & + a {
+
+                    @include btn($black, $white, $red);
+                    text-decoration: none;
+
+                }
+            }
+        }
+    }
+
+    .widget {
+        padding: 30px;
+        margin-bottom: 80px;
+        background: linear-gradient(90deg, $red, $red3);
+        h3 {
+            background: $white;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+            line-height: 2;
+            a {
+                color: $white;
+            }
+        }
+    }
+}
+
