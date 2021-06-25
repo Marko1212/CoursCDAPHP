@@ -1,3 +1,4 @@
+
 <?php include "header.php"; ?>
 
 <!-- header -->
@@ -7,6 +8,7 @@
 
 <!-- onama uvod -->
 <section class="onamaUvod container py-5">
+<?= $activePage; ?>
     <article class="row">
         <div class="col-md-6">
             <h3>Reč dve o osnivaču škole</h3>

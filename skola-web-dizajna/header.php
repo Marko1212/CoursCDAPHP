@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+  <?php 
+
+$activePage = $_SERVER['SCRIPT_NAME'];
+
+?>
 
     <!-- nav -->
     <nav class="navbar navbar-expand-lg fixed-top sticky">
@@ -31,13 +36,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item <?= ($activePage == '/skola-web-dizajna/index.php') ? 'active':''; ?>">
                     <a class="nav-link" href="index.php">Naslovna <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= ($activePage == '/skola-web-dizajna/onama.php') ? 'active':''; ?>">
                     <a class="nav-link" href="onama.php">O nama</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= ($activePage == '/skola-web-dizajna/blog.php') ? 'active':''; ?>">
                     <a class="nav-link" href="blog.php">Blog</a>
                 </li>
             </ul>
