@@ -12,38 +12,33 @@
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
 
-    <!-- Owl carousel -->
 
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-    <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
     <?php wp_head(); ?>
 </head>
 
 <body>
-    <?php
+<?php 
 
-    $activePage = $_SERVER['SCRIPT_NAME'];
+$activePage = $_SERVER['SCRIPT_NAME'];
 
-    ?>
+?>
 
     <!-- nav -->
     <nav class="navbar navbar-expand-lg fixed-top sticky">
         <div class="container">
-            <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="<?php echo esc_url(home_url()); ?>"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/logo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item <?= ($activePage == '/skola-web-dizajna/index.php') ? 'active' : ''; ?>">
+                    <li class="nav-item <?= ($activePage == '/skola-veb-dizajna/index.php') ? 'active' : ''; ?>">
                         <a class="nav-link" href="index.php">Naslovna <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item <?= ($activePage == '/skola-web-dizajna/onama.php') ? 'active' : ''; ?>">
+                    <li class="nav-item <?= ($activePage == '/skola-veb-dizajna/onama.php') ? 'active' : ''; ?>">
                         <a class="nav-link" href="onama.php">O nama</a>
                     </li>
-                    <li class="nav-item <?= ($activePage == '/skola-web-dizajna/blog.php') ? 'active' : ''; ?>">
+                    <li class="nav-item <?= ($activePage == '/skola-veb-dizajna/blog.php') ? 'active' : ''; ?>">
                         <a class="nav-link" href="blog.php">Blog</a>
                     </li>
                 </ul>

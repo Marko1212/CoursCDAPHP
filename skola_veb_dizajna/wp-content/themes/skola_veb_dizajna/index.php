@@ -12,7 +12,7 @@
         <div class="col-md-7">
             <div class="post shadow-lg">
                 <div class="featuredImage">
-                    <img class="img-fluid" src="img/blog1.jpg" alt="">
+                    <img class="img-fluid" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/blog1.jpg" alt="">
                 </div>
                 <div class="text">
                     <h3>Na pocetku bese ideja</h3>
