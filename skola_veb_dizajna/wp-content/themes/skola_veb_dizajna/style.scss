@@ -1,0 +1,387 @@
+/* 
+Theme Name: Škola veb dizajna
+Theme URI: https://github.com/marko1212
+Author: Marko Askovic
+Author URI: https://github.com/marko1212
+Description: Education theme (Bootstrap theme)
+Version: 1.0
+*/
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;700&display=swap');
+$red: #d8303e;
+$red2: #c1262e;
+$red3: #a72230;
+$black: #231f20;
+$text:#444;
+$white:#fff;
+$link:rgb(52,52,52);
+$lightgray: #f3f3f3;
+$fontFamily: 'Public Sans', sans-serif;
+$fontSize: 16px;
+$transition: .3s ease;
+/**************
+mixins
+**************/
+@mixin bgImg($position,$size,$height) {
+    background-position: $position;
+    background-size: $size;
+    height: $height;
+}
+@mixin btn($bg, $color, $bgHover) {
+    background: $bg;
+    color: $color;
+    padding: 10px 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: $transition;
+    border: none;
+    clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+    &:hover {
+        background: $bgHover;
+        padding: 10px 60px;
+    }
+}
+/**************
+basic styles
+**************/
+body {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    color: $text;
+    font-weight: 300;
+}
+a {
+    transition: $transition;
+}
+.py-5 {
+    padding: 80px 0 !important;
+}
+.underline {
+    display: block;
+    content: "";
+    width: 200px;
+    height: 5px;
+    background: linear-gradient(to right,$red, $red2, $red3);
+    margin: 20px auto;
+}
+h2 {
+    font-size: 3rem;
+    &::after {
+        @extend .underline;
+    }
+}
+/**************
+nav
+**************/
+nav {
+    img {
+        width: 150px;
+    }
+    .nav-link {
+        color: $white;
+        text-transform: uppercase;
+        text-shadow: 0 0 1px $black;
+        &:hover {
+            color: $red;
+        }
+    }
+    .active {
+        .nav-link {
+            color: $red;
+        }
+    }
+}
+.stickyAdd {
+    background: rgba($white, .6);
+    transition: .5s all ease-in-out;
+    box-shadow: 0 1px 8px 3px rgba($black,.2);
+    .nav-link {
+        color: $text;
+    }
+}
+/**************
+mainHeader
+**************/
+.mainHeader {
+    background-image: linear-gradient(rgba($black,.3),rgba($black,.3)), url(img/skola-veb-dizajna-header.jpg);
+    @include bgImg(50% 0, cover, 100vh);
+    clip-path: polygon(0 0, 100% 0%, 100% 80%, 50% 100%, 0 80%);
+    article {
+        height: 100vh;
+        h1 {
+            font-size: 4rem;
+            text-shadow: 0 0 10px $black;
+        }
+        p {
+            text-shadow: 0 0 10px $black;
+        }
+        .col-md-4 {
+            background: rgba($red,.9);
+            flex: 0 0 30%;
+            a {
+                color: $white;
+            }
+            &:nth-child(1) {
+                clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+            }
+            &:nth-child(2) {
+                clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            }
+            &:nth-child(3) {
+                clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+            }
+        }
+    }
+}
+/**************
+footer
+**************/
+footer {
+    background: $lightgray;
+    clip-path: polygon(50% 0%, 100% 20%, 100% 100%, 0 100%, 0 20%);
+    padding: 150px 0 80px 0;
+    a {
+        color: $red;
+        &:hover {
+            color: $link;
+        }
+    }
+    .container:first-child {
+        border-bottom: 1px solid rgba($text, .2);
+        img {
+            width: 150px;
+        }
+        h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        ul {
+            line-height: 2;
+        }
+        a {
+            color: $link;
+            text-decoration: none;
+            &:hover {
+                color: $red;
+            }
+        }
+    }
+}
+/**************
+onama
+**************/
+.onama {
+    .col-md-6 {
+        flex: 0 0 47%;
+    }
+}
+
+/**************
+kursevi
+**************/
+.kursevi {
+    background: linear-gradient(to right, $red,$red2,$red3);
+    clip-path: polygon(0 20%, 100% 0, 100% 80%, 0% 100%);
+    padding: 250px 0;
+    h2 {
+        &::after {
+            display: none;
+        }
+    }
+    .card {
+        border: none;
+        margin-bottom: 30px !important;
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        button {
+            @include btn($black,$white,$red);
+        }
+    }
+}
+
+/**************
+blog
+**************/
+.blog {
+    .card {
+        position: relative;
+        .meta {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba($red3,.8);
+            p {
+                margin-bottom: 0;
+                padding: 10px;
+                color: $white;
+                a {
+                    color: $white;
+                    text-decoration: underline;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        .holder {
+            overflow: hidden;
+            img {
+                transition: transform .5s ease-in-out;
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+        .card-body {
+            padding: 30px;
+            button {
+                @include btn($black, $white,$red);
+            }
+        }
+    }
+}
+
+/**************
+utisci
+**************/
+.utisci {
+    @extend .kursevi;
+    .item {
+        background: $white;
+        padding: 30px;
+        position: relative;
+        margin: 0 0 50px 0;
+        border-radius: 5px;
+        img {
+            width: 70px;
+            border-radius: 50%;
+           // outline: 5px solid $white;// outline with rounded corners works only in Firefox Mozilla!
+            box-shadow: 0 0 5px 5px $white;
+            position: absolute;
+            bottom: -35px;
+        }
+        h5 {
+            margin-bottom: 30px;
+        }
+    }
+}
+
+/**************
+onama stranica
+**************/
+.onamaHeader {
+    background-image: linear-gradient(rgba($black,.3), rgba($black,.3)), url(img/onama-dog.jpg);
+    @include bgImg(center,cover, 80vh);
+    clip-path: polygon(0 0, 100% 0%, 100% 80%, 50% 100%, 0 80%);
+    h1 {
+        font-size: 5rem;
+        text-shadow: 0 0 10px $black;
+    }
+}
+/*** onamaUvod ***/ 
+.onamaUvod {
+    h3 {
+        color: $red;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        text-shadow: 0 0 1px $black;
+    }
+}
+/*** ctaKursevi ***/ 
+.ctaKursevi {
+    background-image: linear-gradient(rgba($black,.6), rgba($black,.6)), url(img/cta.jpg);
+    @include bgImg(center,cover, 70vh);
+    background-attachment: fixed;
+    clip-path: polygon(0 20%, 100% 0, 100% 80%, 0% 100%);
+    button {
+        @include btn($red, $white, $red3);
+    }
+}
+
+/*** predavaci ***/ 
+.predavaci {
+    .card {
+        border: 1px solid $black;
+        margin-bottom: 30px !important;
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        a {
+            @include btn($black,$white,$red);
+            text-decoration: none;
+        }
+        .card-body {
+            padding: 30px;
+            .card-text {
+                padding: 10px 0; 
+            }
+        }
+    }
+}
+
+/* blog stranica */
+
+/* blogPosts */
+
+.blogPosts {
+    .post {
+        position: relative;
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .text {
+            padding: 30px;
+            line-height: 1.7;
+            .meta {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: rgba($red, .8);
+                padding: 10px;
+                color: $white;
+                a {
+                    color: $white;
+                    text-decoration: underline;
+                    &:hover {
+                        background: $white;
+                        color: $text;
+                    }
+                }
+            }
+            .excerpt {
+                padding: 20px 0;
+                & + a {
+
+                    @include btn($black, $white, $red);
+                    text-decoration: none;
+
+                }
+            }
+        }
+    }
+
+    .widget {
+        padding: 30px;
+        margin-bottom: 80px;
+        background: linear-gradient(90deg, $red, $red3);
+        h3 {
+            background: $white;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+            line-height: 2;
+            a {
+                color: $white;
+            }
+        }
+    }
+}
+
