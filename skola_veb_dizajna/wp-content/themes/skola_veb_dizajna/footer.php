@@ -3,7 +3,7 @@
         <article class="container pb-5">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="index.php"><img src="img/logo.png" alt="" class="img-fluid"></a>
+                    <a href="index.php"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/img/logo.png" alt="" class="img-fluid"></a>
                 </div>
                 <div class="col-md-3">
                     <h4>Partneri</h4>

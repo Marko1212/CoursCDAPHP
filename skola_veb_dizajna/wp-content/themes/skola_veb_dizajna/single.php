@@ -2,7 +2,7 @@
 
 <!-- header -->
 <header class="onamaHeader d-flex justify-content-center align-items-center">
-    <h1 class="text-white container text-center">Blog</h1>
+    <h1 class="text-white container text-center"><?php the_title(); ?></h1>
 </header>
 
 <!-- blogPosts -->
@@ -18,9 +18,7 @@
                         <div class="text">
                             <h3><?php the_title(); ?></h3>
                             <p class="meta"><?php echo get_the_date(); ?> | <a href=""><?php the_author(); ?></a></p>
-                            <p class="excerpt"><?php the_excerpt(); ?></p>
-                            <a href="<?php the_permalink(); ?>">
-                                <?php _e('Ceo tekst'); ?></a>
+                            <p class="excerpt"><?php the_content(); ?></p>
                         </div>
                     </div>
                 <?php endwhile;

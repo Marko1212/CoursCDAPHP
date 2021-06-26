@@ -330,6 +330,10 @@ onama stranica
 .blogPosts {
     .post {
         position: relative;
+        margin-bottom: 80px;
+        &:last-child {
+            margin-bottom: 0;
+        }
         img {
             width: 100%;
             height: auto;

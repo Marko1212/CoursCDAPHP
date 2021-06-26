@@ -337,6 +337,10 @@ onama stranica
 /* blogPosts */
 .blogPosts .post {
   position: relative;
+  margin-bottom: 80px;
+}
+.blogPosts .post:last-child {
+  margin-bottom: 0;
 }
 .blogPosts .post img {
   width: 100%;
