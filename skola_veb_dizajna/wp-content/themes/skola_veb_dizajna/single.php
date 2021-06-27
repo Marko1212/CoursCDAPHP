@@ -28,26 +28,7 @@
 
         </div>
         <div class="col-md-4">
-            <div class="widget shadow-lg">
-                <h3>Kategorije</h3>
-                <ul>
-                    <li><a href="">HTML i CSS</a></li>
-                    <li><a href="">Bootstrap</a></li>
-                    <li><a href="">WordPress</a></li>
-                    <li><a href="">JS</a></li>
-                    <li><a href="">PHP</a></li>
-                </ul>
-            </div>
-            <div class="widget shadow-lg">
-                <h3>Mapa sajta</h3>
-                <ul>
-                    <li><a href="">O nama</a></li>
-                    <li><a href="">Naslovna</a></li>
-                    <li><a href="">Kursevi</a></li>
-                    <li><a href="">Blog</a></li>
-                    <li><a href="">Kontakt</a></li>
-                </ul>
-            </div>
+            <?php get_sidebar(); ?>
         </div>
     </article>
 </section>

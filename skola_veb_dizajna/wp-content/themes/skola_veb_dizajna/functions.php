@@ -19,3 +19,62 @@ function skola_theme_js() {
     wp_enqueue_script('main_js', get_template_directory_uri() . '/js/main.js', array('jquery'), '', true);
 }
 add_action('wp_enqueue_scripts', 'skola_theme_js');
+
+function widgeti() {
+    register_sidebar(array(
+        'name' => 'Sidebar',
+        'id' => 'sidebar',
+        'before_widget' => '<div class="widget shadow-lg">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>'
+    ));
+
+    register_sidebar(array(
+        'name' => 'Footer 1',
+        'id' => 'footer-1',
+        'before_widget' => '<div class="col-md-3">',
+        'after_widget' => '</div>'
+
+    ));
+
+    register_sidebar(array(
+        'name' => 'Footer 2',
+        'id' => 'footer-2',
+        'before_widget' => '<div class="col-md-3">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
+
+    ));
+
+    
+    register_sidebar(array(
+        'name' => 'Footer 3',
+        'id' => 'footer-3',
+        'before_widget' => '<div class="col-md-3">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
+
+    ));
+
+    register_sidebar(array(
+        'name' => 'Footer 4',
+        'id' => 'footer-4',
+        'before_widget' => '<div class="col-md-3">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
+
+    ));
+
+    register_sidebar(array(
+        'name' => 'Footer 5',
+        'id' => 'footer-5',
+        'before_widget' => '<article class="container pt-5 text-center">',
+        'after_widget' => '</article>',
+
+    ));
+}
+add_action('widgets_init', 'widgeti');
