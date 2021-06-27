@@ -3,6 +3,11 @@
 function skola_theme_support() {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
+    
+    require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+    register_nav_menus( array(
+        'primary' => __( 'Primary Menu', 'skola_veb_dizajna' ),
+    ) );
 
 }
 add_action('after_setup_theme', 'skola_theme_support');

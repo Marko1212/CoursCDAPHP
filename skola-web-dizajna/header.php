@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
-    <title>Skola veb dizajna</title>
+    <title>Skola web dizajna</title>
 
     <link rel="stylesheet" href="style.css">
   </head>

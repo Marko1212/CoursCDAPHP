@@ -17,11 +17,6 @@
 </head>
 
 <body>
-<?php 
-
-$activePage = $_SERVER['SCRIPT_NAME'];
-
-?>
 
     <!-- nav -->
     <nav class="navbar navbar-expand-lg fixed-top sticky">
@@ -30,18 +25,18 @@ $activePage = $_SERVER['SCRIPT_NAME'];
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item <?= ($activePage == '/skola-veb-dizajna/index.php') ? 'active' : ''; ?>">
-                        <a class="nav-link" href="index.php">Naslovna <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item <?= ($activePage == '/skola-veb-dizajna/onama.php') ? 'active' : ''; ?>">
-                        <a class="nav-link" href="onama.php">O nama</a>
-                    </li>
-                    <li class="nav-item <?= ($activePage == '/skola-veb-dizajna/blog.php') ? 'active' : ''; ?>">
-                        <a class="nav-link" href="blog.php">Blog</a>
-                    </li>
-                </ul>
-            </div>
+
+            <?php
+            wp_nav_menu(array(
+                'theme_location'    => 'primary',
+                'depth'             => 2,
+                'container'         => 'div',
+                'container_class'   => 'collapse navbar-collapse',
+                'container_id'      => 'navbarNav',
+                'menu_class'        => 'nav navbar-nav ml-auto',
+                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                'walker'            => new WP_Bootstrap_Navwalker(),
+            ));
+            ?>
         </div>
     </nav>
