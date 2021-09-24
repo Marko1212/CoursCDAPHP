@@ -29,6 +29,8 @@ foreach ($ordered_values2 as $key => $value) {
     echo 'key : '.$key.' '.' value : '.$value.'<br/>';
 }
 
+echo '<br>';
+
 foreach ($values as $key => $value) {
     foreach ($ordered_values as $ordered_key => $ordered_value) {
         if ($value === $ordered_value) {
