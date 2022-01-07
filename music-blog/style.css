@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Roboto:wght@100;300;400&display=swap");
+
+:root {
+    --primary: #f43e60;
+    --white: #fff;
+    --gray: #333;
+    --black: #000;
+    --transition: 0.3s ease;
+    --fontFamily: "Roboto", sans-serif;
+    --headings: "Bungee Shade", cursive;
+}
+
+/**********************
+basics
+**********************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fontFamily);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+h1 {
+    font-family: var(--headings);
+}
+
+a {
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+h2 {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.btn {
+    background: var(--primary);
+    padding: 15px 40px;
+    color: var(--white);
+    font-size: 1rem;
+    transition: var(--transition);
+    border-radius: 5px;
+    margin-top: 30px;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: var(--gray);
+}
+
+/**********************
+nav
+**********************/
+
+nav {
+    background: var(--primary);
+    padding: 20px 50px;
+    overflow: hidden;
+}
+
+.logo {
+    float: left;
+    background: var(--white);
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    color: var(--gray);
+    letter-spacing: 5px;
+    border-radius: 5px;
+}
+
+.logo:hover {
+    background: var(--gray);
+    color: white;
+}
+
+nav ul {
+    float: right;
+    margin-top: 10px;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    color: var(--white);
+    margin-left: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+nav ul li a:hover {
+    color: var(--gray);
+}
+
+.post {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.post:last-child {
+    margin: 0;
+}
+
+.post .featuredImage {
+    float: left;
+    width: 50%;
+}
+
+.post .featuredImage img:hover {
+    opacity: 0.8;
+}
+
+.post .text {
+    float: right;
+    width: 50%;
+    padding: 0 0 0 50px;
+}
+.meta {
+    border: 1px solid var(--gray);
+    padding: 5px 15px;
+    display: inline-block;
+    margin: 10px 0 20px 0;
+}
+
+/**********************
+header
+**********************/
+.mainHeader {
+    position: relative;
+}
+
+.mainHeader img {
+    height: 600px;
+    object-fit: cover;
+}
+
+.mainHeader h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 4rem;
+    color: var(--primary);
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 5px var(--black);
+}
+
+/**********************
+main
+**********************/
+
+main {
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+section {
+    float: left;
+    width: 70%;
+}
+
+aside {
+    float: right;
+    width: 25%;
+    background: var(--gray);
+    color: var(--white);
+    padding: 50px;
+}
+
+aside a {
+    color: var(--white);
+}
+
+aside h3 {
+    font-size: 1.5rem;
+}
+
+aside h3:after {
+    display: block;
+    content: "";
+    height: 2px;
+    background: var(--white);
+    margin: 10px 0;
+}
+
+aside ul + h3 {
+    margin-top: 30px;
+}
+
+/**********************
+footer
+**********************/
+
+footer {
+    background: var(--primary);
+    padding: 50px;
+    text-align: center;
+}
